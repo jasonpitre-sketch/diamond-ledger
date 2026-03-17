@@ -1,198 +1,92 @@
 import { players } from "@/data/players"
 import Link from "next/link"
-import { notFound } from "next/navigation"
 
-type Props = {
-  params: Promise<{ slug: string }>
-}
-
-export default async function PlayerPage({ params }: Props) {
-
-  const { slug } = await params
+export default function PlayerPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  // 🔥 FIX: force read properly
+  const slug = params.slug
 
   const player = players.find((p) => p.slug === slug)
 
   if (!player) {
-    notFound()
+    return (
+      <div className="p-10 text-white bg-black min-h-screen">
+        <h1 className="text-2xl font-bold">Player Not Found</h1>
+        <p className="text-gray-400 mt-2">Slug: {slug || "undefined"}</p>
+
+        <div className="mt-6">
+          <p className="text-gray-400 text-sm">Available Players:</p>
+          {players.map((p) => (
+            <div key={p.slug}>{p.slug}</div>
+          ))}
+        </div>
+
+        <Link href="/" className="text-blue-400 underline block mt-6">
+          Back Home
+        </Link>
+      </div>
+    )
   }
 
+  const stats = player.stats?.[0]
+
   return (
-    <div
-      style={{
-        maxWidth: "1100px",
-        margin: "0 auto",
-        padding: "30px",
-        fontFamily: "Arial"
-      }}
-    >
+    <main className="min-h-screen bg-[#0a0f14] text-white p-8">
+      <div className="max-w-5xl mx-auto">
 
-      {/* HEADER */}
-
-      <div
-        style={{
-          background: "#0f172a",
-          color: "white",
-          padding: "25px",
-          borderRadius: "10px",
-          marginBottom: "25px"
-        }}
-      >
-        <h1 style={{ fontSize: "32px", marginBottom: "6px" }}>
-          {player.name}
-        </h1>
-
-        <div style={{ fontSize: "18px", opacity: 0.9 }}>
-          {player.position} | {player.team}
-        </div>
-
-        <div
-          style={{
-            marginTop: "12px",
-            display: "flex",
-            gap: "18px",
-            flexWrap: "wrap",
-            fontSize: "14px"
-          }}
-        >
-          <div>Age: {player.age}</div>
-          <div>School: {player.school}</div>
-          <div>Talent: {player.talent}</div>
-          <div>Bats: {player.bats ?? "-"}</div>
-          <div>Throws: {player.throws ?? "-"}</div>
-          <div>Level: {player.level ?? "Draft"}</div>
-        </div>
-      </div>
-
-      {/* CONTENT GRID */}
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "20px"
-        }}
-      >
-
-        {/* BIO */}
-
-        <div
-          style={{
-            background: "#f8fafc",
-            padding: "20px",
-            borderRadius: "10px"
-          }}
-        >
-          <h2>Player Overview</h2>
-
-          <p>
-            {player.bio ??
-              "Player profile coming soon. This section will include development story, scouting notes, and career progression."}
+        <div className="mb-8 border-b border-gray-700 pb-4">
+          <h1 className="text-4xl font-bold">{player.name}</h1>
+          <p className="text-gray-400">
+            {player.position} • {player.school} • Age {player.age}
           </p>
         </div>
 
-        {/* TIMELINE */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <div
-          style={{
-            background: "#f8fafc",
-            padding: "20px",
-            borderRadius: "10px"
-          }}
-        >
-          <h2>Career Timeline</h2>
+          <div className="bg-[#11181f] p-6 rounded-xl border border-gray-700">
+            <h2 className="text-xl font-semibold mb-4">Profile</h2>
+            <p className="text-sm text-gray-300">Level: {player.level}</p>
+            <p className="text-sm text-gray-300">ETA: {player.eta}</p>
+            <p className="text-sm text-gray-400 mt-4">{player.bio}</p>
+          </div>
 
-          <ul>
-            <li>Draft</li>
-            <li>A Ball</li>
-            <li>AA</li>
-            <li>AAA</li>
-            <li>MLB ETA</li>
-          </ul>
+          <div className="bg-[#11181f] p-6 rounded-xl border border-gray-700 col-span-2">
+            <h2 className="text-xl font-semibold mb-4">2025 Stats</h2>
+
+            {stats ? (
+              <div className="grid grid-cols-4 gap-4 text-center">
+                <div>
+                  <p className="text-gray-400 text-sm">AVG</p>
+                  <p className="text-xl font-bold">{stats.avg}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">HR</p>
+                  <p className="text-xl font-bold">{stats.hr}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">RBI</p>
+                  <p className="text-xl font-bold">{stats.rbi}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">OPS</p>
+                  <p className="text-xl font-bold">{stats.ops}</p>
+                </div>
+              </div>
+            ) : (
+              <p className="text-gray-400">No stats available</p>
+            )}
+          </div>
         </div>
 
-        {/* STATS */}
-
-        <div
-          style={{
-            background: "#f8fafc",
-            padding: "20px",
-            borderRadius: "10px"
-          }}
-        >
-          <h2>Season Stats</h2>
-
-          <table style={{ width: "100%" }}>
-            <thead>
-              <tr>
-                <th>G</th>
-                <th>AVG</th>
-                <th>HR</th>
-                <th>RBI</th>
-                <th>OPS</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="mt-8">
+          <Link href="/" className="text-blue-400 underline">
+            ← Back to Dashboard
+          </Link>
         </div>
-
-        {/* SCOUTING */}
-
-        <div
-          style={{
-            background: "#f8fafc",
-            padding: "20px",
-            borderRadius: "10px"
-          }}
-        >
-          <h2>Scouting Grades</h2>
-
-          <table>
-            <tbody>
-              <tr>
-                <td>Hit</td>
-                <td>60</td>
-              </tr>
-
-              <tr>
-                <td>Power</td>
-                <td>55</td>
-              </tr>
-
-              <tr>
-                <td>Speed</td>
-                <td>50</td>
-              </tr>
-
-              <tr>
-                <td>Arm</td>
-                <td>60</td>
-              </tr>
-
-              <tr>
-                <td>Defense</td>
-                <td>60</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
       </div>
-
-      {/* BACK */}
-
-      <div style={{ marginTop: "30px" }}>
-        <Link href="/draft">← Back to Draft Tracker</Link>
-      </div>
-
-    </div>
+    </main>
   )
 }
