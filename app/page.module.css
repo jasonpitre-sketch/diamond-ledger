@@ -1,0 +1,179 @@
+.page{
+
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:#d7dee8;
+
+overflow:hidden;
+
+}
+
+
+/* CAMERA */
+
+.scene{
+
+width:1800px;
+height:1200px;
+
+perspective:4200px;
+
+position:relative;
+
+}
+
+
+/* ROOM */
+
+.room{
+
+position:absolute;
+
+/* screen sized wall */
+
+width:1800px;
+height:1200px;
+
+left:50%;
+top:50%;
+
+transform:
+
+translate(-50%, -50%)
+translateZ(-1400px);
+
+transform-style:preserve-3d;
+
+}
+
+
+/* GRID MATERIAL */
+
+.wall{
+
+position:absolute;
+
+background:
+
+/* major grid */
+
+linear-gradient(rgba(0,0,0,.28) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,0,0,.28) 1px, transparent 1px),
+
+/* base color */
+
+linear-gradient(#eef2f7,#d9e1ec);
+
+background-size:
+
+100px 100px,
+100px 100px,
+100% 100%;
+
+border:1px solid rgba(0,0,0,.06);
+
+}
+
+
+
+/* fine alignment grid */
+
+.wall::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(rgba(0,0,0,.12) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,0,0,.12) 1px, transparent 1px);
+
+background-size:
+
+10px 10px;
+
+opacity:.85;
+
+}
+
+
+/* BACK WALL */
+
+.backWall{
+
+width:1800px;
+height:1200px;
+
+transform:
+
+translateZ(-700px);
+
+}
+
+
+/* FLOOR */
+
+.floor{
+
+width:1800px;
+height:1600px;
+
+transform:
+
+rotateX(90deg)
+translateZ(-600px);
+
+}
+
+
+/* CEILING */
+
+.ceiling{
+
+width:1800px;
+height:1600px;
+
+transform:
+
+rotateX(-90deg)
+translateZ(-600px);
+
+opacity:.35;
+
+}
+
+
+/* LEFT WALL */
+
+.leftWall{
+
+width:1600px;
+height:1200px;
+
+transform:
+
+rotateY(90deg)
+translateZ(-900px);
+
+}
+
+
+/* RIGHT WALL */
+
+.rightWall{
+
+width:1600px;
+height:1200px;
+
+transform:
+
+rotateY(-90deg)
+translateZ(-900px);
+
+}
