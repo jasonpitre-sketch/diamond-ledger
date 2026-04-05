@@ -1,0 +1,86 @@
+.panel{
+
+position:relative;
+
+width:100%;
+height:100%;
+
+}
+
+
+
+/* FRAME (window border) */
+
+.frame{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+url("/ui/tier1_frame.png")
+center/100% 100.6% no-repeat;
+
+z-index:1;
+
+pointer-events:none;
+
+}
+
+
+
+/* DOOR */
+
+.door{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+url("/ui/tier1_door.png")
+center/100% 100% no-repeat;
+
+z-index:5;
+
+transition:
+
+transform .7s cubic-bezier(.2,.8,.2,1),
+opacity .35s ease;
+
+}
+
+
+
+/* DOOR OPEN */
+
+.open{
+
+transform:
+
+translateY(-120%);
+
+opacity:.05;
+
+}
+
+
+
+/* DATA AREA */
+
+.data{
+
+position:absolute;
+
+inset:0;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+z-index:10;
+
+}

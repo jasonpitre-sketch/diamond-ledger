@@ -2,57 +2,120 @@
 
 import styles from "./page.module.css"
 
-import PlayerTracker from "../building_blocks/player_Tracker"
-import ConsoleBase from "../building_blocks/console_Base"
-import ConsoleChamber from "../building_blocks/console_Chamber"
-import ConsoleTop from "../building_blocks/console_Top"
-import ConsoleBottom from "../building_blocks/console_Bottom"
-import CardSlab from "../building_blocks/card_Slab"
+import OuterFrame from "@/components/frame/OuterFrame"
 
+import PlayerList from "@/components/panels/PlayerList"
+import HeroVault from "@/components/HeroVault"
+import IntelStack from "@/components/panels/IntelStack"
+
+import { useState,useEffect } from "react"
+
+import { players } from "@/data/players"
+import { calculateDLR } from "@/data/dlr"
 
 export default function Page(){
+
+const [selectedPlayerId,setSelectedPlayerId] = useState<string | null>(null)
+
+const [scanComplete,setScanComplete] = useState(false)
+
+const [intelMode,setIntelMode] = useState<
+"performance" | "media" | "market"
+>("performance")
+
+const [dlr,setDlr] = useState<number | null>(null)
+const [dlrTier,setDlrTier] = useState<string>("")
+
+const selectedPlayer =
+players.find(p => p.id === selectedPlayerId) || null
+
+useEffect(()=>{
+
+setScanComplete(false)
+
+setDlr(null)
+setDlrTier("")
+
+if(!selectedPlayer) return
+
+const result = calculateDLR(selectedPlayer)
+
+setDlr(result.rating)
+setDlrTier(result.tier)
+
+},[selectedPlayerId])
 
 return(
 
 <main className={styles.page}>
 
-<div className={styles.scene}>
+<OuterFrame
 
-<div className={styles.room}>
+modeBar={
 
+<>
 
-{/* ROOM STRUCTURE */}
+<span
+className={intelMode==="performance" ? styles.activeTab : ""}
+onClick={()=>setIntelMode("performance")}
+>
 
-<div className={`${styles.wall} ${styles.backWall}`} />
+PERFORMANCE
 
-<div className={`${styles.wall} ${styles.floor}`} />
+</span>
 
-<div className={`${styles.wall} ${styles.ceiling}`} />
+<span
+className={intelMode==="media" ? styles.activeTab : ""}
+onClick={()=>setIntelMode("media")}
+>
 
-<div className={`${styles.wall} ${styles.leftWall}`} />
+MEDIA
 
-<div className={`${styles.wall} ${styles.rightWall}`} />
+</span>
 
+<span
+className={intelMode==="market" ? styles.activeTab : ""}
+onClick={()=>setIntelMode("market")}
+>
 
+MARKET
 
-{/* MODULES */}
+</span>
 
-<PlayerTracker/>
+</>
 
-<ConsoleBase/>
+}
 
-<ConsoleChamber/>
+>
 
-<ConsoleTop/>
+<div className={styles.layout}>
 
-<ConsoleBottom/>
+<PlayerList
+selected={selectedPlayerId}
+onSelect={setSelectedPlayerId}
+/>
 
-<CardSlab/>
+<HeroVault
+playerSelected={!!selectedPlayer}
+cardImage={selectedPlayer?.card}
+dlr={dlr ?? undefined}
+dlrTier={dlrTier}
+onScanComplete={()=>setScanComplete(true)}
+/>
 
+<div className={styles.rightPanel}>
+
+<IntelStack
+player={selectedPlayer}
+scanComplete={scanComplete}
+mode={intelMode}
+/>
 
 </div>
 
 </div>
+
+</OuterFrame>
 
 </main>
 

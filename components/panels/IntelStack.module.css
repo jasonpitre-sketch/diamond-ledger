@@ -1,0 +1,125 @@
+
+/* =====================================
+
+GLOBAL STACK CONTROL
+adds horizontal freedom only
+
+does NOT modify your tier positions
+
+===================================== */
+
+.stack{
+
+/* keep everything you already have */
+
+position:absolute;
+
+/* enable horizontal movement */
+
+left:var(--stackLeft,0%);
+
+/* enable width stretch */
+
+width:var(--stackWidth,100%);
+
+/* ensure right edge respects width */
+
+right:auto;
+
+:root{
+
+--stackLeft:0%;
+
+--stackWidth:100%;
+
+}
+
+}
+.stack{
+
+position:relative;
+
+height:100%;
+width:100%;
+
+overflow:visible;
+
+}
+
+
+
+/* every tier fills full width */
+
+.stack > *{
+
+position:absolute;
+
+left:-35;
+
+width:100%;
+
+min-width:0;
+min-height:0;
+
+}
+
+
+
+/* ==========================
+   PERFECT 20 / 30 / 50
+========================== */
+
+
+/* TIER 1 */
+
+.stack > *:nth-child(1){
+
+top:-7%;
+
+height:34%;
+
+z-index:30;
+
+}
+
+
+
+/* TIER 2 */
+
+.stack > *:nth-child(2){
+
+top:14%;
+
+height:45%;
+
+z-index:20;
+
+}
+
+
+
+/* TIER 3 */
+
+.stack > *:nth-child(3){
+
+top:43%;
+
+height:65%;
+
+z-index:10;
+
+}
+
+
+
+/* optional smoother resizing */
+
+.stack > *{
+
+transition:
+
+top .2s ease,
+height .2s ease,
+width .2s ease;
+
+}
