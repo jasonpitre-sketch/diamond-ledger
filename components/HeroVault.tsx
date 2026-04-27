@@ -30,9 +30,7 @@ const preloadImage = (src?: string) =>
   })
 
 const displayCardImage = (src?: string) =>
-  src?.startsWith("/cards/")
-    ? src.replace("/cards/","/cards_display/")
-    : src
+  src
 
 export default function HeroVault({
   playerSelected,
