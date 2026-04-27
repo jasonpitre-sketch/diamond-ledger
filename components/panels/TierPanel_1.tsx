@@ -3,15 +3,17 @@
 import styles from "./TierPanel_1.module.css"
 
 type Props = {
-
 open:boolean
+active?:boolean
+title?:string
 children?:React.ReactNode
-
 }
 
 export default function TierPanel_1({
 
 open,
+active=false,
+title="SNAPSHOT",
 children
 
 }:Props){
@@ -20,18 +22,33 @@ return(
 
 <div className={styles.panel}>
 
-  {/* FRAME (always visible) */}
-  <div className={styles.frame} />
+<div className={styles.frame}/>
 
-  {/* DOOR */}
-  <div className={`${styles.door} ${open ? styles.open : ""}`} />
+<div className={`${styles.door} ${open ? styles.open : ""} ${active ? styles.active : ""}`}>
+<span className={styles.doorLabel}>{title}</span>
+</div>
 
-  {/* DATA LAYER */}
-  <div className={styles.data}>
+<div className={styles.data}>
 
-    {children}
+<div className={`${styles.fx} ${open ? styles.fxOn : ""}`}/>
 
-  </div>
+<div className={styles.inner}>
+
+
+
+{/* CONTENT */}
+
+<div className={styles.contentBlock}>
+
+{children}
+
+</div>
+
+
+
+</div>
+
+</div>
 
 </div>
 

@@ -1,19 +1,15 @@
 .panel{
-
-position:absolute;
-
+position:relative;
 width:100%;
 height:100%;
-
+overflow:hidden;
 }
 
 
 /* FRAME */
 
 .frame{
-
 position:absolute;
-
 inset:0;
 
 background:
@@ -21,107 +17,199 @@ url("/ui/tier3_frame.png")
 center/100% 100% no-repeat;
 
 z-index:1;
-
 }
 
 
 /* DOOR */
 
 .door{
-
 position:absolute;
-
 inset:0;
 
 background:
 url("/ui/tier3_door.png")
-center/100% 100.6% no-repeat;
+center/100% 100% no-repeat;
 
-z-index:6;
+z-index:5;
 
 transition:
-transform 1s cubic-bezier(.2,.9,.25,1),
-opacity .5s ease;
-
+transform 1.25s cubic-bezier(.2,.8,.2,1),
+opacity .55s ease;
+display:flex;
+align-items:flex-end;
+justify-content:flex-end;
 }
 
-
-/* OPEN */
-
-.open{
-
-transform:
-scale(.88)
-translateY(-10%)
-rotateX(14deg);
-
-opacity:.05;
-
-}
-
-
-/* HOLO */
-
-.holo{
-
+.doorLabel{
 position:absolute;
-
-top:12%;
-left:9%;
-right:9%;
-bottom:14%;
-
+left:50%;
+bottom:36%;
+transform:translateX(-50%);
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:104px;
+height:23px;
+padding:0 10px;
+border:1px solid rgba(130,185,255,.15);
+border-radius:3px;
 background:
-
 linear-gradient(
 180deg,
-rgba(120,190,255,.07),
-rgba(0,0,0,0) 35%,
-rgba(120,190,255,.06)
+rgba(75,130,210,.028),
+rgba(2,10,22,.3)
 );
-
-background-image:
-
-linear-gradient(
-rgba(120,190,255,.07) 1px,
-transparent 1px
-),
-
-linear-gradient(
-90deg,
-rgba(120,190,255,.07) 1px,
-transparent 1px
-);
-
-background-size:
-
-100% 22px,
-22px 100%;
-
 box-shadow:
-
-inset 0 0 45px rgba(120,190,255,.08),
-0 0 12px rgba(120,190,255,.14);
-
-opacity:.75;
-
+inset 0 0 8px rgba(95,165,255,.04),
+0 0 5px rgba(70,130,240,.035);
+font-size:14px;
+font-family:"Orbitron";
+letter-spacing:.23em;
+color:rgba(136,164,198,.31);
+text-transform:uppercase;
+text-shadow:
+0 1px 0 rgba(0,0,0,.88),
+0 -1px 0 rgba(150,205,255,.07);
+mix-blend-mode:screen;
+opacity:.62;
 pointer-events:none;
+transition:
+color .35s ease,
+opacity .35s ease,
+box-shadow .35s ease,
+background .35s ease,
+border-color .35s ease,
+text-shadow .35s ease;
+}
 
-z-index:3;
+.active .doorLabel{
+border-color:rgba(130,185,255,.21);
+background:
+linear-gradient(
+180deg,
+rgba(75,130,210,.085),
+rgba(2,10,22,.46)
+);
+box-shadow:
+inset 0 0 10px rgba(95,165,255,.15),
+0 0 10px rgba(70,130,240,.11);
+color:rgba(202,230,255,.68);
+text-shadow:
+0 1px 0 rgba(0,0,0,.88),
+0 -1px 0 rgba(150,205,255,.18),
+0 0 9px rgba(120,190,255,.3);
+opacity:.86;
+}
 
+.open{
+transform:translateY(-120%);
+opacity:.06;
 }
 
 
 /* DATA */
 
 .data{
+position:absolute;
+inset:0;
+z-index:10;
+
+opacity:0;
+transition:opacity .35s ease .22s;
+
+pointer-events:auto;
+}
+
+.open + .data{
+opacity:1;
+}
+
+
+/* GLASS */
+
+.fx{
+position:absolute;
+
+top:10%;
+left:7%;
+right:7%;
+bottom:10%;
+
+background:
+linear-gradient(
+180deg,
+rgba(120,170,255,.08),
+rgba(0,0,0,0) 45%,
+rgba(0,0,0,.35)
+);
+
+opacity:.35;
+transition:.4s;
+}
+
+.fxOn{
+opacity:.65;
+}
+
+
+/* CONTENT */
+
+.inner{
 
 position:absolute;
 
-inset:0;
+top:24%;
+left:20%;
+width:78%;
 
-z-index:8;
+display:flex;
+flex-direction:column;
+
+gap:1px;
+
+font-size:12.5px;
+
+letter-spacing:.04em;
+
+color:#cfe9ff;
+
+z-index:20;
+}
+
+
+/* ROWS */
+
+.contentBlock{
+
+display:flex;
+flex-direction:column;
+
+gap:3px;
+
+font-size:12.5px;
+
+line-height:1.05;
+
+}
+
+
+.contentBlock div::after{
+
+content:"";
 
 display:block;
 
+height:1px;
+
+margin-top:1px;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(120,170,255,.35),
+transparent
+);
+
+opacity:.12;
 }

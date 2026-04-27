@@ -3,40 +3,53 @@
 import styles from "./TierPanel_2.module.css"
 
 type Props = {
-
-  open:boolean
-  children?:React.ReactNode
-
+open:boolean
+active?:boolean
+title?:string
+children?:React.ReactNode
 }
 
 export default function TierPanel_2({
 
-  open,
-  children
+open,
+active=false,
+title="SCOUT",
+children
 
 }:Props){
 
-  return(
+return(
 
-    <div className={styles.panel}>
+<div className={styles.panel}>
 
-      <div className={styles.frame} />
+<div className={styles.frame}/>
 
-      <div
-        className={`
-          ${styles.door}
-          ${open ? styles.open : ""}
-        `}
-      />
+<div className={`${styles.door} ${open ? styles.open : ""} ${active ? styles.active : ""}`}>
+<span className={styles.doorLabel}>{title}</span>
+</div>
 
-      <div className={styles.data}>
+<div className={styles.data}>
 
-        {children}
+<div className={`${styles.fx} ${open ? styles.fxOn : ""}`}/>
 
-      </div>
+<div className={styles.inner}>
 
-    </div>
 
-  )
+{/* CONTENT */}
+
+<div className={styles.contentBlock}>
+
+{children}
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+)
 
 }

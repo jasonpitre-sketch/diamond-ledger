@@ -1,0 +1,44 @@
+.page{
+  min-height:100vh;
+  background:#050910;
+  color:#dceaff;
+  padding:48px 24px;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.shell{
+  width:min(840px,100%);
+  margin:0 auto;
+}
+
+.back{
+  color:#7fdcff;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:4px;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+
+.shell h1{
+  margin:34px 0 8px;
+  color:#f4fbff;
+  font-size:48px;
+}
+
+.shell h2{
+  margin:34px 0 10px;
+  color:#dff6ff;
+  font-size:22px;
+}
+
+.shell p{
+  color:#b8c9df;
+  font-size:17px;
+  line-height:1.65;
+}
+
+.meta,
+.note{
+  color:#83d8ff !important;
+}

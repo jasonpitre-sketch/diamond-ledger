@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local card-processing workspaces
+/card_images_raw/
+/card_images_clean/
+/output/
+/.venv/
+/.venv-*/
+
+# generated/oversized card display libraries
+# Keep source cards used by the app under public/cards until storage is finalized.
+/public/cards_display/

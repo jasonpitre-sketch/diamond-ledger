@@ -8,11 +8,21 @@ width:100%;
 display:flex;
 flex-direction:column;
 
+background:
+
+linear-gradient(
+180deg,
+#0a0f14 0%,
+#06090d 100%
+);
+
+overflow:hidden;
+
 }
 
 
 
-/* wrapper for layout */
+/* INNER LAYOUT */
 
 .inner{
 
@@ -22,25 +32,22 @@ flex:1;
 
 display:flex;
 
+min-height:0;
+overflow:hidden;
+
 }
 
 
 
-/* =========================
-STRUCTURAL FRAME EDGES
-REFLECTIVE METAL
-========================= */
-
-
-/* LEFT OUTER FRAME */
+/* ========================================
+STRUCTURAL METAL FRAME EDGES
+======================================== */
 
 .leftFrame{
 
 position:absolute;
-
 top:0;
 bottom:0;
-
 left:0;
 
 width:8px;
@@ -51,39 +58,27 @@ background:
 
 linear-gradient(
 90deg,
-
 #050709 0%,
-
-#1c2229 15%,
-
-#3a4654 32%,
-
+#1c2229 14%,
+#3a4654 30%,
 #8fa3b8 48%,
-
-#3a4654 62%,
-
-#1c2229 80%,
-
+#3a4654 64%,
+#1c2229 84%,
 #050709 100%
 );
 
 box-shadow:
 
-inset 1px 0 0 rgba(255,255,255,.18),
-
+inset 1px 0 0 rgba(255,255,255,.16),
 inset -1px 0 0 rgba(0,0,0,.9),
-
 0 0 12px rgba(160,190,255,.08),
-
-2px 0 10px rgba(0,0,0,.8);
+2px 0 12px rgba(0,0,0,.85);
 
 z-index:20;
 
 }
 
 
-
-/* divider between left + center */
 
 .leftSeam{
 
@@ -102,39 +97,27 @@ background:
 
 linear-gradient(
 90deg,
-
 #050709 0%,
-
-#1c2229 15%,
-
-#3a4654 32%,
-
+#1c2229 14%,
+#3a4654 30%,
 #8fa3b8 48%,
-
-#3a4654 62%,
-
-#1c2229 80%,
-
+#3a4654 64%,
+#1c2229 84%,
 #050709 100%
 );
 
 box-shadow:
 
-inset 1px 0 0 rgba(255,255,255,.18),
-
+inset 1px 0 0 rgba(255,255,255,.16),
 inset -1px 0 0 rgba(0,0,0,.92),
-
 0 0 10px rgba(120,170,255,.08),
-
-2px 0 8px rgba(0,0,0,.75);
+2px 0 8px rgba(0,0,0,.8);
 
 z-index:20;
 
 }
 
 
-
-/* RIGHT OUTER FRAME */
 
 .rightFrame{
 
@@ -153,31 +136,21 @@ background:
 
 linear-gradient(
 270deg,
-
 #050709 0%,
-
-#1c2229 15%,
-
-#3a4654 32%,
-
+#1c2229 14%,
+#3a4654 30%,
 #8fa3b8 48%,
-
-#3a4654 62%,
-
-#1c2229 80%,
-
+#3a4654 64%,
+#1c2229 84%,
 #050709 100%
 );
 
 box-shadow:
 
-inset -1px 0 0 rgba(255,255,255,.18),
-
+inset -1px 0 0 rgba(255,255,255,.16),
 inset 1px 0 0 rgba(0,0,0,.9),
-
 0 0 12px rgba(160,190,255,.08),
-
--2px 0 10px rgba(0,0,0,.8);
+-2px 0 12px rgba(0,0,0,.85);
 
 z-index:20;
 
@@ -185,9 +158,169 @@ z-index:20;
 
 
 
-/* =========================
+/* ========================================
+KNOWLEDGE SUB TABS
+======================================== */
+
+.knowledgeBar{
+
+position:absolute;
+
+bottom:68px;
+
+left:0;
+right:0;
+
+height:38px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+gap:16px;
+
+padding:0 12px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(18,26,36,.92),
+rgba(8,12,18,.96)
+);
+
+border-top:
+
+1px solid rgba(120,170,255,.14);
+
+box-shadow:
+
+0 -6px 18px rgba(0,0,0,.75),
+inset 0 1px 0 rgba(255,255,255,.05);
+
+z-index:55;
+
+}
+
+
+
+/* sub tab button */
+
+.subTab{
+
+cursor:pointer;
+
+padding:6px 14px;
+
+font-size:10px;
+
+letter-spacing:.18em;
+
+border-radius:6px;
+
+color:#6f859b;
+
+background:
+
+linear-gradient(
+180deg,
+#16202c,
+#0b1117
+);
+
+border:
+
+1px solid rgba(120,170,255,.12);
+
+box-shadow:
+
+inset 0 1px 0 rgba(255,255,255,.05),
+inset 0 -10px 18px rgba(0,0,0,.9),
+0 6px 14px rgba(0,0,0,.65);
+
+transition:.18s;
+
+}
+
+
+
+/* hover */
+
+.subTab:hover{
+
+color:#cfe9ff;
+
+border-color:
+
+rgba(120,170,255,.45);
+
+box-shadow:
+
+0 0 10px rgba(120,170,255,.25),
+0 8px 20px rgba(0,0,0,.75);
+
+}
+
+
+
+/* active */
+
+.subActive{
+
+color:#bfe9ff;
+
+border:
+
+1px solid #3b82f6;
+
+background:
+
+linear-gradient(
+180deg,
+#223243,
+#141c26
+);
+
+box-shadow:
+
+0 0 0 1px rgba(80,160,255,.35),
+0 0 18px rgba(80,160,255,.45),
+inset 0 1px 0 rgba(255,255,255,.22),
+inset 0 -14px 28px rgba(0,0,0,.95);
+
+}
+
+
+
+.subActive::after{
+
+content:"";
+
+position:absolute;
+
+left:6px;
+right:6px;
+bottom:-1px;
+
+height:2px;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+#3b82f6,
+transparent
+);
+
+}
+
+
+
+/* ========================================
 BOTTOM COMMAND RAIL
-========================= */
+======================================== */
 
 .bottomRail{
 
@@ -203,14 +336,14 @@ align-items:center;
 
 justify-content:space-between;
 
-padding:0 34px;
+padding:0 26px;
 
 background:
 
 linear-gradient(
 180deg,
-#121922 0%,
-#0b0f14 100%
+#141c26 0%,
+#0a0f14 100%
 );
 
 border-top:
@@ -220,8 +353,7 @@ border-top:
 box-shadow:
 
 0 -10px 35px rgba(0,0,0,.8),
-
-inset 0 1px 0 rgba(255,255,255,.05);
+inset 0 1px 0 rgba(255,255,255,.04);
 
 letter-spacing:.18em;
 
@@ -233,53 +365,74 @@ color:#9fb3c8;
 
 
 
-/* tab layout */
+/* GROUPS */
 
-.tabGroupLeft,
-.tabGroupCenter,
-.tabGroupRight{
+.tabGroupLeft{
 
 display:flex;
-
 gap:14px;
-
 align-items:center;
 
 }
 
 
 
-.tabGroupLeft{
+.tabGroupCombined{
 
-flex:1;
+display:flex;
+gap:10px;
+align-items:center;
+
+padding:6px 10px;
+
+border-radius:8px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(18,28,40,.55),
+rgba(8,12,18,.7)
+);
+
+border:1px solid rgba(120,170,255,.14);
+
+box-shadow:
+
+inset 0 0 18px rgba(0,0,0,.75),
+0 10px 28px rgba(0,0,0,.55);
 
 }
 
 
 
-.tabGroupCenter{
+/* subtle divider */
 
-flex:1;
+.tabDivider{
 
-justify-content:center;
+width:1px;
+height:18px;
+
+background:
+
+linear-gradient(
+180deg,
+transparent,
+rgba(120,170,255,.35),
+transparent
+);
+
+margin:0 6px;
+
+opacity:.7;
 
 }
 
 
 
-.tabGroupRight{
-
-flex:1;
-
-justify-content:flex-end;
-
-}
-
-
-
-/* =========================
-SPACE-AGE TABS
-========================= */
+/* ========================================
+TACTICAL TABS
+======================================== */
 
 .tab{
 
@@ -287,7 +440,7 @@ position:relative;
 
 cursor:pointer;
 
-padding:8px 16px;
+padding:7px 14px;
 
 border-radius:6px;
 
@@ -312,9 +465,7 @@ border:
 box-shadow:
 
 inset 0 1px 0 rgba(255,255,255,.08),
-
 inset 0 -8px 18px rgba(0,0,0,.9),
-
 0 10px 22px rgba(0,0,0,.75);
 
 transition:.18s;
@@ -322,8 +473,6 @@ transition:.18s;
 }
 
 
-
-/* hover glow */
 
 .tab:hover{
 
@@ -336,48 +485,38 @@ rgba(120,170,255,.45);
 box-shadow:
 
 0 0 14px rgba(120,170,255,.25),
-
 inset 0 1px 0 rgba(255,255,255,.12),
-
 0 10px 22px rgba(0,0,0,.75);
 
 }
 
 
 
-/* active */
-
 .activeTab{
 
-color:#9fe3ff;
+color:#bfe9ff;
 
-border:
-
-1px solid #3b82f6;
+border:1px solid #3b82f6;
 
 background:
 
 linear-gradient(
 180deg,
-#202d3b,
-#131c25
+#243445,
+#141c26
 );
 
 box-shadow:
 
 0 0 0 1px rgba(80,160,255,.35),
-
-0 0 18px rgba(80,160,255,.35),
-
-inset 0 1px 0 rgba(255,255,255,.18),
-
-inset 0 -14px 32px rgba(0,0,0,.95);
+0 0 20px rgba(80,160,255,.45),
+0 0 45px rgba(80,160,255,.15),
+inset 0 1px 0 rgba(255,255,255,.25),
+inset 0 -18px 35px rgba(0,0,0,.95);
 
 }
 
 
-
-/* glowing seam */
 
 .activeTab::after{
 
@@ -385,8 +524,8 @@ content:"";
 
 position:absolute;
 
-left:10px;
-right:10px;
+left:8px;
+right:8px;
 bottom:-1px;
 
 height:2px;
@@ -400,13 +539,9 @@ transparent,
 transparent
 );
 
-opacity:.9;
-
 }
 
 
-
-/* press depth */
 
 .tab:active{
 
@@ -415,7 +550,6 @@ transform:translateY(1px);
 box-shadow:
 
 inset 0 4px 12px rgba(0,0,0,.85),
-
 0 4px 10px rgba(0,0,0,.6);
 
 }

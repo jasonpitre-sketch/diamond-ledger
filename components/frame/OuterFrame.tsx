@@ -1,22 +1,31 @@
 "use client"
 
 import styles from "./OuterFrame.module.css"
-import React from "react"
+import React, { ReactNode } from "react"
 
 type Props = {
 
-children: React.ReactNode
+children: ReactNode
 
-modeBar?: React.ReactNode
+leftTabs?: ReactNode
+centerTabs?: ReactNode
+rightTabs?: ReactNode
+
+subTabs?: ReactNode
 
 }
 
 export default function OuterFrame({
 
 children,
-modeBar
 
-}:Props){
+leftTabs = null,
+centerTabs = null,
+rightTabs = null,
+
+subTabs = null
+
+}: Props){
 
 return(
 
@@ -29,52 +38,55 @@ return(
 {children}
 
 <div className={styles.leftSeam}/>
-
 <div className={styles.rightFrame}/>
 
 </div>
 
 
 
-{/* COMMAND RAIL */}
+{/* SUB TAB BAR */}
+
+{subTabs && (
+
+<div className={styles.knowledgeBar}>
+
+<div className={styles.subTabCenter}>
+
+{subTabs}
+
+</div>
+
+</div>
+
+)}
+
+
+
+{/* MAIN COMMAND RAIL */}
 
 <div className={styles.bottomRail}>
 
 
 
-{/* LEFT GROUP */}
+<div className={styles.leftRail}>
 
-<div className={styles.tabGroupLeft}>
-
-<span className={styles.tab}>DRAFT</span>
-
-<span className={styles.tab}>MILB</span>
-
-<span className={styles.tab}>MLB</span>
-
-<span className={styles.tab}>TRACKED</span>
+{leftTabs}
 
 </div>
 
 
 
-{/* CENTER GROUP */}
+<div className={styles.centerRail}>
 
-<div className={styles.tabGroupCenter}>
-
-<span className={styles.tab}>KNOWLEDGE</span>
-
-<span className={styles.tab}>BIO</span>
+{centerTabs}
 
 </div>
 
 
 
-{/* RIGHT GROUP */}
+<div className={styles.rightRail}>
 
-<div className={styles.tabGroupRight}>
-
-{modeBar}
+{rightTabs}
 
 </div>
 
