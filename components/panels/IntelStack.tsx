@@ -1526,12 +1526,22 @@ export default function IntelStack({
         : action.action === "SELL"
           ? "PROTECT GAINS · MARKET SUPPORT WEAKENING"
         : "HOLD LINE · WAIT FOR PRICE CONFIRMATION"
+    const trigger =
+      action.action === "BUY"
+        ? "ADD ONLY IF PSA9 STAYS BELOW VALUE BAND"
+        : action.action === "SELL"
+          ? "EXIT IF LIQUIDITY THINS OR SPREAD WIDENS"
+        : "ACT WHEN EDGE CLEARS 8% WITH USABLE CONFIDENCE"
 
     return (
       <div className={styles.marketAnalystContent} data-intel-content="market-analyst">
         <div className={styles.marketThesisStrip} title={action.reasoning}>
           <span>THESIS</span>
           <strong>{thesis}</strong>
+        </div>
+        <div className={styles.marketTriggerStrip} title="Action trigger for the next market decision.">
+          <span>TRIGGER</span>
+          <strong>{trigger}</strong>
         </div>
         <div className={styles.marketStructureGrid}>
           <div className={styles.marketStructureItem} title={marketDecision.wave.meaning}>

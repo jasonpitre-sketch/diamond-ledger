@@ -1132,7 +1132,7 @@ gap:5px !important;
 
 .marketThesisStrip{
 position:absolute;
-top:-86px;
+top:-78px;
 left:50%;
 display:grid;
 grid-template-columns:auto minmax(0,1fr);
@@ -1172,6 +1172,52 @@ line-height:1;
 text-align:center;
 text-overflow:ellipsis;
 text-shadow:0 0 9px rgba(80,255,200,.42);
+text-transform:uppercase;
+white-space:nowrap;
+}
+
+.marketTriggerStrip{
+position:absolute;
+top:-45px;
+left:50%;
+display:grid;
+grid-template-columns:auto minmax(0,1fr);
+align-items:center;
+gap:10px;
+width:min(92%,420px);
+min-height:24px;
+padding:4px 12px;
+border:1px solid rgba(120,190,255,.2);
+border-radius:3px;
+background:
+linear-gradient(90deg, rgba(3,14,24,.48), rgba(25,80,110,.5), rgba(3,14,24,.48)),
+linear-gradient(180deg, rgba(120,190,255,.12), rgba(0,0,0,.08));
+box-shadow:
+0 0 14px rgba(40,180,255,.12),
+inset 0 0 14px rgba(95,190,255,.08);
+transform:translateX(-50%);
+}
+
+.marketTriggerStrip span{
+color:#93c8ff;
+font-size:.42rem;
+font-weight:900;
+letter-spacing:.16em;
+line-height:1;
+text-transform:uppercase;
+}
+
+.marketTriggerStrip strong{
+min-width:0;
+overflow:hidden;
+color:#dff5ff;
+font-size:.48rem;
+font-weight:900;
+letter-spacing:.1em;
+line-height:1;
+text-align:center;
+text-overflow:ellipsis;
+text-shadow:0 0 9px rgba(90,210,255,.38);
 text-transform:uppercase;
 white-space:nowrap;
 }
