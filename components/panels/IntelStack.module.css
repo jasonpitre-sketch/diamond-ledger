@@ -1130,6 +1130,52 @@ max-width:82% !important;
 gap:5px !important;
 }
 
+.marketThesisStrip{
+position:absolute;
+top:-86px;
+left:50%;
+display:grid;
+grid-template-columns:auto minmax(0,1fr);
+align-items:center;
+gap:10px;
+width:min(92%,420px);
+min-height:24px;
+padding:4px 12px;
+border:1px solid rgba(70,255,188,.24);
+border-radius:3px;
+background:
+linear-gradient(90deg, rgba(3,14,24,.5), rgba(9,70,68,.58), rgba(3,14,24,.5)),
+linear-gradient(180deg, rgba(86,255,205,.14), rgba(0,0,0,.08));
+box-shadow:
+0 0 18px rgba(45,255,191,.16),
+inset 0 0 16px rgba(65,255,198,.1);
+transform:translateX(-50%);
+}
+
+.marketThesisStrip span{
+color:#93c8ff;
+font-size:.42rem;
+font-weight:900;
+letter-spacing:.16em;
+line-height:1;
+text-transform:uppercase;
+}
+
+.marketThesisStrip strong{
+min-width:0;
+overflow:hidden;
+color:#dffef4;
+font-size:.48rem;
+font-weight:900;
+letter-spacing:.1em;
+line-height:1;
+text-align:center;
+text-overflow:ellipsis;
+text-shadow:0 0 9px rgba(80,255,200,.42);
+text-transform:uppercase;
+white-space:nowrap;
+}
+
 .marketStructureGrid{
 display:grid;
 grid-template-columns:repeat(2, minmax(0,1fr));

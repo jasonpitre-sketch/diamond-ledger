@@ -1520,9 +1520,19 @@ export default function IntelStack({
         : action.riskFlags.length === 1
           ? action.riskFlags[0]
           : "clear"
+    const thesis =
+      action.action === "BUY"
+        ? "EARLY BUY WINDOW · VALUE SUPPORT INTACT"
+        : action.action === "SELL"
+          ? "PROTECT GAINS · MARKET SUPPORT WEAKENING"
+        : "HOLD LINE · WAIT FOR PRICE CONFIRMATION"
 
     return (
       <div className={styles.marketAnalystContent} data-intel-content="market-analyst">
+        <div className={styles.marketThesisStrip} title={action.reasoning}>
+          <span>THESIS</span>
+          <strong>{thesis}</strong>
+        </div>
         <div className={styles.marketStructureGrid}>
           <div className={styles.marketStructureItem} title={marketDecision.wave.meaning}>
             <span>WAVE</span>
