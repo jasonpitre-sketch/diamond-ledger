@@ -1,4 +1,5 @@
 export const eli_willits_market = {
+  gemGrade: 9,
   psa10Premium: 2.8,
   liquidity: 0.62,
   trend: 0.7,

@@ -177,6 +177,14 @@ function momentumDisplay(value: unknown) {
   return `${sign}${move}%`
 }
 
+function gemGradeDisplay(value: unknown) {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return String(Math.round(value))
+  }
+
+  return "9"
+}
+
 function tierDisplay(value: string | null | undefined) {
   return (value ?? "PEND").replace(/_/g, " ")
 }
@@ -1374,7 +1382,7 @@ export default function IntelStack({
 
   const renderMarketTier1 = () => {
     const market = player?.cardMarket
-    const premium = typeof market?.psa10Premium === "number" ? `${market.psa10Premium.toFixed(1)}x` : "PEND"
+    const gemGrade = gemGradeDisplay(market?.gemGrade ?? market?.grade)
     const spread =
       typeof market?.volatility === "number"
         ? inverseMarketBucket(market.volatility).toUpperCase()
@@ -1393,10 +1401,10 @@ export default function IntelStack({
             <strong>PEND</strong>
             <em>avg</em>
           </div>
-          <div className={styles.marketMetric} title="Current PSA 10 premium versus raw price.">
+          <div className={styles.marketMetric} title="Primary graded-card lane for this market read.">
             <span>GEM</span>
-            <strong>{premium}</strong>
-            <em>prem</em>
+            <strong>{gemGrade}</strong>
+            <em>grade</em>
           </div>
           <div className={styles.marketMetric} title="Normalized sale/listing activity until live sold volume is connected.">
             <span>VOL</span>
