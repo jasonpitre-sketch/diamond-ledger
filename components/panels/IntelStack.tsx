@@ -168,6 +168,15 @@ function pctDisplay(value: unknown) {
   return `${Math.round(value * 100)}`
 }
 
+function priceDisplay(value: unknown) {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "PEND"
+
+  if (value >= 1000) return `$${(value / 1000).toFixed(1)}K`
+  if (value >= 100) return `$${Math.round(value)}`
+
+  return `$${value.toFixed(0)}`
+}
+
 function momentumDisplay(value: unknown) {
   if (typeof value !== "number" || !Number.isFinite(value)) return "PEND"
 
@@ -1383,6 +1392,7 @@ export default function IntelStack({
   const renderMarketTier1 = () => {
     const market = player?.cardMarket
     const gemGrade = gemGradeDisplay(market?.gemGrade ?? market?.grade)
+    const psa9Avg = priceDisplay(market?.psa9Avg)
     const spread =
       typeof market?.volatility === "number"
         ? inverseMarketBucket(market.volatility).toUpperCase()
@@ -1391,20 +1401,20 @@ export default function IntelStack({
     return (
       <div className={styles.marketSnapshotContent} data-intel-content="market-snapshot">
         <div className={styles.marketMetricGrid}>
-          <div className={styles.marketMetric} title="Recent raw sold average from live comps. Pending until market data adapter is connected.">
+          <div className={styles.marketMetric} title="Current raw / ungraded market reference.">
             <span>RAW</span>
-            <strong>PEND</strong>
+            <strong>{priceDisplay(market?.rawAvg)}</strong>
             <em>avg</em>
           </div>
-          <div className={styles.marketMetric} title="Recent PSA 10 sold average from live comps. Pending until market data adapter is connected.">
+          <div className={styles.marketMetric} title="Current PSA 10 market reference.">
             <span>PSA10</span>
-            <strong>PEND</strong>
+            <strong>{priceDisplay(market?.psa10Avg)}</strong>
             <em>avg</em>
           </div>
-          <div className={styles.marketMetric} title="Primary graded-card lane for this market read.">
+          <div className={styles.marketMetric} title={`Primary PSA 9 lane. Reference ${psa9Avg}.`}>
             <span>PSA9</span>
             <strong>{gemGrade}</strong>
-            <em>grade</em>
+            <em>{psa9Avg}</em>
           </div>
           <div className={styles.marketMetric} title="Normalized sale/listing activity until live sold volume is connected.">
             <span>VOL</span>
