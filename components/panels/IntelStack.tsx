@@ -186,14 +186,6 @@ function momentumDisplay(value: unknown) {
   return `${sign}${move}%`
 }
 
-function gemGradeDisplay(value: unknown) {
-  if (typeof value === "number" && Number.isFinite(value)) {
-    return String(Math.round(value))
-  }
-
-  return "9"
-}
-
 function tierDisplay(value: string | null | undefined) {
   return (value ?? "PEND").replace(/_/g, " ")
 }
@@ -1391,7 +1383,6 @@ export default function IntelStack({
 
   const renderMarketTier1 = () => {
     const market = player?.cardMarket
-    const gemGrade = gemGradeDisplay(market?.gemGrade ?? market?.grade)
     const psa9Avg = priceDisplay(market?.psa9Avg)
     const spread =
       typeof market?.volatility === "number"
@@ -1413,8 +1404,8 @@ export default function IntelStack({
           </div>
           <div className={styles.marketMetric} title={`Primary PSA 9 lane. Reference ${psa9Avg}.`}>
             <span>PSA9</span>
-            <strong>{gemGrade}</strong>
-            <em>{psa9Avg}</em>
+            <strong>{psa9Avg}</strong>
+            <em>avg</em>
           </div>
           <div className={styles.marketMetric} title="Normalized sale/listing activity until live sold volume is connected.">
             <span>VOL</span>
