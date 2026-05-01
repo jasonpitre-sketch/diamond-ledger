@@ -51,9 +51,10 @@ import {
   resolveBioScoutLabel
 } from "@/data/dlr/knowledge/bioRules"
 import { buildMarketDecision } from "@/lib/market/action"
+import type { Player } from "@/data/types/player"
 
 type Props = {
-  player: any
+  player: Player | null | undefined
   scanComplete?: boolean
   mode?: "knowledge" | "performance" | "media" | "market"
   infoMode?: "bio" | "scout" | "career"
@@ -343,10 +344,28 @@ export default function IntelStack({
 
   const c = player?.cardMarket ?? {}
 
-  const primaryTool = k?.scout?.snapshot?.primaryTool || []
-  const roleType = k?.scout?.snapshot?.roleType || []
-  const physicalProjection = k?.scout?.snapshot?.physicalProjection || []
-  const riskProfile = k?.scout?.snapshot?.riskProfile || []
+  const toStringList = (value: unknown) =>
+    Array.isArray(value)
+      ? value.filter((item): item is string => typeof item === "string")
+      : typeof value === "string"
+        ? [value]
+        : []
+
+  const primaryTool = toStringList(k?.scout?.snapshot?.primaryTool)
+  const roleType = toStringList(k?.scout?.snapshot?.roleType)
+  const physicalProjection = toStringList(k?.scout?.snapshot?.physicalProjection)
+  const riskProfile = toStringList(k?.scout?.snapshot?.riskProfile)
+  const toNumber = (value: unknown) =>
+    typeof value === "number" && Number.isFinite(value) ? value : null
+  const gradeBandOptions = (value: unknown) => {
+    const grade = toNumber(value)
+
+    return [
+      { label: "low", active: grade !== null && grade <= 45 },
+      { label: "avg", active: grade !== null && grade >= 50 && grade <= 60 },
+      { label: "imp", active: grade !== null && grade >= 65 }
+    ]
+  }
 
   const pos = String(player?.position ?? player?.pos ?? "").toUpperCase()
 
@@ -504,8 +523,8 @@ export default function IntelStack({
             ? [{ label: "SCOUT", value: scoutScoutRows?.total ?? 0, max: 2 }]
             : [{ label: "CAREER", value: calculateKnowledgeCareerScout(k), max: 2 }]
 
-  function analystValue(v?: string) {
-    if (!v) return 0.18
+  function analystValue(v?: unknown) {
+    if (typeof v !== "string" || !v) return 0.18
 
     if (
       v === "franchise" ||
@@ -1773,67 +1792,27 @@ export default function IntelStack({
         <div className={styles.scoutScoutContent} data-intel-content="scout-scout">
           {isPitcher ? (
             <>
-              <ScaleRow label="FB" labelTooltip="Fastball grade" options={[
-                { label: "low", active: k?.scout?.scout?.fastball <= 45 },
-                { label: "avg", active: k?.scout?.scout?.fastball >= 50 && k?.scout?.scout?.fastball <= 60 },
-                { label: "imp", active: k?.scout?.scout?.fastball >= 65 }
-              ]} />
+              <ScaleRow label="FB" labelTooltip="Fastball grade" options={gradeBandOptions(k?.scout?.scout?.fastball)} />
 
-              <ScaleRow label="SL" labelTooltip="Slider grade" options={[
-                { label: "low", active: k?.scout?.scout?.slider <= 45 },
-                { label: "avg", active: k?.scout?.scout?.slider >= 50 && k?.scout?.scout?.slider <= 60 },
-                { label: "imp", active: k?.scout?.scout?.slider >= 65 }
-              ]} />
+              <ScaleRow label="SL" labelTooltip="Slider grade" options={gradeBandOptions(k?.scout?.scout?.slider)} />
 
-              <ScaleRow label="SP" labelTooltip="Splitter grade" options={[
-                { label: "low", active: k?.scout?.scout?.splitter <= 45 },
-                { label: "avg", active: k?.scout?.scout?.splitter >= 50 && k?.scout?.scout?.splitter <= 60 },
-                { label: "imp", active: k?.scout?.scout?.splitter >= 65 }
-              ]} />
+              <ScaleRow label="SP" labelTooltip="Splitter grade" options={gradeBandOptions(k?.scout?.scout?.splitter)} />
 
-              <ScaleRow label="CMD" labelTooltip="Command grade" options={[
-                { label: "low", active: k?.scout?.scout?.command <= 45 },
-                { label: "avg", active: k?.scout?.scout?.command >= 50 && k?.scout?.scout?.command <= 60 },
-                { label: "imp", active: k?.scout?.scout?.command >= 65 }
-              ]} />
+              <ScaleRow label="CMD" labelTooltip="Command grade" options={gradeBandOptions(k?.scout?.scout?.command)} />
 
-              <ScaleRow label="OVR" labelTooltip="Overall future value" options={[
-                { label: "low", active: k?.scout?.scout?.overallFV <= 45 },
-                { label: "avg", active: k?.scout?.scout?.overallFV >= 50 && k?.scout?.scout?.overallFV <= 60 },
-                { label: "imp", active: k?.scout?.scout?.overallFV >= 65 }
-              ]} />
+              <ScaleRow label="OVR" labelTooltip="Overall future value" options={gradeBandOptions(k?.scout?.scout?.overallFV)} />
             </>
           ) : (
             <>
-              <ScaleRow label="HIT" labelTooltip="Hit tool grade" options={[
-                { label: "low", active: k?.scout?.scout?.hit <= 45 },
-                { label: "avg", active: k?.scout?.scout?.hit >= 50 && k?.scout?.scout?.hit <= 60 },
-                { label: "imp", active: k?.scout?.scout?.hit >= 65 }
-              ]} />
+              <ScaleRow label="HIT" labelTooltip="Hit tool grade" options={gradeBandOptions(k?.scout?.scout?.hit)} />
 
-              <ScaleRow label="PWR" labelTooltip="Power grade" options={[
-                { label: "low", active: k?.scout?.scout?.power <= 45 },
-                { label: "avg", active: k?.scout?.scout?.power >= 50 && k?.scout?.scout?.power <= 60 },
-                { label: "imp", active: k?.scout?.scout?.power >= 65 }
-              ]} />
+              <ScaleRow label="PWR" labelTooltip="Power grade" options={gradeBandOptions(k?.scout?.scout?.power)} />
 
-              <ScaleRow label="RUN" labelTooltip="Run tool grade" options={[
-                { label: "low", active: k?.scout?.scout?.run <= 45 },
-                { label: "avg", active: k?.scout?.scout?.run >= 50 && k?.scout?.scout?.run <= 60 },
-                { label: "imp", active: k?.scout?.scout?.run >= 65 }
-              ]} />
+              <ScaleRow label="RUN" labelTooltip="Run tool grade" options={gradeBandOptions(k?.scout?.scout?.run)} />
 
-              <ScaleRow label="ARM" labelTooltip="Arm strength grade" options={[
-                { label: "low", active: k?.scout?.scout?.arm <= 45 },
-                { label: "avg", active: k?.scout?.scout?.arm >= 50 && k?.scout?.scout?.arm <= 60 },
-                { label: "imp", active: k?.scout?.scout?.arm >= 65 }
-              ]} />
+              <ScaleRow label="ARM" labelTooltip="Arm strength grade" options={gradeBandOptions(k?.scout?.scout?.arm)} />
 
-              <ScaleRow label="FLD" labelTooltip="Fielding grade" options={[
-                { label: "low", active: k?.scout?.scout?.field <= 45 },
-                { label: "avg", active: k?.scout?.scout?.field >= 50 && k?.scout?.scout?.field <= 60 },
-                { label: "imp", active: k?.scout?.scout?.field >= 65 }
-              ]} />
+              <ScaleRow label="FLD" labelTooltip="Fielding grade" options={gradeBandOptions(k?.scout?.scout?.field)} />
             </>
           )}
         </div>
