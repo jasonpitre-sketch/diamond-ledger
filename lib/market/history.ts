@@ -14,6 +14,7 @@ export type MarketComp = {
   title?: string
   url?: string
   confidence?: number
+  quantity?: number
 }
 
 export type MarketHistoryInput = {
@@ -51,6 +52,32 @@ function avg(values: number[]) {
   if (values.length === 0) return null
 
   return values.reduce((sum, value) => sum + value, 0) / values.length
+}
+
+function compQuantity(comp: MarketComp) {
+  return Math.max(1, Math.floor(comp.quantity ?? 1))
+}
+
+function avgComps(comps: MarketComp[]) {
+  if (comps.length === 0) return null
+
+  const weighted = comps.reduce(
+    (acc, comp) => {
+      const quantity = compQuantity(comp)
+
+      return {
+        total: acc.total + comp.price * quantity,
+        quantity: acc.quantity + quantity
+      }
+    },
+    { total: 0, quantity: 0 }
+  )
+
+  return weighted.quantity === 0 ? null : weighted.total / weighted.quantity
+}
+
+function compVolume(comps: MarketComp[]) {
+  return comps.reduce((total, comp) => total + compQuantity(comp), 0)
 }
 
 function roundPrice(value: number | null) {
@@ -104,10 +131,10 @@ function gradeCoverage(rawAvg: number | null, psa9Avg: number | null, psa10Avg: 
 }
 
 function confidenceFrom(history: MarketHistoryInput, sold90: MarketComp[], active: MarketComp[]) {
-  const rawAvg = avg(byGrade(sold90, "RAW").map((comp) => comp.price))
-  const psa9Avg = avg(byGrade(sold90, "PSA9").map((comp) => comp.price))
-  const psa10Avg = avg(byGrade(sold90, "PSA10").map((comp) => comp.price))
-  const compFactor = clamp01(sold90.length / 18)
+  const rawAvg = avgComps(byGrade(sold90, "RAW"))
+  const psa9Avg = avgComps(byGrade(sold90, "PSA9"))
+  const psa10Avg = avgComps(byGrade(sold90, "PSA10"))
+  const compFactor = clamp01(compVolume(sold90) / 60)
   const activeFactor = clamp01(active.length / 12)
   const sourceFactor =
     history.comps.filter((comp) => comp.source === "ebay").length / Math.max(1, history.comps.length)
@@ -126,11 +153,12 @@ export function computeLegacyMarketFromHistory(history: MarketHistoryInput): Com
   const sold30 = soldWithin(history.comps, asOf, 30)
   const prior60 = soldBetween(history.comps, asOf, 30, 90)
   const active = history.comps.filter((comp) => comp.kind === "active")
-  const rawAvg = roundPrice(avg(byGrade(sold90, "RAW").map((comp) => comp.price)))
-  const psa9Avg = roundPrice(avg(byGrade(sold90, "PSA9").map((comp) => comp.price)))
-  const psa10Avg = roundPrice(avg(byGrade(sold90, "PSA10").map((comp) => comp.price)))
-  const latestAvg = avg(sold30.map((comp) => comp.price))
-  const priorAvg = avg(prior60.map((comp) => comp.price))
+  const sold90Volume = compVolume(sold90)
+  const rawAvg = roundPrice(avgComps(byGrade(sold90, "RAW")))
+  const psa9Avg = roundPrice(avgComps(byGrade(sold90, "PSA9")))
+  const psa10Avg = roundPrice(avgComps(byGrade(sold90, "PSA10")))
+  const latestAvg = avgComps(sold30)
+  const priorAvg = avgComps(prior60)
   const momentum =
     latestAvg !== null && priorAvg !== null && priorAvg > 0
       ? clamp01(0.5 + (latestAvg - priorAvg) / priorAvg)
@@ -161,7 +189,7 @@ export function computeLegacyMarketFromHistory(history: MarketHistoryInput): Com
     longTerm: clamp01(((premium ?? 2) / 4 + momentum) / 2),
     stability: clamp01((1 - volatility) * 0.72 + (1 - (spread ?? 0.35)) * 0.28),
     confidence,
-    sold90Count: sold90.length,
+    sold90Count: sold90Volume,
     activeCount: active.length,
     spread,
     source: "market-history",
