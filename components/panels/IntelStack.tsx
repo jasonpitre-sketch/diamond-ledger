@@ -50,6 +50,8 @@ import {
   resolveBioAnalystLabel,
   resolveBioScoutLabel
 } from "@/data/dlr/knowledge/bioRules"
+import { analystValue } from "@/data/dlr/analystMap"
+import { DLR_CONFIG } from "@/data/dlr/dlrConfig"
 import { buildMarketDecision } from "@/lib/market/action"
 import type { Player } from "@/data/types/player"
 
@@ -523,32 +525,6 @@ export default function IntelStack({
             ? [{ label: "SCOUT", value: scoutScoutRows?.total ?? 0, max: 2 }]
             : [{ label: "CAREER", value: calculateKnowledgeCareerScout(k), max: 2 }]
 
-  function analystValue(v?: unknown) {
-    if (typeof v !== "string" || !v) return 0.18
-
-    if (
-      v === "franchise" ||
-      v === "ideal" ||
-      v === "strong" ||
-      v === "improving" ||
-      v === "likely" ||
-      v === "stable" ||
-      v === "falling"
-    ) return 0.38
-
-    if (
-      v === "impact" ||
-      v === "reliable" ||
-      v === "plausible" ||
-      v === "moderate" ||
-      v === "stylistic" ||
-      v === "workable" ||
-      v === "steady"
-    ) return 0.30
-
-    return 0.18
-  }
-
   const scoutAnalystDLR = (() => {
     const a = k?.scout?.analyst
 
@@ -878,6 +854,11 @@ export default function IntelStack({
       const kMinusBB = perf?.scout?.kMinusBB ?? 12
       const whiff = perf?.scout?.whiff ?? 24
       const avgEV = perf?.scout?.avgEV ?? 90
+      const [kLow, kHigh] = DLR_CONFIG.thresholds.pitcher.kRate
+      const [bbElite, bbRisk] = DLR_CONFIG.thresholds.pitcher.bbRate
+      const [kMinusBBLow, kMinusBBHigh] = DLR_CONFIG.thresholds.pitcher.kMinusBB
+      const [whiffLow, whiffHigh] = DLR_CONFIG.thresholds.pitcher.whiff
+      const [evElite, evRisk] = DLR_CONFIG.thresholds.pitcher.avgEVAllowed
 
       return (
         <div className={styles.scoutScoutContent} data-intel-content="scout-scout">
@@ -885,9 +866,9 @@ export default function IntelStack({
             label="K%"
             labelTooltip="Strikeout rate"
             options={[
-              { label: "low", active: kPercent < 24, tooltip: "Below 24%" },
-              { label: "solid", active: kPercent >= 24 && kPercent < 30, tooltip: "24% to 29%" },
-              { label: "elite", active: kPercent >= 30, tooltip: "30% and above" }
+              { label: "low", active: kPercent < kLow, tooltip: `Below ${kLow}%` },
+              { label: "solid", active: kPercent >= kLow && kPercent < kHigh, tooltip: `${kLow}% to ${kHigh - 1}%` },
+              { label: "elite", active: kPercent >= kHigh, tooltip: `${kHigh}% and above` }
             ]}
           />
 
@@ -895,9 +876,9 @@ export default function IntelStack({
             label="BB%"
             labelTooltip="Walk rate"
             options={[
-              { label: "risk", active: bbPercent > 8, tooltip: "Above 8%" },
-              { label: "solid", active: bbPercent > 5 && bbPercent <= 8, tooltip: "5.1% to 8%" },
-              { label: "elite", active: bbPercent <= 5, tooltip: "5% or lower" }
+              { label: "risk", active: bbPercent > bbRisk, tooltip: `Above ${bbRisk}%` },
+              { label: "solid", active: bbPercent > bbElite && bbPercent <= bbRisk, tooltip: `${bbElite + 0.1}% to ${bbRisk}%` },
+              { label: "elite", active: bbPercent <= bbElite, tooltip: `${bbElite}% or lower` }
             ]}
           />
 
@@ -905,9 +886,9 @@ export default function IntelStack({
             label="K-BB"
             labelTooltip="Strikeout rate minus walk rate"
             options={[
-              { label: "low", active: kMinusBB < 15, tooltip: "Below 15%" },
-              { label: "solid", active: kMinusBB >= 15 && kMinusBB < 22, tooltip: "15% to 21%" },
-              { label: "elite", active: kMinusBB >= 22, tooltip: "22% and above" }
+              { label: "low", active: kMinusBB < kMinusBBLow, tooltip: `Below ${kMinusBBLow}%` },
+              { label: "solid", active: kMinusBB >= kMinusBBLow && kMinusBB < kMinusBBHigh, tooltip: `${kMinusBBLow}% to ${kMinusBBHigh - 1}%` },
+              { label: "elite", active: kMinusBB >= kMinusBBHigh, tooltip: `${kMinusBBHigh}% and above` }
             ]}
           />
 
@@ -915,9 +896,9 @@ export default function IntelStack({
             label="WHIFF"
             labelTooltip="Swing-and-miss rate"
             options={[
-              { label: "low", active: whiff < 26, tooltip: "Below 26%" },
-              { label: "solid", active: whiff >= 26 && whiff < 32, tooltip: "26% to 31%" },
-              { label: "elite", active: whiff >= 32, tooltip: "32% and above" }
+              { label: "low", active: whiff < whiffLow, tooltip: `Below ${whiffLow}%` },
+              { label: "solid", active: whiff >= whiffLow && whiff < whiffHigh, tooltip: `${whiffLow}% to ${whiffHigh - 1}%` },
+              { label: "elite", active: whiff >= whiffHigh, tooltip: `${whiffHigh}% and above` }
             ]}
           />
 
@@ -925,9 +906,9 @@ export default function IntelStack({
             label="EV"
             labelTooltip="Average exit velocity allowed"
             options={[
-              { label: "risk", active: avgEV > 90, tooltip: "Above 90 mph" },
-              { label: "solid", active: avgEV > 86 && avgEV <= 90, tooltip: "86.1 to 90.0 mph" },
-              { label: "elite", active: avgEV <= 86, tooltip: "86 mph or lower" }
+              { label: "risk", active: avgEV > evRisk, tooltip: `Above ${evRisk} mph` },
+              { label: "solid", active: avgEV > evElite && avgEV <= evRisk, tooltip: `${evElite + 0.1} to ${evRisk}.0 mph` },
+              { label: "elite", active: avgEV <= evElite, tooltip: `${evElite} mph or lower` }
             ]}
           />
         </div>
@@ -939,6 +920,11 @@ export default function IntelStack({
     const kRate = perf?.scout?.kRate ?? 22
     const bbRate = perf?.scout?.bbRate ?? 8
     const avgEV = perf?.scout?.avgEV ?? 88
+    const [hardHitLow, hardHitHigh] = DLR_CONFIG.thresholds.hitter.hardHit
+    const [barrelLow, barrelHigh] = DLR_CONFIG.thresholds.hitter.barrel
+    const [hitterKElite, hitterKRisk] = DLR_CONFIG.thresholds.hitter.kRate
+    const [hitterBBLow, hitterBBHigh] = DLR_CONFIG.thresholds.hitter.bbRate
+    const [hitterEVLow, hitterEVHigh] = DLR_CONFIG.thresholds.hitter.avgEV
 
     return (
       <div className={styles.scoutScoutContent} data-intel-content="scout-scout">
@@ -946,9 +932,9 @@ export default function IntelStack({
           label="HH"
           labelTooltip="Hard-hit rate"
           options={[
-            { label: "low", active: hardHit < 42, tooltip: "Below 42%" },
-            { label: "solid", active: hardHit >= 42 && hardHit < 50, tooltip: "42% to 49%" },
-            { label: "elite", active: hardHit >= 50, tooltip: "50% and above" }
+            { label: "low", active: hardHit < hardHitLow, tooltip: `Below ${hardHitLow}%` },
+            { label: "solid", active: hardHit >= hardHitLow && hardHit < hardHitHigh, tooltip: `${hardHitLow}% to ${hardHitHigh - 1}%` },
+            { label: "elite", active: hardHit >= hardHitHigh, tooltip: `${hardHitHigh}% and above` }
           ]}
         />
 
@@ -956,9 +942,9 @@ export default function IntelStack({
           label="BAR"
           labelTooltip="Barrel rate"
           options={[
-            { label: "low", active: barrel < 10, tooltip: "Below 10%" },
-            { label: "solid", active: barrel >= 10 && barrel < 14, tooltip: "10% to 13%" },
-            { label: "elite", active: barrel >= 14, tooltip: "14% and above" }
+            { label: "low", active: barrel < barrelLow, tooltip: `Below ${barrelLow}%` },
+            { label: "solid", active: barrel >= barrelLow && barrel < barrelHigh, tooltip: `${barrelLow}% to ${barrelHigh - 1}%` },
+            { label: "elite", active: barrel >= barrelHigh, tooltip: `${barrelHigh}% and above` }
           ]}
         />
 
@@ -966,9 +952,9 @@ export default function IntelStack({
           label="K%"
           labelTooltip="Strikeout rate"
           options={[
-            { label: "elite", active: kRate <= 14, tooltip: "14% or lower" },
-            { label: "solid", active: kRate > 14 && kRate <= 20, tooltip: "14.1% to 20%" },
-            { label: "risk", active: kRate > 20, tooltip: "Above 20%" }
+            { label: "elite", active: kRate <= hitterKElite, tooltip: `${hitterKElite}% or lower` },
+            { label: "solid", active: kRate > hitterKElite && kRate <= hitterKRisk, tooltip: `${hitterKElite + 0.1}% to ${hitterKRisk}%` },
+            { label: "risk", active: kRate > hitterKRisk, tooltip: `Above ${hitterKRisk}%` }
           ]}
         />
 
@@ -976,9 +962,9 @@ export default function IntelStack({
           label="BB%"
           labelTooltip="Walk rate"
           options={[
-            { label: "risk", active: bbRate < 8, tooltip: "Below 8%" },
-            { label: "solid", active: bbRate >= 8 && bbRate < 14, tooltip: "8% to 13%" },
-            { label: "elite", active: bbRate >= 14, tooltip: "14% and above" }
+            { label: "risk", active: bbRate < hitterBBLow, tooltip: `Below ${hitterBBLow}%` },
+            { label: "solid", active: bbRate >= hitterBBLow && bbRate < hitterBBHigh, tooltip: `${hitterBBLow}% to ${hitterBBHigh - 1}%` },
+            { label: "elite", active: bbRate >= hitterBBHigh, tooltip: `${hitterBBHigh}% and above` }
           ]}
         />
 
@@ -986,9 +972,9 @@ export default function IntelStack({
           label="EV"
           labelTooltip="Average exit velocity"
           options={[
-            { label: "low", active: avgEV < 89, tooltip: "Below 89 mph" },
-            { label: "solid", active: avgEV >= 89 && avgEV < 93, tooltip: "89 to 92.9 mph" },
-            { label: "elite", active: avgEV >= 93, tooltip: "93 mph and above" }
+            { label: "low", active: avgEV < hitterEVLow, tooltip: `Below ${hitterEVLow} mph` },
+            { label: "solid", active: avgEV >= hitterEVLow && avgEV < hitterEVHigh, tooltip: `${hitterEVLow} to ${hitterEVHigh - 0.1} mph` },
+            { label: "elite", active: avgEV >= hitterEVHigh, tooltip: `${hitterEVHigh} mph and above` }
           ]}
         />
       </div>

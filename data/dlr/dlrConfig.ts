@@ -70,6 +70,37 @@ export const TIER_BREAKS: { tier: DLRTier; min: number }[] = [
   { tier: "HOLD", min: 0 }
 ]
 
+export const DLR_CONFIG = {
+  weights: {
+    analystHigh: 0.38,
+    analystMid: 0.3,
+    analystLow: 0.18
+  },
+  thresholds: {
+    pitcher: {
+      kRate: [24, 30],
+      bbRate: [5, 8],
+      kMinusBB: [15, 22],
+      whiff: [26, 32],
+      avgEVAllowed: [86, 90]
+    },
+    hitter: {
+      hardHit: [42, 50],
+      barrel: [10, 14],
+      kRate: [14, 20],
+      bbRate: [8, 14],
+      avgEV: [89, 93],
+      xAVG: [0.275, 0.305],
+      xSLG: [0.46, 0.54]
+    }
+  },
+  market: {
+    edgeStrong: 0.08,
+    confidenceStrong: 0.72,
+    confidenceUsable: 0.45
+  }
+} as const
+
 export const HITTER_ANCHORS = {
   AVG: { floor: 0.2, ceiling: 0.36, direction: 1 },
   OPS: { floor: 0.6, ceiling: 1, direction: 1 },
