@@ -1402,7 +1402,7 @@ export default function IntelStack({
             <em>avg</em>
           </div>
           <div className={styles.marketMetric} title="Primary graded-card lane for this market read.">
-            <span>GEM</span>
+            <span>PSA9</span>
             <strong>{gemGrade}</strong>
             <em>grade</em>
           </div>
@@ -1466,7 +1466,7 @@ export default function IntelStack({
             <em>{scout.unitsPerWeek === null ? "rate" : `${scout.unitsPerWeek.toFixed(1)}/wk`}</em>
           </div>
           <div className={styles.marketStructureItem} title={`PSA 10 to raw premium ${premium}.`}>
-            <span>GEM</span>
+            <span>PSA9</span>
             <strong>{premium}</strong>
             <em>{compactTier(scout.gradingPremium)}</em>
           </div>
