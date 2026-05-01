@@ -46,6 +46,11 @@ import {
   buildAllCellSummaries,
   type CellSummary
 } from "@/data/dlr/dlrTitles"
+import {
+  resolveBioAnalystLabel,
+  resolveBioScoutLabel
+} from "@/data/dlr/knowledge/bioRules"
+import { buildMarketDecision } from "@/lib/market/action"
 
 type Props = {
   player: any
@@ -143,6 +148,45 @@ function valueBucket(value: unknown) {
   if (score < 0.55) return "low"
   if (score < 0.72) return "mid"
   return "high"
+}
+
+function marketBucket(value: unknown) {
+  return valueBucket(value)
+}
+
+function inverseMarketBucket(value: unknown) {
+  const score = typeof value === "number" && Number.isFinite(value) ? value : 0.5
+
+  if (score < 0.4) return "high"
+  if (score < 0.65) return "mid"
+  return "low"
+}
+
+function pctDisplay(value: unknown) {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "PEND"
+
+  return `${Math.round(value * 100)}`
+}
+
+function momentumDisplay(value: unknown) {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "PEND"
+
+  const move = Math.round((value - 0.5) * 100)
+  const sign = move >= 0 ? "+" : ""
+
+  return `${sign}${move}%`
+}
+
+function tierDisplay(value: string | null | undefined) {
+  return (value ?? "PEND").replace(/_/g, " ")
+}
+
+function compactTier(value: string | null | undefined) {
+  if (value === "VERY_HIGH") return "V HIGH"
+  if (value === "VERY_LOW") return "V LOW"
+  if (value === "MODERATE") return "MOD"
+
+  return tierDisplay(value)
 }
 
 function mediaScaleOptions(
@@ -310,6 +354,12 @@ export default function IntelStack({
   const dlrResult = player ? calculateDLR(player) : null
   const cellSummaries =
     dlrResult ? buildAllCellSummaries(dlrResult.subScores) : []
+  const marketDecision = buildMarketDecision({
+    market: player?.cardMarket,
+    components: dlrResult?.components ?? {},
+    marketScores: dlrResult?.subScores.market,
+    mlbYears: player?.mlbYears ?? player?.serviceYears ?? 0
+  })
 
   const getCellSummary = (sub: "snapshot" | "scout" | "analyst") =>
     cellSummaries.find((summary) => {
@@ -427,7 +477,7 @@ export default function IntelStack({
       : mode === "media"
         ? [{ label: "MEDIA", value: mediaSnapshotDLR, max: 4 }]
         : infoMode === "bio"
-          ? [{ label: "BIO", value: calculateKnowledgeBioSnapshot(), max: 1 }]
+          ? [{ label: "BIO", value: calculateKnowledgeBioSnapshot(k), max: 1 }]
           : infoMode === "scout"
             ? [{ label: "SCOUT", value: calculateKnowledgeScoutSnapshot(), max: 1 }]
             : [{ label: "CAREER", value: calculateKnowledgeCareerSnapshot(), max: 1 }]
@@ -523,116 +573,25 @@ export default function IntelStack({
     prevScan.current = scanComplete
   }, [scanComplete])
 
-  const bioScoutScores = player?.bio?.scoutScores ?? {}
-  const bioAnalystScores = player?.bio?.analystScores ?? {}
   const scoutAnalystScores = player?.scout?.analystScores ?? {}
   const careerSnapshotScores = player?.career?.snapshotScores ?? {}
   const careerScoutScores = player?.career?.scoutScores ?? {}
   const careerAnalystScores = player?.career?.analystScores ?? {}
 
-  const bioArchetype = resolveThreeWay(
-    bioScoutScores.archetype,
-    k?.bio?.scout?.archetype,
-    "control",
-    "balanced",
-    "power"
-  )
+  const bioArchetype = resolveBioScoutLabel(k?.bio, "arch")
+  const bioPath = resolveBioScoutLabel(k?.bio, "path")
+  const bioFrame = resolveBioScoutLabel(k?.bio, "frame")
+  const bioAthleticism = resolveBioScoutLabel(k?.bio, "ath")
+  const bioProjection = resolveBioScoutLabel(k?.bio, "proj")
 
-  const bioPath = resolveThreeWay(
-    bioScoutScores.devPath,
-    k?.bio?.scout?.devPath,
-    "raw",
-    "progressing",
-    "polished"
-  )
-
-  const bioFrame = resolveThreeWay(
-    bioScoutScores.frame,
-    k?.bio?.scout?.frame,
-    "lean",
-    "solid",
-    "durable"
-  )
-
-  const bioAthleticism = resolveThreeWay(
-    bioScoutScores.athleticism,
-    k?.bio?.scout?.athleticism,
-    "limited",
-    "adequate",
-    "dynamic"
-  )
-
-  const bioProjection = resolveThreeWay(
-    bioScoutScores.projection,
-    k?.bio?.scout?.projection,
-    "low",
-    "moderate",
-    "high"
-  )
-
-  const devLevel = resolveThreeWay(
-    bioAnalystScores.dev,
-    k?.bio?.analyst?.devCurve,
-    "slow",
-    "steady",
-    "accelerating"
-  )
-
-  const riskLevel = resolveThreeWay(
-    bioAnalystScores.risk,
-    k?.bio?.analyst?.assetRisk,
-    "high",
-    "moderate",
-    "controlled"
-  )
-
-  const valueLevel = resolveThreeWay(
-    bioAnalystScores.value,
-    k?.bio?.analyst?.longValue,
-    "uncertain",
-    "viable",
-    "strong"
-  )
-
-  const orgLevel = resolveThreeWay(
-    bioAnalystScores.org,
-    k?.bio?.analyst?.orgValue,
-    "depth",
-    "contributor",
-    "priority"
-  )
-
-  const pedLevel = resolveThreeWay(
-    bioAnalystScores.pedigree,
-    k?.bio?.analyst?.pedigree,
-    "low",
-    "solid",
-    "premium"
-  )
-
-  const serviceLevel = resolveThreeWay(
-    bioAnalystScores.serviceTime,
-    k?.bio?.analyst?.serviceTime,
-    "early",
-    "mid",
-    "established"
-  )
-
-  const optionsLevel = resolveThreeWay(
-    bioAnalystScores.options,
-    k?.bio?.analyst?.options,
-    "flexible",
-    "neutral",
-    "limited"
-  )
-
-  const healthLevel = resolveThreeWay(
-    bioAnalystScores.health,
-    k?.bio?.analyst?.injuryIdx,
-    "durable",
-    "moderate",
-    "fragile"
-  )
+  const devLevel = resolveBioAnalystLabel(k?.bio, "dev")
+  const riskLevel = resolveBioAnalystLabel(k?.bio, "risk")
+  const valueLevel = resolveBioAnalystLabel(k?.bio, "value")
+  const orgLevel = resolveBioAnalystLabel(k?.bio, "org")
+  const pedLevel = resolveBioAnalystLabel(k?.bio, "pedigree")
+  const serviceLevel = resolveBioAnalystLabel(k?.bio, "service")
+  const optionsLevel = resolveBioAnalystLabel(k?.bio, "options")
+  const healthLevel = resolveBioAnalystLabel(k?.bio, "health")
 
   const scoutCeiling = resolveThreeWay(
     scoutAnalystScores.ceiling,
@@ -1414,127 +1373,193 @@ export default function IntelStack({
   )
 
   const renderMarketTier1 = () => {
+    const market = player?.cardMarket
+    const premium = typeof market?.psa10Premium === "number" ? `${market.psa10Premium.toFixed(1)}x` : "PEND"
+    const spread =
+      typeof market?.volatility === "number"
+        ? inverseMarketBucket(market.volatility).toUpperCase()
+        : "PEND"
+
     return (
-      <div className={styles.scoutSnapshotContent} data-intel-content="scout-snapshot">
-        <ScaleRow label="RAW" labelTooltip="Recent raw-card sold average or median from live marketplace comps." options={[
-          { label: "low", active: false, tooltip: "Below expected raw comp range." },
-          { label: "fair", active: false, tooltip: "Inside expected raw comp range." },
-          { label: "high", active: false, tooltip: "Above expected raw comp range." }
-        ]} />
-
-        <ScaleRow label="PSA10" labelTooltip="Recent PSA 10 sold average and premium compared with raw card value." options={[
-          { label: "soft", active: false, tooltip: "Weak graded premium versus raw." },
-          { label: "fair", active: false, tooltip: "Normal graded premium versus raw." },
-          { label: "hot", active: false, tooltip: "Strong graded premium versus raw." }
-        ]} />
-
-        <ScaleRow label="VOL" labelTooltip="Recent sold volume and active listing activity for the player/card market." options={[
-          { label: "thin", active: false, tooltip: "Low sales/listing activity." },
-          { label: "steady", active: false, tooltip: "Usable sales/listing activity." },
-          { label: "active", active: false, tooltip: "High sales/listing activity." }
-        ]} />
-
-        <ScaleRow label="SPRD" labelTooltip="Spread between low, median, and high recent comps or ask-versus-sold gap." options={[
-          { label: "tight", active: false, tooltip: "Clean and consistent comp range." },
-          { label: "normal", active: false, tooltip: "Normal market spread." },
-          { label: "wide", active: false, tooltip: "Choppy pricing or wide comp spread." }
-        ]} />
-
-        <ScaleRow label="MOM" labelTooltip="Short-term price momentum based on recent comp movement." options={[
-          { label: "cool", active: false, tooltip: "Recent prices are fading." },
-          { label: "steady", active: false, tooltip: "Recent prices are holding." },
-          { label: "rising", active: false, tooltip: "Recent prices are moving up." }
-        ]} />
+      <div className={styles.marketSnapshotContent} data-intel-content="market-snapshot">
+        <div className={styles.marketMetricGrid}>
+          <div className={styles.marketMetric} title="Recent raw sold average from live comps. Pending until market data adapter is connected.">
+            <span>RAW</span>
+            <strong>PEND</strong>
+            <em>avg</em>
+          </div>
+          <div className={styles.marketMetric} title="Recent PSA 10 sold average from live comps. Pending until market data adapter is connected.">
+            <span>PSA10</span>
+            <strong>PEND</strong>
+            <em>avg</em>
+          </div>
+          <div className={styles.marketMetric} title="Current PSA 10 premium versus raw price.">
+            <span>GEM</span>
+            <strong>{premium}</strong>
+            <em>prem</em>
+          </div>
+          <div className={styles.marketMetric} title="Normalized sale/listing activity until live sold volume is connected.">
+            <span>VOL</span>
+            <strong>{pctDisplay(market?.liquidity)}</strong>
+            <em>score</em>
+          </div>
+          <div className={styles.marketMetric} title="Short-term market movement from current placeholder trend signal.">
+            <span>MOM</span>
+            <strong>{momentumDisplay(market?.trend)}</strong>
+            <em>trend</em>
+          </div>
+          <div className={styles.marketMetric} title="Current spread/volatility read.">
+            <span>SPRD</span>
+            <strong>{spread}</strong>
+            <em>risk</em>
+          </div>
+        </div>
+        <div className={styles.marketDataNote}>
+          LIVE COMPS PENDING · USING NORMALIZED MARKET SIGNALS
+        </div>
       </div>
     )
   }
 
   const renderMarketTier2 = () => {
+    const scout = marketDecision.scout
+    const premium =
+      typeof scout.gradingPremiumMultiplier === "number"
+        ? `${scout.gradingPremiumMultiplier.toFixed(1)}x`
+        : "PEND"
+    const pressure =
+      scout.listingPressure === "BULLISH"
+        ? "SUPPORT"
+        : scout.listingPressure === "BEARISH"
+          ? "PRESSURE"
+          : "NEUTRAL"
+
     return (
-      <div className={styles.scoutScoutContent} data-intel-content="scout-scout">
-        <ScaleRow label="POP" labelTooltip="PSA/BGS/SGC population pressure, especially PSA 10 supply." options={[
-          { label: "crowded", active: false, tooltip: "Supply may be heavy." },
-          { label: "normal", active: false, tooltip: "Supply is in a normal range." },
-          { label: "scarce", active: false, tooltip: "Supply appears constrained." }
-        ]} />
-
-        <ScaleRow label="LIST" labelTooltip="Current active listings across raw, graded, numbered, and parallel cards." options={[
-          { label: "thin", active: false, tooltip: "Few useful active listings." },
-          { label: "normal", active: false, tooltip: "Normal listing depth." },
-          { label: "heavy", active: false, tooltip: "Many available listings." }
-        ]} />
-
-        <ScaleRow label="SOLD" labelTooltip="Recent completed sales count and sale velocity." options={[
-          { label: "slow", active: false, tooltip: "Few recent completed sales." },
-          { label: "steady", active: false, tooltip: "Healthy recent completed sales." },
-          { label: "fast", active: false, tooltip: "High recent sale velocity." }
-        ]} />
-
-        <ScaleRow label="LIQ" labelTooltip="How easily a user can enter or exit the market without major price friction." options={[
-          { label: "weak", active: false, tooltip: "Harder to buy or sell cleanly." },
-          { label: "stable", active: false, tooltip: "Reasonable liquidity." },
-          { label: "liquid", active: false, tooltip: "Easy to buy or sell cleanly." }
-        ]} />
-
-        <ScaleRow label="RISK" labelTooltip="Combined pricing risk from volatility, thin comps, inflated asks, and weak sale depth." options={[
-          { label: "low", active: false, tooltip: "Cleaner market risk." },
-          { label: "moderate", active: false, tooltip: "Normal market risk." },
-          { label: "high", active: false, tooltip: "High market risk." }
-        ]} />
+      <div className={styles.marketScoutContent} data-intel-content="market-scout">
+        <div className={styles.marketStructureGrid}>
+          <div className={styles.marketStructureItem} title={`Liquidity score ${scout.liquidityScore.toFixed(2)}.`}>
+            <span>LIQ</span>
+            <strong>{compactTier(scout.liquidity)}</strong>
+            <em>{pctDisplay(scout.liquidityScore)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`PSA 10 supply/scarcity read ${scout.popScarcity}.`}>
+            <span>POP</span>
+            <strong>{compactTier(scout.popScarcity)}</strong>
+            <em>{pctDisplay(scout.popScarcityScore)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Listing depth read ${scout.listingDepth}.`}>
+            <span>LIST</span>
+            <strong>{compactTier(scout.listingDepth)}</strong>
+            <em>{pctDisplay(scout.listingDepthScore)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Sales velocity read ${scout.salesVelocity}.`}>
+            <span>SOLD</span>
+            <strong>{compactTier(scout.salesVelocity)}</strong>
+            <em>{scout.unitsPerWeek === null ? "rate" : `${scout.unitsPerWeek.toFixed(1)}/wk`}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`PSA 10 to raw premium ${premium}.`}>
+            <span>GEM</span>
+            <strong>{premium}</strong>
+            <em>{compactTier(scout.gradingPremium)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Listing pressure read ${scout.listingPressure}.`}>
+            <span>ASK</span>
+            <strong>{pressure}</strong>
+            <em>{compactTier(scout.listingPressure)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Risk score ${scout.riskScore.toFixed(2)}.`}>
+            <span>RISK</span>
+            <strong>{compactTier(scout.risk)}</strong>
+            <em>{pctDisplay(scout.riskScore)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Market data confidence ${(marketDecision.action.confidence * 100).toFixed(0)}%.`}>
+            <span>CONF</span>
+            <strong>{marketDecision.action.confidence >= 0.72 ? "STRONG" : marketDecision.action.confidence >= 0.45 ? "USABLE" : "THIN"}</strong>
+            <em>{pctDisplay(marketDecision.action.confidence)}</em>
+          </div>
+        </div>
+        <div className={styles.marketDataNote}>
+          STRUCTURE READ · POP / LIQUIDITY / PRESSURE
+        </div>
       </div>
     )
   }
 
   const renderMarketTier3 = () => {
+    const action = marketDecision.action
+    const momentum =
+      marketDecision.wave.state === "HEATING" || marketDecision.wave.state === "HYPE_RISK"
+        ? "rising"
+        : marketDecision.wave.state === "SELL_PRESSURE" || marketDecision.wave.state === "RESET"
+          ? "cooling"
+          : "steady"
+    const value =
+      marketDecision.valueRead.includes("UNDERVALUED")
+        ? "discount"
+        : marketDecision.valueRead.includes("OVERVALUED")
+          ? "rich"
+          : "fair"
+    const confidence = action.confidence >= 0.72 ? "strong" : action.confidence >= 0.45 ? "usable" : "thin"
+    const dlr =
+      marketDecision.dlrImpact.pointsContributed >= 16
+        ? "driver"
+        : marketDecision.dlrImpact.pointsContributed >= 8
+          ? "support"
+          : "drag"
+    const risk =
+      action.riskFlags.length > 1
+        ? "flags"
+        : action.riskFlags.length === 1
+          ? action.riskFlags[0]
+          : "clear"
+
     return (
-      <div className={styles.scoutAnalystContent} data-intel-content="scout-analyst">
-        <ScaleRow label="EDGE" labelTooltip="Calculated difference between current market price and Diamond Ledger expected value." options={[
-          { label: "none", active: false, tooltip: "No obvious pricing edge." },
-          { label: "watch", active: false, tooltip: "Possible edge forming." },
-          { label: "strong", active: false, tooltip: "Meaningful pricing edge." }
-        ]} />
-
-        <ScaleRow label="BUY" labelTooltip="Buy posture generated from price, liquidity, performance, media, and market setup." options={[
-          { label: "avoid", active: false, tooltip: "Do not chase at current market." },
-          { label: "patient", active: false, tooltip: "Only buy at the right number." },
-          { label: "active", active: false, tooltip: "Market supports active buying." }
-        ]} />
-
-        <ScaleRow label="HOLD" labelTooltip="Hold strength when the player already sits in a user's tracked portfolio." options={[
-          { label: "weak", active: false, tooltip: "Hold case is weak." },
-          { label: "neutral", active: false, tooltip: "Hold case is balanced." },
-          { label: "strong", active: false, tooltip: "Hold case is strong." }
-        ]} />
-
-        <ScaleRow label="SELL" labelTooltip="Sell pressure from inflated pricing, volatility, fading signals, or weak liquidity." options={[
-          { label: "wait", active: false, tooltip: "No urgent sell pressure." },
-          { label: "trim", active: false, tooltip: "Consider trimming into strength." },
-          { label: "exit", active: false, tooltip: "Strong sell or avoid signal." }
-        ]} />
-
-        <ScaleRow label="MOM" labelTooltip="Market momentum from recent comp trend and sale velocity." options={[
-          { label: "cooling", active: false, tooltip: "Market is cooling." },
-          { label: "steady", active: false, tooltip: "Market is steady." },
-          { label: "rising", active: false, tooltip: "Market is rising." }
-        ]} />
-
-        <ScaleRow label="VAL" labelTooltip="Current valuation quality versus expected DLR value and comparable players." options={[
-          { label: "rich", active: false, tooltip: "Price appears expensive." },
-          { label: "fair", active: false, tooltip: "Price appears fair." },
-          { label: "discount", active: false, tooltip: "Price appears discounted." }
-        ]} />
-
-        <ScaleRow label="CONF" labelTooltip="Confidence level based on data quantity, recency, and quality of comps." options={[
-          { label: "thin", active: false, tooltip: "Data sample is thin." },
-          { label: "usable", active: false, tooltip: "Data sample is usable." },
-          { label: "strong", active: false, tooltip: "Data sample is strong." }
-        ]} />
-
-        <ScaleRow label="DLR" labelTooltip="Market contribution toward the total Diamond Ledger Rating." options={[
-          { label: "drag", active: false, tooltip: "Market data pulls DLR down." },
-          { label: "support", active: false, tooltip: "Market data supports DLR." },
-          { label: "driver", active: false, tooltip: "Market data drives DLR higher." }
-        ]} />
+      <div className={styles.marketAnalystContent} data-intel-content="market-analyst">
+        <div className={styles.marketStructureGrid}>
+          <div className={styles.marketStructureItem} title={marketDecision.wave.meaning}>
+            <span>WAVE</span>
+            <strong>{marketDecision.wave.label}</strong>
+            <em>{momentum}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={action.reasoning}>
+            <span>ACT</span>
+            <strong>{action.action}</strong>
+            <em>{action.strength}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Edge ${(action.edge * 100).toFixed(0)}%.`}>
+            <span>EDGE</span>
+            <strong>{(action.edge * 100).toFixed(0)}%</strong>
+            <em>{Math.abs(action.edge) >= 0.08 ? "watch" : "none"}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={marketDecision.valueRead}>
+            <span>VAL</span>
+            <strong>{value}</strong>
+            <em>read</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Confidence ${(action.confidence * 100).toFixed(0)}%.`}>
+            <span>CONF</span>
+            <strong>{confidence}</strong>
+            <em>{pctDisplay(action.confidence)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`Time horizon ${action.horizon}.`}>
+            <span>TIME</span>
+            <strong>{action.horizon}</strong>
+            <em>view</em>
+          </div>
+          <div className={styles.marketStructureItem} title={`${marketDecision.dlrImpact.pointsContributed.toFixed(1)} / 24 points.`}>
+            <span>DLR</span>
+            <strong>{dlr}</strong>
+            <em>{marketDecision.dlrImpact.pointsContributed.toFixed(1)}</em>
+          </div>
+          <div className={styles.marketStructureItem} title={action.riskFlags.length ? action.riskFlags.join(", ") : "No major market risk flag."}>
+            <span>RISK</span>
+            <strong>{risk}</strong>
+            <em>{action.riskFlags.length}</em>
+          </div>
+        </div>
+        <div className={styles.marketDataNote}>
+          DECISION READ · WAVE / VALUE / ACTION
+        </div>
       </div>
     )
   }
@@ -2062,10 +2087,11 @@ export default function IntelStack({
         className={cx(styles.cellReadout, tierClass, isOpen && styles.cellReadoutOn)}
         title={`${summary.meaning} Score ${summary.cellScore}. Tier ${summary.tier}.`}
       >
-        <span className={styles.cellReadoutTitle}>{summary.title}</span>
+        <span className={styles.cellReadoutArrow} aria-hidden="true">←</span>
         <span className={styles.cellReadoutContribution}>
           {summary.contributionLabel}
         </span>
+        <span className={styles.cellReadoutTitle}>{summary.title}</span>
       </div>
     )
   }

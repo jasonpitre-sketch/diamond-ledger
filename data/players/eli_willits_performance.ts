@@ -2,15 +2,25 @@ export const eli_willits_performance = {
   kind: "hitter",
 
   snapshot: {
-    g: 61,
-    ab: 410,
-    avg: 0.316,
-    hr: 18,
-    rbi: 64,
-    slg: 0.581,
-    ops: 0.914,
-    sb: 12,
-    sbAttempts: 15
+    year: "2025 HS",
+    team: "Fort Cobb-Broxton",
+    pa: 128,
+    g: null,
+    ab: 91,
+    h: 43,
+    doubles: 14,
+    triples: 1,
+    avg: 0.473,
+    obp: 0.602,
+    hr: 8,
+    rbi: 34,
+    runs: 56,
+    bb: 27,
+    k: 4,
+    slg: 0.912,
+    ops: 1.514,
+    sb: 47,
+    sbAttempts: 47
   },
 
   scout: {

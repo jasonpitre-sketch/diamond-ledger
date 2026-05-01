@@ -31,7 +31,62 @@ export const TITLE_LADDER: TitleTier[] = [
   { tier: 12, minScore: 0.917, maxScore: 1.001, title: "LEGENDARY", meaning: "Best of best - rare." }
 ]
 
-export const CELL_FLAVOR_OVERRIDES: Record<string, Partial<Record<number, string>>> = {}
+const KNOWLEDGE_SNAPSHOT_TITLES: Partial<Record<number, string>> = {
+  1: "MISSING",
+  2: "MISSING",
+  3: "SPARSE",
+  4: "SPARSE",
+  5: "PARTIAL",
+  6: "PARTIAL",
+  7: "STRUCTURED",
+  8: "STRUCTURED",
+  9: "COMPLETE",
+  10: "COMPLETE",
+  11: "COMPLETE",
+  12: "COMPLETE"
+}
+
+const KNOWLEDGE_SCOUT_TITLES: Partial<Record<number, string>> = {
+  1: "UNSET",
+  2: "UNSET",
+  3: "RAW",
+  4: "RAW",
+  5: "FORMING",
+  6: "FORMING",
+  7: "DEFINED",
+  8: "DEFINED",
+  9: "PROJECTABLE",
+  10: "POLISHED",
+  11: "POLISHED",
+  12: "POLISHED"
+}
+
+const KNOWLEDGE_ANALYST_TITLES: Partial<Record<number, string>> = {
+  1: "UNSET",
+  2: "UNSET",
+  3: "UNSTABLE",
+  4: "UNSTABLE",
+  5: "VIABLE",
+  6: "VIABLE",
+  7: "CONTROLLED",
+  8: "CONTROLLED",
+  9: "PRIORITY",
+  10: "PRIORITY",
+  11: "PRIORITY",
+  12: "PRIORITY"
+}
+
+export const CELL_FLAVOR_OVERRIDES: Record<string, Partial<Record<number, string>>> = {
+  "knowledge.bio.snapshot": KNOWLEDGE_SNAPSHOT_TITLES,
+  "knowledge.bio.scout": KNOWLEDGE_SCOUT_TITLES,
+  "knowledge.bio.analyst": KNOWLEDGE_ANALYST_TITLES,
+  "knowledge.scout.snapshot": KNOWLEDGE_SNAPSHOT_TITLES,
+  "knowledge.scout.scout": KNOWLEDGE_SCOUT_TITLES,
+  "knowledge.scout.analyst": KNOWLEDGE_ANALYST_TITLES,
+  "knowledge.career.snapshot": KNOWLEDGE_SNAPSHOT_TITLES,
+  "knowledge.career.scout": KNOWLEDGE_SCOUT_TITLES,
+  "knowledge.career.analyst": KNOWLEDGE_ANALYST_TITLES
+}
 
 export type CellSummary = {
   id: CellId

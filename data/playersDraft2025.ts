@@ -372,7 +372,7 @@ signals:{tracked:true,heat:null,price:null},
 
 pitching:null,
 
-hitting:{AVG:.316,H:130,R:null,HR:18,RBI:64,BB:null,K:null,SB:12,OPS:.914}
+hitting:{AVG:.473,H:43,R:56,HR:8,RBI:34,BB:27,K:4,SB:47,OPS:1.514}
 
 },
 

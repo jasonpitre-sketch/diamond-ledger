@@ -115,8 +115,8 @@ left:50%;
 top:62%;
 transform:translate(-50%,-50%);
 
-width:260px;
-height:350px;
+width:280px;
+height:360px;
 
 border-radius:10px;
 
@@ -138,8 +138,8 @@ left:50%;
 top:62%;
 transform:translate(-50%,-50%);
 
-width:240px;
-height:330px;
+width:var(--vault-card-width, 240px);
+height:var(--vault-card-height, 330px);
 
 z-index:20;
 
@@ -163,7 +163,7 @@ opacity:1;
 width:100%;
 height:100%;
 border-radius:8px;
-object-fit:contain;
+object-fit:fill;
 
 box-shadow:
 0 20px 50px rgba(0,0,0,.9);
@@ -190,61 +190,7 @@ z-index:2;
 }
 
 
-/* =============================
-ROTATING ENERGY CORE
-============================= */
 
-.pedestalCoreWrap{
-
-position:absolute;
-
-left:50%;
-top:70%;
-
-/* adjust vertical placement here */
-transform:
-translate(-50%,-50%)
-rotateX(63deg);
-
-width:190px;
-height:65px;
-
-z-index:6;
-
-pointer-events:none;
-
-}
-
-
-/* rotating surface */
-
-.pedestalCore{
-
-position:absolute;
-
-inset:0;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(
-ellipse at center,
-rgba(255,255,255,.95) 0%,
-rgba(160,210,255,.55) 35%,
-rgba(80,150,255,.25) 60%,
-rgba(0,0,0,0) 80%
-);
-
-box-shadow:
-
-0 0 18px rgba(120,210,255,.45),
-0 0 40px rgba(120,210,255,.18);
-
-animation:
-dlCoreSpin 26s linear infinite;
-
-}
 
 
 /* orbiting particles */
@@ -341,7 +287,7 @@ opacity:1;
 }
 
 100%{
-top:83%;
+top:93%;
 opacity:1;
 }
 
@@ -351,29 +297,19 @@ opacity:1;
 /* DLR display */
 
 .ratingWrap{
-
 position:absolute;
-
 right:85px;
 top:40%;
-
 transform:translateY(-50%);
-
 color:#35ff9c;
-
 font-family:"Orbitron",sans-serif;
-
 letter-spacing:.25em;
-
 text-shadow:
 0 0 6px rgba(53,255,156,.85),
 0 0 18px rgba(53,255,156,.55),
 0 0 34px rgba(53,255,156,.25);
-
 z-index:30;
-
 animation: dlrCorePulse 2s ease-in-out infinite;
-
 }
 
 @keyframes dlrCorePulse{

@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { scoreKnowledgeBioAnalyst } from "./bioRules"
+
 
 /* =========================
 TEXT NORMALIZER
@@ -44,22 +46,7 @@ MAX = 3
 
 export function calculateKnowledgeBioAnalyst(k:any){
 
-const a = k?.bio?.analyst
-
-if(!a) return 0
-
-let score = 0
-
-score += normalizeText(a.serviceTime)
-score += normalizeText(a.options)
-score += normalizeText(a.injuryIdx)
-score += normalizeText(a.pedigree)
-score += normalizeText(a.devCurve)
-score += normalizeText(a.orgValue)
-score += normalizeText(a.assetRisk)
-score += normalizeText(a.longValue)
-
-return Number((score / 8 * 3).toFixed(2))
+return Number((scoreKnowledgeBioAnalyst(k?.bio).score * 3).toFixed(3))
 
 }
 

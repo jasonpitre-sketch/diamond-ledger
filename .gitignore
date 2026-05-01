@@ -50,3 +50,4 @@ next-env.d.ts
 # generated/oversized card display libraries
 # Keep source cards used by the app under public/cards until storage is finalized.
 /public/cards_display/
+.env*.local

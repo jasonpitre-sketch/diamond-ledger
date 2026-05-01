@@ -1,0 +1,27 @@
+# Local dependencies and build output
+node_modules
+.next
+out
+build
+
+# Local environments and tooling
+.env
+.env.*
+.venv
+.venv-*
+pipeline/.env*
+
+# Git and local machine files
+.git
+.DS_Store
+*.tsbuildinfo
+
+# Local card-processing workspaces
+card_images_raw
+card_images_clean
+output
+
+# Oversized local card libraries. These should move to object storage/CDN
+# before the full app needs them in production.
+public/cards
+public/cards_display

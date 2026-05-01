@@ -6,82 +6,68 @@ max = 12
 focus = measurable tools
 */
 
-function score_hardHit(v:number){
+function scoreHardHit(v: number) {
+  if (v >= 50) return 2.6
+  if (v >= 46) return 2.3
+  if (v >= 42) return 2
+  if (v >= 38) return 1.6
+  if (v >= 34) return 1.2
 
-if(v >= 50) return 2.6
-if(v >= 46) return 2.3
-if(v >= 42) return 2
-if(v >= 38) return 1.6
-if(v >= 34) return 1.2
-
-return .8
+  return 0.8
 }
 
+function scoreBarrel(v: number) {
+  if (v >= 14) return 2.6
+  if (v >= 12) return 2.3
+  if (v >= 10) return 2
+  if (v >= 8) return 1.6
+  if (v >= 6) return 1.2
 
-function score_barrel(v:number){
-
-if(v >= 14) return 2.6
-if(v >= 12) return 2.3
-if(v >= 10) return 2
-if(v >= 8) return 1.6
-if(v >= 6) return 1.2
-
-return .8
+  return 0.8
 }
 
+function scoreKRate(v: number) {
+  if (v <= 14) return 2.4
+  if (v <= 17) return 2.2
+  if (v <= 20) return 2
+  if (v <= 24) return 1.6
+  if (v <= 28) return 1.2
 
-function score_kRate(v:number){
-
-if(v <= 14) return 2.4
-if(v <= 17) return 2.2
-if(v <= 20) return 2
-if(v <= 24) return 1.6
-if(v <= 28) return 1.2
-
-return .8
+  return 0.8
 }
 
+function scoreBbRate(v: number) {
+  if (v >= 14) return 2.4
+  if (v >= 12) return 2.2
+  if (v >= 10) return 2
+  if (v >= 8) return 1.6
+  if (v >= 6) return 1.2
 
-function score_bbRate(v:number){
-
-if(v >= 14) return 2.4
-if(v >= 12) return 2.2
-if(v >= 10) return 2
-if(v >= 8) return 1.6
-if(v >= 6) return 1.2
-
-return .8
+  return 0.8
 }
 
+function scoreAvgEV(v: number) {
+  if (v >= 93) return 2
+  if (v >= 91) return 1.8
+  if (v >= 89) return 1.6
+  if (v >= 87) return 1.3
+  if (v >= 85) return 1
 
-function score_avgEV(v:number){
-
-if(v >= 93) return 2
-if(v >= 91) return 1.8
-if(v >= 89) return 1.6
-if(v >= 87) return 1.3
-if(v >= 85) return 1
-
-return .7
+  return 0.7
 }
 
+export function calculatePerformanceHitterScout(player: any) {
+  const s = player?.performance?.scout
 
+  if (!s) return 0
 
-export function calculatePerformanceHitterScout(player:any){
+  let raw = 0
 
-const s = player?.performance?.scout
+  raw += scoreHardHit(s.hardHit ?? 38)
+  raw += scoreBarrel(s.barrel ?? 8)
+  raw += scoreKRate(s.kRate ?? 22)
+  raw += scoreBbRate(s.bbRate ?? 8)
+  raw += scoreAvgEV(s.avgEV ?? 88)
 
-if(!s) return 0
-
-let raw = 0
-
-raw += score_hardHit(s.hardHit ?? 38)
-raw += score_barrel(s.barrel ?? 8)
-raw += score_kRate(s.kRate ?? 22)
-raw += score_bbRate(s.bbRate ?? 8)
-raw += score_avgEV(s.avgEV ?? 88)
-
-
-return Number(((raw/12)*12).toFixed(2))
-
+  return Number(raw.toFixed(2))
 }

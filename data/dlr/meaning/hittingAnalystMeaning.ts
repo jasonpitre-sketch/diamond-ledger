@@ -25,7 +25,7 @@ plateDiscTrend:(v:number)=>{
 if(v >= .72) return "advanced control"
 if(v >= .60) return "stable approach"
 if(v >= .50) return "neutral discipline"
-if(v >= .40) return "approach inconsistency"
+if(v >= .40) return "inconsistency"
 return "discipline risk"
 
 },

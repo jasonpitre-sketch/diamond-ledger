@@ -3,6 +3,7 @@
 import {
 knowledgeScoutSnapshotRules
 } from "./dlr_rules_knowledge"
+import { scoreKnowledgeBioScout } from "./bioRules"
 
 
 
@@ -14,17 +15,7 @@ max contribution = 2 pts
 
 export function calculateKnowledgeBioScout(k:any){
 
-if(!k?.bio?.scout) return 0
-
-const s = k.bio.scout
-
-let score = 0
-
-score += knowledgeScoutSnapshotRules.roleType(s?.archetype ?? "")
-score += knowledgeScoutSnapshotRules.physicalProjection(s?.devPath ?? "")
-score += knowledgeScoutSnapshotRules.physicalProjection(s?.frameScale ?? "")
-
-return Number(((score / 3) * 2).toFixed(3))
+return Number((scoreKnowledgeBioScout(k?.bio).score * 2).toFixed(3))
 
 }
 

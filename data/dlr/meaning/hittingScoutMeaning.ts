@@ -5,7 +5,7 @@ hardHit:(v:number)=>{
 if(v >= 50) return "elite contact authority"
 if(v >= 44) return "strong contact quality"
 if(v >= 38) return "solid contact profile"
-if(v >= 32) return "below contact quality"
+if(v >= 32) return "below avg contact quality"
 return "weak contact profile"
 
 },

@@ -16,7 +16,7 @@ DLR contribution = 0
 BIO SNAPSHOT
 ============================= */
 
-export function calculateKnowledgeBioSnapshot(){
+export function calculateKnowledgeBioSnapshot(k?: any){
 return 0
 }
 
@@ -25,7 +25,7 @@ return 0
 SCOUT SNAPSHOT
 ============================= */
 
-export function calculateKnowledgeScoutSnapshot(){
+export function calculateKnowledgeScoutSnapshot(k?: any){
 return 0
 }
 
@@ -34,6 +34,6 @@ return 0
 CAREER SNAPSHOT
 ============================= */
 
-export function calculateKnowledgeCareerSnapshot(){
+export function calculateKnowledgeCareerSnapshot(k?: any){
 return 0
 }

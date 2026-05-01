@@ -13,6 +13,12 @@ import {
   normalizePsa10Premium,
   safeAverage
 } from "./dlrConfig"
+import {
+  detectPlayerRole,
+  readRoleToolGrades,
+  textSignalScore
+} from "./signalEngine"
+import { scoreKnowledgeBio } from "./knowledge/bioRules"
 import { scoreMarketSnapshot } from "@/lib/market/scoring"
 import type { MarketSnapshot } from "@/lib/market/types"
 
@@ -105,141 +111,28 @@ function scoreFromAnchored(
   return { score: avg, populated, expected }
 }
 
-function scoreCompleteness(values: NullableValue[], fallback = 0) {
-  if (values.length === 0) return fallback
-
-  const populated = values.filter((value) => {
-    if (Array.isArray(value)) return value.length > 0
-    return value !== null && value !== undefined && String(value).trim() !== ""
-  }).length
-
-  return populated / values.length
-}
-
-function textSignal(value: NullableValue, fallback = 0.55) {
-  if (typeof value === "number" && Number.isFinite(value)) return clamp01(value)
-  if (Array.isArray(value)) return value.length > 1 ? 0.88 : value.length === 1 ? 0.7 : fallback
-  if (value === null || value === undefined) return fallback
-
-  const text = String(value).toLowerCase()
-
-  if (
-    text.includes("elite") ||
-    text.includes("premium") ||
-    text.includes("top 10") ||
-    text.includes("very high") ||
-    text.includes("1st overall") ||
-    text.includes("1-1") ||
-    text.includes("impact") ||
-    text.includes("ideal") ||
-    text.includes("strong")
-  ) {
-    return 0.9
-  }
-
-  if (
-    text.includes("high") ||
-    text.includes("fast") ||
-    text.includes("accelerating") ||
-    text.includes("projectable") ||
-    text.includes("starter") ||
-    text.includes("college") ||
-    text.includes("progressing") ||
-    text.includes("polished") ||
-    text.includes("likely") ||
-    text.includes("priority")
-  ) {
-    return 0.75
-  }
-
-  if (
-    text.includes("moderate") ||
-    text.includes("solid") ||
-    text.includes("steady") ||
-    text.includes("normal") ||
-    text.includes("adequate") ||
-    text.includes("balanced") ||
-    text.includes("contributor") ||
-    text.includes("viable")
-  ) {
-    return 0.62
-  }
-
-  if (
-    text.includes("risk") ||
-    text.includes("limited") ||
-    text.includes("slow") ||
-    text.includes("low") ||
-    text.includes("raw") ||
-    text.includes("volatile") ||
-    text.includes("uncertain")
-  ) {
-    return 0.35
-  }
-
-  return fallback
-}
-
-function normalizeGrade(value: NullableNumber) {
-  if (value === null || value === undefined || Number.isNaN(value)) return null
-
-  return clamp01(value / 80)
-}
-
 function scoreKnowledge(player: PlayerInput) {
   const knowledge = player.knowledge
   const bio = knowledge?.bio
   const scout = knowledge?.scout
   const career = knowledge?.career
+  const role = detectPlayerRole(player)
+  const bioScores = scoreKnowledgeBio({ bio })
 
-  const bioSnapshot = scoreFromAlreadyNormalized([
-    { value: scoreCompleteness([
-      bio?.snapshot?.height,
-      bio?.snapshot?.weight,
-      bio?.snapshot?.bats,
-      bio?.snapshot?.throws,
-      bio?.snapshot?.school
-    ], null) },
-    { value: readNumber(bio?.scoutScores, "path") },
-    { value: readNumber(bio?.analystScores, "pedigree") }
-  ])
-  const bioScout = scoreFromAlreadyNormalized([
-    { value: readNumber(bio?.scoutScores, "arch") },
-    { value: readNumber(bio?.scoutScores, "path") },
-    { value: readNumber(bio?.scoutScores, "frame") },
-    { value: readNumber(bio?.scoutScores, "ath") },
-    { value: readNumber(bio?.scoutScores, "proj") }
-  ])
-  const bioAnalyst = scoreFromAlreadyNormalized([
-    { value: readNumber(bio?.analystScores, "dev") },
-    { value: readNumber(bio?.analystScores, "risk"), invert: true },
-    { value: readNumber(bio?.analystScores, "value") },
-    { value: readNumber(bio?.analystScores, "org") },
-    { value: readNumber(bio?.analystScores, "pedigree") },
-    { value: typeof bio?.analyst?.injuryIdx === "number" ? bio.analyst.injuryIdx : null, invert: true },
-    { value: typeof bio?.analyst?.assetRisk === "number" ? bio.analyst.assetRisk : null, invert: true },
-    { value: typeof bio?.analyst?.longValue === "number" ? bio.analyst.longValue : null }
-  ])
+  const bioSnapshot = bioScores.snapshot
+  const bioScout = bioScores.scout
+  const bioAnalyst = bioScores.analyst
 
   const scoutSnapshot = scoreFromAlreadyNormalized([
-    { value: textSignal(scout?.snapshot?.primaryTool) },
-    { value: textSignal(scout?.snapshot?.roleType) },
-    { value: textSignal(scout?.snapshot?.physicalProjection) },
-    { value: textSignal(scout?.snapshot?.riskProfile) }
+    { value: textSignalScore(scout?.snapshot?.primaryTool) },
+    { value: textSignalScore(scout?.snapshot?.roleType) },
+    { value: textSignalScore(scout?.snapshot?.physicalProjection) },
+    { value: textSignalScore(scout?.snapshot?.riskProfile) }
   ])
   const tools = scout?.scout
-  const scoutScout = scoreFromAlreadyNormalized([
-    { value: normalizeGrade(readNumber(tools, "hit")) },
-    { value: normalizeGrade(readNumber(tools, "power")) },
-    { value: normalizeGrade(readNumber(tools, "run")) },
-    { value: normalizeGrade(readNumber(tools, "arm")) },
-    { value: normalizeGrade(readNumber(tools, "field")) },
-    { value: normalizeGrade(readNumber(tools, "fastball")) },
-    { value: normalizeGrade(readNumber(tools, "slider")) },
-    { value: normalizeGrade(readNumber(tools, "splitter")) },
-    { value: normalizeGrade(readNumber(tools, "command")) },
-    { value: normalizeGrade(readNumber(tools, "overallFV")) }
-  ])
+  const scoutScout = scoreFromAlreadyNormalized(
+    readRoleToolGrades(tools, role).map(({ normalized }) => ({ value: normalized }))
+  )
   const scoutAnalyst = scoreFromAlreadyNormalized([
     { value: readNumber(scout?.analystScores, "ceiling") },
     { value: readNumber(scout?.analystScores, "floor") },
@@ -253,17 +146,17 @@ function scoreKnowledge(player: PlayerInput) {
   ])
 
   const careerSnapshot = scoreFromAlreadyNormalized([
-    { value: textSignal(career?.snapshot?.draftPedigree) },
-    { value: textSignal(career?.snapshot?.developmentPath) },
-    { value: textSignal(career?.snapshot?.orgInvestment) },
-    { value: textSignal(career?.snapshot?.timelineSignal) }
+    { value: textSignalScore(career?.snapshot?.draftPedigree) },
+    { value: textSignalScore(career?.snapshot?.developmentPath) },
+    { value: textSignalScore(career?.snapshot?.orgInvestment) },
+    { value: textSignalScore(career?.snapshot?.timelineSignal) }
   ])
   const careerScout = scoreFromAlreadyNormalized([
-    { value: textSignal(career?.scout?.collegeStatus) },
-    { value: textSignal(career?.scout?.draftPedigree) },
-    { value: textSignal(career?.scout?.projectionPath) },
-    { value: textSignal(career?.scout?.orgCommitment) },
-    { value: textSignal(career?.scout?.topProspectStatus) }
+    { value: textSignalScore(career?.scout?.collegeStatus) },
+    { value: textSignalScore(career?.scout?.draftPedigree) },
+    { value: textSignalScore(career?.scout?.projectionPath) },
+    { value: textSignalScore(career?.scout?.orgCommitment) },
+    { value: textSignalScore(career?.scout?.topProspectStatus) }
   ])
   const careerAnalyst = scoreFromAlreadyNormalized([
     { value: readNumber(career?.analystScores, "timeline") },
@@ -322,12 +215,7 @@ function scoreKnowledge(player: PlayerInput) {
 }
 
 function isPitcher(player: PlayerInput) {
-  const position = (player.position ?? player.pos ?? "").toUpperCase()
-
-  return (
-    player.performance?.kind === "pitcher" ||
-    ["P", "SP", "RP", "RHP", "LHP"].includes(position)
-  )
+  return detectPlayerRole(player) === "pitcher"
 }
 
 function scorePerformance(player: PlayerInput) {
