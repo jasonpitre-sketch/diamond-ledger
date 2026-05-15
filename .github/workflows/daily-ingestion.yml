@@ -1,0 +1,55 @@
+name: Daily Ingestion
+
+on:
+  schedule:
+    # 11:00 UTC = 7:00 AM ET — runs after overnight games are finalized
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+    # Allow manual trigger from GitHub Actions UI
+    inputs:
+      date:
+        description: "Target date (YYYY-MM-DD). Leave blank to use today."
+        required: false
+        default: ""
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Trigger daily ingestion
+        env:
+          VERCEL_URL: ${{ secrets.VERCEL_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          TARGET_DATE: ${{ github.event.inputs.date }}
+        run: |
+          URL="${VERCEL_URL}/api/cron/daily-ingestion"
+
+          # Append ?date= param if a manual date was provided
+          if [ -n "${TARGET_DATE}" ]; then
+            URL="${URL}?date=${TARGET_DATE}"
+          fi
+
+          echo "Hitting: ${URL}"
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            -H "Content-Type: application/json" \
+            --max-time 120 \
+            "${URL}")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n-1)
+
+          echo "HTTP status: ${HTTP_CODE}"
+          echo "Response body:"
+          echo "${BODY}"
+
+          # Fail the workflow if the endpoint returned an error
+          if [ "${HTTP_CODE}" -lt 200 ] || [ "${HTTP_CODE}" -ge 300 ]; then
+            echo "ERROR: Ingestion endpoint returned HTTP ${HTTP_CODE}"
+            exit 1
+          fi
+
+          echo "Ingestion completed successfully."
