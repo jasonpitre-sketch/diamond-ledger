@@ -13,11 +13,7 @@
  */
 
 import { NextResponse } from "next/server"
-import { execFile }     from "child_process"
-import { join }         from "path"
-import { promisify }    from "util"
-
-const execFileAsync = promisify(execFile)
+import { runScheduler } from "../../../../scripts/daily-scheduler.mjs"
 
 // Required: Vercel Cron sets Authorization: Bearer {CRON_SECRET}
 const CRON_SECRET = process.env.CRON_SECRET ?? ""
@@ -33,56 +29,38 @@ export async function GET(request: Request): Promise<NextResponse> {
   const startedAt = new Date().toISOString()
   console.log(`[CRON] Daily ingestion triggered at ${startedAt}`)
 
-  // ── Determine target date (yesterday ET) ──────────────────────────────────
-  // The scheduler resolves this internally, but we log it here for traceability
-  const targetDate = yesterdayET()
+  // ── Determine target date (yesterday ET unless manually supplied) ─────────
+  const requestUrl = new URL(request.url)
+  const targetDate = requestUrl.searchParams.get("date") ?? yesterdayET()
   console.log(`[CRON] Target date: ${targetDate}`)
 
   // ── Invoke scheduler ──────────────────────────────────────────────────────
-  const schedulerPath = join(process.cwd(), "scripts", "daily-scheduler.mjs")
-
   try {
-    const { stdout, stderr } = await execFileAsync(
-      "node",
-      [schedulerPath],
-      {
-        timeout: 55_000,  // Vercel Pro: 60s max. Leave 5s margin.
-        maxBuffer: 1024 * 1024 * 2,  // 2MB output buffer
-        env: { ...process.env },
-      }
-    )
-
-    if (stderr) {
-      console.warn("[CRON] scheduler stderr:", stderr.slice(0, 500))
-    }
+    const result = await runScheduler({ targetDate } as never)
 
     const completedAt = new Date().toISOString()
     console.log(`[CRON] Completed at ${completedAt}`)
-    console.log("[CRON] Scheduler output (last 500 chars):", stdout.slice(-500))
+    console.log("[CRON] Scheduler counts:", result.counts)
 
     return NextResponse.json({
-      ok:          true,
+      ok:          result.counts.error === 0,
       target_date: targetDate,
       started_at:  startedAt,
       completed_at: completedAt,
-      output_preview: stdout.slice(-300),
-    })
+      counts:      result.counts,
+      results:     result.results,
+    }, { status: result.counts.error === 0 ? 200 : 500 })
   } catch (err: unknown) {
     const errMsg = err instanceof Error ? err.message : String(err)
-    const output = (err as NodeJS.ErrnoException & { stdout?: string })?.stdout ?? ""
 
     console.error("[CRON] Scheduler failed:", errMsg)
-    console.error("[CRON] Output:", output.slice(-500))
 
-    // Return 200 even on scheduler failure — Vercel marks cron as errored on non-200
-    // but we want to surface the error in the response body for debugging
     return NextResponse.json({
       ok:          false,
       target_date: targetDate,
       started_at:  startedAt,
       error:       errMsg,
-      output_preview: output.slice(-300),
-    }, { status: 200 })
+    }, { status: 500 })
   }
 }
 
