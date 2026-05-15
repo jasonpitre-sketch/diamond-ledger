@@ -1,15 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { PerformanceData } from "@/data/types/player"
 
-export function calculatePerformanceSnapshot(player: any) {
+type PerformanceSnapshotInput = { performance?: PerformanceData | null }
+
+function numberOr(value: unknown, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback
+}
+
+export function calculatePerformanceSnapshot(player: PerformanceSnapshotInput): number {
   const s = player?.performance?.snapshot
 
   if (!s) return 0
 
-  const era = s.era ?? 4.2
-  const whip = s.whip ?? 1.35
-  const so = s.so ?? 0
-  const ip = s.ip ?? 0
-  const hrAllowed = s.hrAllowed ?? 0
+  const era = numberOr(s.era, 4.2)
+  const whip = numberOr(s.whip, 1.35)
+  const so = numberOr(s.so, 0)
+  const ip = numberOr(s.ip, 0)
+  const hrAllowed = numberOr(s.hrAllowed, 0)
 
   let score = 0
 

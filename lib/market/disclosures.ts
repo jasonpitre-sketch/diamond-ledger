@@ -1,3 +1,12 @@
-export const MARKET_DISCLOSURE_COPY =
-  "Diamond Ledger's Market layer is informational analytics. Card values fluctuate, sample sizes vary, and past performance does not predict future results. Buy, hold, and sell signals are tools for informed decision-making, not investment advice."
-
+/**
+ * @deprecated TOMBSTONED — Dead Code Purge (2026-05-08)
+ *
+ * MARKET_DISCLOSURE_COPY has zero callers across the full codebase.
+ *
+ * PURPOSE: Static disclaimer string intended for display in market-layer UI.
+ * Re-exported from lib/market/index.ts but never imported or rendered
+ * by any component, hook, or page.
+ *
+ * Safe to hard-delete once confirmed unused.
+ */
+export {}

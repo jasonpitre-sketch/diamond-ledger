@@ -1,10 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { PerformanceData } from "@/data/types/player"
 
 /*
 SNAPSHOT
 max = 8
 focus = actual production
 */
+
+type HitterSnapshotInput = { performance?: PerformanceData | null }
 
 function scoreAvg(v: number) {
   if (v >= 0.305) return 2
@@ -54,17 +56,21 @@ function scoreSbRate(sb: number, attempts: number) {
   return 0.6
 }
 
-export function calculatePerformanceHitterSnapshot(player: any) {
+function numberOr(value: unknown, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback
+}
+
+export function calculatePerformanceHitterSnapshot(player: HitterSnapshotInput): number {
   const s = player?.performance?.snapshot
 
   if (!s) return 0
 
-  const avg = s.avg ?? 0.25
-  const ops = s.ops ?? 0.72
-  const hr = s.hr ?? 10
-  const ab = s.ab ?? 400
-  const sb = s.sb ?? 5
-  const sbAttempts = s.sbAttempts ?? 8
+  const avg = numberOr(s.avg, 0.25)
+  const ops = numberOr(s.ops, 0.72)
+  const hr = numberOr(s.hr, 10)
+  const ab = numberOr(s.ab, 400)
+  const sb = numberOr(s.sb, 5)
+  const sbAttempts = numberOr(s.sbAttempts, 8)
 
   let raw = 0
 
