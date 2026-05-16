@@ -144,6 +144,51 @@ const tierOrder = [
   "MVP"
 ]
 
+const teamNameMap: Record<string, string> = {
+  ARI: "Arizona Diamondbacks",
+  ATL: "Atlanta Braves",
+  BAL: "Baltimore Orioles",
+  BOS: "Boston Red Sox",
+  CHC: "Chicago Cubs",
+  CIN: "Cincinnati Reds",
+  CLE: "Cleveland Guardians",
+  COL: "Colorado Rockies",
+  CWS: "Chicago White Sox",
+  DET: "Detroit Tigers",
+  HOU: "Houston Astros",
+  KC: "Kansas City Royals",
+  KCR: "Kansas City Royals",
+  LAA: "Los Angeles Angels",
+  LAD: "Los Angeles Dodgers",
+  MIA: "Miami Marlins",
+  MIL: "Milwaukee Brewers",
+  MIN: "Minnesota Twins",
+  NYM: "New York Mets",
+  NYY: "New York Yankees",
+  OAK: "Athletics",
+  ATH: "Athletics",
+  PHI: "Philadelphia Phillies",
+  PIT: "Pittsburgh Pirates",
+  SD: "San Diego Padres",
+  SDP: "San Diego Padres",
+  SEA: "Seattle Mariners",
+  SF: "San Francisco Giants",
+  SFG: "San Francisco Giants",
+  STL: "St. Louis Cardinals",
+  TB: "Tampa Bay Rays",
+  TBR: "Tampa Bay Rays",
+  TEX: "Texas Rangers",
+  TOR: "Toronto Blue Jays",
+  WSH: "Washington Nationals",
+  WSN: "Washington Nationals",
+}
+
+function displayTeam(team?: string | null) {
+  const raw = String(team ?? "").trim()
+  if (!raw) return ""
+  return teamNameMap[raw.toUpperCase()] ?? raw
+}
+
 /**
  * Resolves the display tier label for a player row.
  * Players with tier "Draft" / "DRAFT" are pre-draft amateurs —
@@ -279,7 +324,7 @@ return [
 ...Array.from(
 new Set(
 dataset
-.map(p=>p?.team)
+.map(p=>displayTeam(p?.team))
 .filter(Boolean)
 )
 ).sort()
@@ -379,7 +424,7 @@ const filtered = useMemo(()=>{
 
 return dataset.filter(p=>{
 
-if(teamFilter !== "ALL" && p.team !== teamFilter) return false
+if(teamFilter !== "ALL" && displayTeam(p.team) !== teamFilter) return false
 
 if(posFilter !== "ALL" && p.position !== posFilter) return false
 
@@ -409,7 +454,7 @@ const getSortValue = useCallback((p:PlayerRow,key:SortKey)=>{
 switch(key){
 
 case "name": return p.name ?? ""
-case "team": return p.team ?? ""
+case "team": return displayTeam(p.team)
 case "age": return p.age ?? -999
 case "position": return p.position ?? ""
 case "draftYear": return p.draftYear ?? -999
@@ -832,7 +877,7 @@ style={{ color: lifecycleHex(resolveTierLabel(p)) ?? DLR_PHASE_BADGE[getDLRPhase
 {resolveTierLabel(p) || "—"}
 </div>
 
-<div>{p.team ?? "—"}</div>
+<div>{displayTeam(p.team) || "—"}</div>
 
 <div>{p.age ?? "—"}</div>
 
