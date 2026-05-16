@@ -34,10 +34,10 @@
  */
 
 import { createClient }    from "@supabase/supabase-js"
-import { spawn }           from "child_process"
-import { readFileSync, existsSync } from "fs"
+import { readFileSync } from "fs"
 import { join, dirname }   from "path"
 import { fileURLToPath }   from "url"
+import { runIngestGame }    from "./ingest-game.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT      = join(__dirname, "..")
@@ -89,7 +89,7 @@ async function loadAdapter(dataSource) {
     case "milb_stats_api":
       return await import("./adapters/milb-stats-api.mjs")  // Pass 74
     case "ncaa_ucla_scrape":
-      return null  // Pass 75
+      return await import("./adapters/ucla-sidearm-baseball.mjs")  // Pass 83 prototype
     case "manual":
       return null  // permanent manual
     default:
@@ -136,40 +136,39 @@ function yesterdayET() {
  * We do NOT pass --write-week for daily ingestions — we let the engine
  * handle its own week-boundary detection to avoid over-writing.
  */
-function callIngestEngine(ingestionArgs, dryRun, timeoutMs = 30_000) {
-  return new Promise((resolve) => {
-    const args = buildCLIArgs(ingestionArgs, dryRun)
+async function callIngestEngine(ingestionArgs, dryRun) {
+  const args = buildCLIArgs(ingestionArgs, dryRun)
+  let output = ""
 
-    const child = spawn("node", ["scripts/ingest-game.mjs", ...args], {
-      cwd:   ROOT,
-      stdio: "pipe",
-    })
+  const capture = (method) => (...parts) => {
+    const line = parts.map(part =>
+      typeof part === "string" ? part : JSON.stringify(part)
+    ).join(" ")
+    output += `${line}\n`
+    console[method](...parts)
+  }
 
-    let output = ""
-    let timedOut = false
+  const original = {
+    log: console.log,
+    warn: console.warn,
+    error: console.error,
+  }
 
-    const timer = setTimeout(() => {
-      timedOut = true
-      child.kill("SIGTERM")
-    }, timeoutMs)
-
-    child.stdout.on("data", chunk => { output += chunk.toString() })
-    child.stderr.on("data", chunk => { output += chunk.toString() })
-
-    child.on("close", (code) => {
-      clearTimeout(timer)
-      if (timedOut) {
-        resolve({ success: false, output: output + "\n[TIMEOUT after 30s]", exitCode: -1 })
-      } else {
-        resolve({ success: code === 0, output, exitCode: code })
-      }
-    })
-
-    child.on("error", (err) => {
-      clearTimeout(timer)
-      resolve({ success: false, output: err.message, exitCode: -1 })
-    })
-  })
+  try {
+    console.log = capture("log")
+    console.warn = capture("warn")
+    console.error = capture("error")
+    await runIngestGame(args)
+    return { success: true, output, exitCode: 0 }
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    output += `${message}\n`
+    return { success: false, output, exitCode: 1 }
+  } finally {
+    console.log = original.log
+    console.warn = original.warn
+    console.error = original.error
+  }
 }
 
 /**
@@ -220,12 +219,118 @@ function buildLocalRoster() {
     { player_id: "brice_turang", name: "Brice Turang", kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "668930", external_team_id: "158", external_sport_id: "1",  last_ingested_date: null },
     { player_id: "brady_singer", name: "Brady Singer", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "663903", external_team_id: "113", external_sport_id: "1",  last_ingested_date: null },
     { player_id: "casey_mize",   name: "Casey Mize",   kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "663554", external_team_id: "116", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "matthew_liberatore", name: "Matthew Liberatore", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "669461", external_team_id: "138", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "bo_naylor",    name: "Bo Naylor",    kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "666310", external_team_id: "114", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "jake_mccarthy",name: "Jake McCarthy",kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "664983", external_team_id: "115", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "chase_burns",   name: "Chase Burns",   kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "695505", external_team_id: "113", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "nick_kurtz",    name: "Nick Kurtz",    kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "701762", external_team_id: "133", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "jac_caglianone",name: "Jac Caglianone",kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "695506", external_team_id: "118", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "jj_wetherholt", name: "JJ Wetherholt", kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "802139", external_team_id: "138", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "cam_smith",     name: "Cam Smith",     kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "701358", external_team_id: "117", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "carson_benge",  name: "Carson Benge",  kind: "hitter",  level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "701807", external_team_id: "121", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "trey_yesavage", name: "Trey Yesavage", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "702056", external_team_id: "141", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "ryan_waldschmidt", name: "Ryan Waldschmidt", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "814439", external_team_id: "109", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "payton_tolle", name: "Payton Tolle", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "801139", external_team_id: "111", external_sport_id: "1",  last_ingested_date: null },
+    { player_id: "paul_skenes", name: "Paul Skenes", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "694973", external_team_id: "134", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "wyatt_langford", name: "Wyatt Langford", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "694671", external_team_id: "140", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "jacob_wilson", name: "Jacob Wilson", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "805779", external_team_id: "133", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "rhett_lowder", name: "Rhett Lowder", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "695076", external_team_id: "113", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "chase_dollander", name: "Chase Dollander", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "801403", external_team_id: "115", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "nolan_schanuel", name: "Nolan Schanuel", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "694384", external_team_id: "108", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "matt_shaw", name: "Matt Shaw", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "807713", external_team_id: "112", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "bryce_eldridge", name: "Bryce Eldridge", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "805811", external_team_id: "137", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "hurston_waldrep", name: "Hurston Waldrep", kind: "pitcher", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "694462", external_team_id: "144", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "brice_matthews", name: "Brice Matthews", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "694728", external_team_id: "117", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "kevin_mcgonigle", name: "Kevin McGonigle", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "805808", external_team_id: "116", external_sport_id: "1", last_ingested_date: null },
     // MiLB players — IDs verified 2026-05-14 via MLB Stats API /api/v1/people/search
     // Sport IDs confirmed: 14=Single-A, 12=Double-A (see AUTOMATION_RULES.md)
     { player_id: "eli_willits",    name: "Eli Willits",    kind: "hitter",  level: "A",  active: true, data_source: "milb_stats_api", external_player_id: "816113", external_team_id: "436", external_sport_id: "14", last_ingested_date: null },
     { player_id: "ethan_holliday", name: "Ethan Holliday", kind: "hitter",  level: "A",  active: true, data_source: "milb_stats_api", external_player_id: "815787", external_team_id: "259", external_sport_id: "14", last_ingested_date: null },
     { player_id: "kade_anderson",  name: "Kade Anderson",  kind: "pitcher", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "807739", external_team_id: "574", external_sport_id: "12", last_ingested_date: null },
-    { player_id: "roch_cholowsky", name: "Roch Cholowsky", kind: "hitter",  level: "NCAA", active: true, data_source: "manual",          external_player_id: null, last_ingested_date: null },
+    { player_id: "tyler_bremner",  name: "Tyler Bremner",  kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "803285", external_team_id: "460", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "nick_madrigal",  name: "Nick Madrigal",  kind: "hitter",  level: "AAA",active: true, data_source: "milb_stats_api", external_player_id: "663611", external_team_id: "561", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "jordyn_adams",   name: "Jordyn Adams",   kind: "hitter",  level: "AAA",active: true, data_source: "milb_stats_api", external_player_id: "677941", external_team_id: "556", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "travis_bazzana", name: "Travis Bazzana", kind: "hitter",  level: "AAA",active: true, data_source: "milb_stats_api", external_player_id: "683953", external_team_id: "445", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "charlie_condon", name: "Charlie Condon", kind: "hitter",  level: "AAA",active: true, data_source: "milb_stats_api", external_player_id: "809707", external_team_id: "342", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "hagen_smith",    name: "Hagen Smith",    kind: "pitcher", level: "AAA",active: true, data_source: "milb_stats_api", external_player_id: "696146", external_team_id: "494", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "christian_moore",name: "Christian Moore",kind: "hitter",  level: "AAA",active: true, data_source: "milb_stats_api", external_player_id: "695681", external_team_id: "561", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "konnor_griffin", name: "Konnor Griffin", kind: "hitter",  level: "AAA",active: true, data_source: "milb_stats_api", external_player_id: "804606", external_team_id: "484", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "seaver_king",    name: "Seaver King",    kind: "hitter",  level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "814409", external_team_id: "547", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "bryce_rainer",   name: "Bryce Rainer",   kind: "hitter",  level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "800614", external_team_id: "582", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "braden_montgomery", name: "Braden Montgomery", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "695731", external_team_id: "494", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "james_tibbs_iii", name: "James Tibbs III", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "696486", external_team_id: "238", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "jurrangelo_cijntje", name: "Jurrangelo Cijntje", kind: "pitcher", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "701388", external_team_id: "440", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "pj_morlando",    name: "PJ Morlando",    kind: "hitter",  level: "A",  active: true, data_source: "milb_stats_api", external_player_id: "703563", external_team_id: "479", external_sport_id: "14", last_ingested_date: null },
+    { player_id: "braylon_payne",  name: "Braylon Payne",  kind: "hitter",  level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "815520", external_team_id: "572", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "theo_gillen",    name: "Theo Gillen",    kind: "hitter",  level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "815394", external_team_id: "2498", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "kaelen_culpepper", name: "Kaelen Culpepper", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "701785", external_team_id: "1960", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "vance_honeycutt", name: "Vance Honeycutt", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "701689", external_team_id: "493", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "kellon_lindsey", name: "Kellon Lindsey", kind: "hitter", level: "A", active: true, data_source: "milb_stats_api", external_player_id: "813916", external_team_id: "6482", external_sport_id: "14", last_ingested_date: null },
+    { player_id: "cam_caminiti", name: "Cam Caminiti", kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "807284", external_team_id: "432", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "kash_mayfield", name: "Kash Mayfield", kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "824026", external_team_id: "584", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "ben_hess", name: "Ben Hess", kind: "pitcher", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "696292", external_team_id: "1956", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "dante_nori", name: "Dante Nori", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "807276", external_team_id: "522", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "walker_janek", name: "Walker Janek", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "801075", external_team_id: "482", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "slade_caldwell", name: "Slade Caldwell", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "815154", external_team_id: "419", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "malcolm_moore", name: "Malcolm Moore", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "702270", external_team_id: "6324", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "griff_oferrall", name: "Griff O'Ferrall", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "803172", external_team_id: "418", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "kyle_debarge", name: "Kyle DeBarge", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "814414", external_team_id: "3898", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "blake_burke", name: "Blake Burke", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "695501", external_team_id: "5015", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "jd_dix", name: "JD Dix", kind: "hitter", level: "A", active: true, data_source: "milb_stats_api", external_player_id: "807267", external_team_id: "516", external_sport_id: "14", last_ingested_date: null },
+    { player_id: "braylon_doughty", name: "Braylon Doughty", kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "815785", external_team_id: "437", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "levi_sterling", name: "Levi Sterling", kind: "pitcher", level: "A", active: true, data_source: "milb_stats_api", external_player_id: "815552", external_team_id: "3390", external_sport_id: "14", last_ingested_date: null },
+    { player_id: "brody_brecht", name: "Brody Brecht", kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "701679", external_team_id: "486", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "caleb_lomavita", name: "Caleb Lomavita", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "701616", external_team_id: "547", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "tommy_white", name: "Tommy White", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "695720", external_team_id: "400", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "david_shields", name: "David Shields", kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "815789", external_team_id: "565", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "jared_thomas", name: "Jared Thomas", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "703606", external_team_id: "538", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "caleb_bonemer", name: "Caleb Bonemer", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "815352", external_team_id: "580", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "luke_dickerson", name: "Luke Dickerson", kind: "hitter", level: "A", active: true, data_source: "milb_stats_api", external_player_id: "815380", external_team_id: "436", external_sport_id: "14", last_ingested_date: null },
+    { player_id: "chris_cortez", name: "Chris Cortez", kind: "pitcher", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "700933", external_team_id: "559", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "jonathan_santucci", name: "Jonathan Santucci", kind: "pitcher", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "695558", external_team_id: "505", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "wyatt_sanford", name: "Wyatt Sanford", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "815608", external_team_id: "477", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "jacob_cozart", name: "Jacob Cozart", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "695524", external_team_id: "402", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "owen_hall", name: "Owen Hall", kind: "pitcher", level: "Rookie", active: true, data_source: "milb_stats_api", external_player_id: "815157", external_team_id: "473", external_sport_id: "16", last_ingested_date: null },
+    { player_id: "dylan_crews", name: "Dylan Crews", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "686611", external_team_id: "534", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "max_clark", name: "Max Clark", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "703601", external_team_id: "512", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "walker_jenkins", name: "Walker Jenkins", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "805805", external_team_id: "1960", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "blake_mitchell", name: "Blake Mitchell", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "805810", external_team_id: "565", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "noble_meyer", name: "Noble Meyer", kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "800611", external_team_id: "520", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "tommy_troy", name: "Tommy Troy", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "694371", external_team_id: "2310", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "kyle_teel", name: "Kyle Teel", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "691019", external_team_id: "494", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "jacob_gonzalez", name: "Jacob Gonzalez", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "694378", external_team_id: "494", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "enrique_bradfield_jr", name: "Enrique Bradfield Jr.", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "690961", external_team_id: "568", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "brock_wilken", name: "Brock Wilken", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "694385", external_team_id: "556", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "brayden_taylor", name: "Brayden Taylor", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "694966", external_team_id: "421", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "arjun_nimmala", name: "Arjun Nimmala", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "805796", external_team_id: "463", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "chase_davis", name: "Chase Davis", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "690971", external_team_id: "440", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "colt_emerson", name: "Colt Emerson", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "806068", external_team_id: "529", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "ralphy_velazquez", name: "Ralphy Velazquez", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "806252", external_team_id: "402", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "dillon_head", name: "Dillon Head", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "702977", external_team_id: "554", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "george_lombard_jr", name: "George Lombard Jr.", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "806146", external_team_id: "531", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "aidan_miller", name: "Aidan Miller", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "805795", external_team_id: "1410", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "jonny_farmelo", name: "Jonny Farmelo", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "806071", external_team_id: "403", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "tai_peete", name: "Tai Peete", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "806191", external_team_id: "443", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "adrian_santana", name: "Adrian Santana", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "803745", external_team_id: "2498", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "colin_houck", name: "Colin Houck", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "806124", external_team_id: "453", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "josh_knoth", name: "Josh Knoth", kind: "pitcher", level: "Rookie", active: true, data_source: "milb_stats_api", external_player_id: "805807", external_team_id: "406", external_sport_id: "16", last_ingested_date: null },
+    { player_id: "charlee_soto", name: "Charlee Soto", kind: "pitcher", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "805792", external_team_id: "492", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "thomas_white", name: "Thomas White", kind: "pitcher", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "806258", external_team_id: "564", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "kendall_george", name: "Kendall George", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "806077", external_team_id: "260", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "ty_floyd", name: "Ty Floyd", kind: "pitcher", level: "Rookie", active: true, data_source: "milb_stats_api", external_player_id: "692226", external_team_id: "450", external_sport_id: "16", last_ingested_date: null },
+    { player_id: "myles_naylor", name: "Myles Naylor", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "802504", external_team_id: "499", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "yohandy_morales", name: "Yohandy Morales", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "691002", external_team_id: "534", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "ryan_lasko", name: "Ryan Lasko", kind: "hitter", level: "AA", active: true, data_source: "milb_stats_api", external_player_id: "805782", external_team_id: "237", external_sport_id: "12", last_ingested_date: null },
+    { player_id: "mitch_jebb", name: "Mitch Jebb", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "694991", external_team_id: "484", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "sammy_stafura", name: "Sammy Stafura", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "806230", external_team_id: "477", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "blake_wolters", name: "Blake Wolters", kind: "pitcher", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "806265", external_team_id: "565", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "max_anderson", name: "Max Anderson", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "801194", external_team_id: "512", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "sean_sullivan", name: "Sean Sullivan", kind: "pitcher", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "807743", external_team_id: "342", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "kemp_alderman", name: "Kemp Alderman", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "694580", external_team_id: "564", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "lujames_groover", name: "LuJames Groover", kind: "hitter", level: "AAA", active: true, data_source: "milb_stats_api", external_player_id: "694410", external_team_id: "2310", external_sport_id: "11", last_ingested_date: null },
+    { player_id: "luke_keaschall", name: "Luke Keaschall", kind: "hitter", level: "MLB", active: true, data_source: "mlb_stats_api", external_player_id: "807712", external_team_id: "142", external_sport_id: "1", last_ingested_date: null },
+    { player_id: "nazzan_zanetello", name: "Nazzan Zanetello", kind: "hitter", level: "A+", active: true, data_source: "milb_stats_api", external_player_id: "805801", external_team_id: "428", external_sport_id: "13", last_ingested_date: null },
+    { player_id: "roch_cholowsky", name: "Roch Cholowsky", kind: "hitter",  level: "NCAA", active: true, data_source: "ncaa_ucla_scrape", external_player_id: "15523", last_ingested_date: null },
     { player_id: "carson_bolemon", name: "Carson Bolemon", kind: "pitcher", level: "HS",   active: true, data_source: "manual",          external_player_id: null, last_ingested_date: null },
     { player_id: "grady_emerson",  name: "Grady Emerson",  kind: "hitter",  level: "HS",   active: true, data_source: "manual",          external_player_id: null, last_ingested_date: null },
   ]
@@ -298,7 +403,6 @@ async function sendSummaryEmail(results, targetDate, runDurationMs) {
 
 function buildEmailBody(results, targetDate, runDurationMs) {
   const successes    = results.filter(r => r.status === "success")
-  const noGame       = results.filter(r => r.status === "no_game" && r.data_source === "mlb_stats_api")
   const errors       = results.filter(r => r.status === "error")
   const manualPending= results.filter(r => r.status === "manual_pending")
 

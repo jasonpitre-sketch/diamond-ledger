@@ -1,0 +1,16 @@
+{
+  "player_id": "carson_bolemon",
+  "name": "Carson Bolemon",
+  "kind": "pitcher",
+  "position": "LHP/DH",
+  "season": 2026,
+  "baselineERA": null,
+  "baselineWHIP": null,
+  "level": "HS",
+  "competition_level": "HS",
+  "dataSource": "maxpreps_manual",
+  "sourceURL": "https://www.maxpreps.com/sc/simpsonville/southside-christian-sabres/athletes/carson-bolemon/baseball/stats/?careerid=vmg6direstbvf",
+  "dualDomain": true,
+  "dualDomainSecondary": "hitter",
+  "note": "Primary domain pitcher. DH batting tracked separately for dual-domain composite. Live ingestion begins post-draft (July 2026) when Bolemon enters professional baseball. 2025 pitching baseline: ERA 0.00 (13G, 55.1 IP). 2026 Sr in-progress: ERA 0.23 (7G, 30 IP). Baseline ERA set to null until post-draft pro context established."
+}

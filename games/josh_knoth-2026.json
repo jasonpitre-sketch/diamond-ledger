@@ -1,0 +1,163 @@
+{
+  "player_id": "josh_knoth",
+  "season": 2026,
+  "engine_version": "P60",
+  "source": "MLB Stats API",
+  "external_player_id": "805807",
+  "external_sport_id": "16",
+  "external_team_id": "406",
+  "games": [
+    {
+      "g": 1,
+      "sport": 16,
+      "level": "Rookie",
+      "date": "2026-05-02",
+      "opp": "@ ACL Padres",
+      "team": "ACL Brewers",
+      "week": "2026-W18",
+      "ip": "1.2",
+      "outs": 5,
+      "h": 0,
+      "r": 0,
+      "er": 0,
+      "bb": 1,
+      "k": 4,
+      "hr": 0,
+      "bf": 6
+    },
+    {
+      "g": 2,
+      "sport": 16,
+      "level": "Rookie",
+      "date": "2026-05-08",
+      "opp": "@ ACL Cubs",
+      "team": "ACL Brewers",
+      "week": "2026-W19",
+      "ip": "2.0",
+      "outs": 6,
+      "h": 1,
+      "r": 1,
+      "er": 1,
+      "bb": 2,
+      "k": 1,
+      "hr": 0,
+      "bf": 9
+    },
+    {
+      "g": 3,
+      "sport": 16,
+      "level": "Rookie",
+      "date": "2026-05-14",
+      "opp": "@ ACL Rangers",
+      "team": "ACL Brewers",
+      "week": "2026-W20",
+      "ip": "2.1",
+      "outs": 7,
+      "h": 3,
+      "r": 2,
+      "er": 2,
+      "bb": 1,
+      "k": 3,
+      "hr": 0,
+      "bf": 11
+    }
+  ],
+  "weeklyRows": [
+    {
+      "snapshot_week": "2026-W18",
+      "dlr_score": 48.7,
+      "weekly_delta": 0,
+      "confidence_level": 0.2,
+      "health_class": "ACTIVE",
+      "fallback_used": false,
+      "weekly_history": [],
+      "competition_level": "Rookie"
+    },
+    {
+      "snapshot_week": "2026-W19",
+      "dlr_score": 48.7,
+      "weekly_delta": 0,
+      "confidence_level": 0.2,
+      "health_class": "ACTIVE",
+      "fallback_used": false,
+      "weekly_history": [],
+      "competition_level": "Rookie"
+    },
+    {
+      "snapshot_week": "2026-W20",
+      "dlr_score": 48.7,
+      "weekly_delta": 0,
+      "confidence_level": 0.2,
+      "health_class": "ACTIVE",
+      "fallback_used": false,
+      "weekly_history": [],
+      "competition_level": "Rookie"
+    }
+  ],
+  "totals": {
+    "g": 3,
+    "outs": 18,
+    "h": 4,
+    "r": 3,
+    "er": 3,
+    "bb": 4,
+    "k": 8,
+    "hr": 0,
+    "bf": 26,
+    "ip": "6.0"
+  },
+  "rates": {
+    "era": 4.5,
+    "whip": 1.333,
+    "k9": 12,
+    "bb9": 6
+  },
+  "aprilSettlement": {
+    "snapshot_week": "2026-W18",
+    "dlr_score": 48.7,
+    "weekly_delta": 0,
+    "confidence_level": 0.2,
+    "health_class": "ACTIVE",
+    "fallback_used": false,
+    "weekly_history": [],
+    "competition_level": "Rookie"
+  },
+  "rolling": {
+    "days7": {
+      "games": 2,
+      "IP": 4.3,
+      "SO": 4,
+      "BB": 3,
+      "H": 4,
+      "ER": 3,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 6.23,
+      "WHIP": 1.615
+    },
+    "days15": {
+      "games": 3,
+      "IP": 6,
+      "SO": 8,
+      "BB": 4,
+      "H": 4,
+      "ER": 3,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 4.5,
+      "WHIP": 1.333
+    },
+    "days30": {
+      "games": 3,
+      "IP": 6,
+      "SO": 8,
+      "BB": 4,
+      "H": 4,
+      "ER": 3,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 4.5,
+      "WHIP": 1.333
+    }
+  }
+}

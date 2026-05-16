@@ -1,0 +1,659 @@
+{
+  "playerResults": [
+    {
+      "id": "casey_mize",
+      "name": "Casey Mize",
+      "format": "domain",
+      "tier": "A",
+      "dlrScore": 53,
+      "confidence": 0.775,
+      "completeness": 1,
+      "scaffolded": [],
+      "missing": []
+    },
+    {
+      "id": "alec_bohm",
+      "name": "Alec Bohm",
+      "format": "domain",
+      "tier": "A",
+      "dlrScore": 52,
+      "confidence": 0.775,
+      "completeness": 1,
+      "scaffolded": [],
+      "missing": []
+    },
+    {
+      "id": "brady_singer",
+      "name": "Brady Singer",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "nick_madrigal",
+      "name": "Nick Madrigal",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "matthew_liberatore",
+      "name": "Matthew Liberatore",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "mason_denaburg",
+      "name": "Mason Denaburg",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "brice_turang",
+      "name": "Brice Turang",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "trevor_larnach",
+      "name": "Trevor Larnach",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "bo_naylor",
+      "name": "Bo Naylor",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "xavier_edwards",
+      "name": "Xavier Edwards",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "jeremy_eierman",
+      "name": "Jeremy Eierman",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "steele_walker",
+      "name": "Steele Walker",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "jordan_groshans",
+      "name": "Jordan Groshans",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "jameson_hannah",
+      "name": "Jameson Hannah",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "jt_ginn",
+      "name": "J.T. Ginn",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "will_banfield",
+      "name": "Will Banfield",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "tristan_beck",
+      "name": "Tristan Beck",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "jordyn_adams",
+      "name": "Jordyn Adams",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "nick_schnell",
+      "name": "Nick Schnell",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "jake_mccarthy",
+      "name": "Jake McCarthy",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "michael_siani",
+      "name": "Michael Siani",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "alek_thomas",
+      "name": "Alek Thomas",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "parker_meadows",
+      "name": "Parker Meadows",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "adam_kloffenstein",
+      "name": "Adam Kloffenstein",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "sean_hjelle",
+      "name": "Sean Hjelle",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "seth_beer",
+      "name": "Seth Beer",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "anthony_seigler",
+      "name": "Anthony Seigler",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "lenny_torres",
+      "name": "Lenny Torres Jr.",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "blaine_knight",
+      "name": "Blaine Knight",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "kris_bubic",
+      "name": "Kris Bubic",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    },
+    {
+      "id": "griffin_conine",
+      "name": "Griffin Conine",
+      "format": "minimal",
+      "tier": "C",
+      "dlrScore": 50,
+      "confidence": 0.625,
+      "completeness": 0.2,
+      "scaffolded": [
+        "media",
+        "cardMarket",
+        "knowledge.bio",
+        "knowledge.career"
+      ],
+      "missing": [
+        "knowledge.tools",
+        "performance",
+        "media.substantive",
+        "cardMarket.substantive"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 31,
+    "domainCount": 2,
+    "minimalCount": 29,
+    "legacyCount": 0,
+    "enrichedCount": 31,
+    "failedCount": 0,
+    "tiers": {
+      "A": 2,
+      "B": 0,
+      "C": 29
+    },
+    "avgDLR": 50.16129032258065,
+    "minDLR": 50,
+    "maxDLR": 53,
+    "medianDLR": 50,
+    "avgCompleteness": 0.2516129032258066,
+    "missingDomainCounts": {
+      "knowledge.tools": 29,
+      "performance": 29,
+      "media.substantive": 29,
+      "cardMarket.substantive": 29
+    }
+  }
+}

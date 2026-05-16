@@ -1,0 +1,59 @@
+{
+  "player_id": "ethan_holliday",
+  "season": 2026,
+  "seeded_from": "MLB Stats API — /api/v1/people/815787/stats?stats=gameLog&season=2026&sportId=14&group=hitting&gameType=R. Fetched 2026-05-15. All 28 games verified. Totals: AB:101 H:26 HR:7 2B:4 3B:2 RBI:26 BB:18 K:37 TB:55 HBP:5 SF:2 PA:126 AVG:.257 OBP:.389 SLG:.545 OPS:.934",
+  "weeklyHistory": [
+    { "week": "2026-W14", "dlr": 49.8,  "delta": -0.16, "conf": 0.2, "notes": "Apr 3-5 — K-heavy debut (3G, 12 AB). 7D AVG .083. Organism barely alive." },
+    { "week": "2026-W15", "dlr": 50.1,  "delta": +0.27, "conf": 0.4, "notes": "Apr 7-11 — Recovery. First HR (G7 vs STO). 7D AVG .273. Conf 0.4 unlocked at G5." },
+    { "week": "2026-W16", "dlr": 50.1,  "delta": +0.32, "conf": 0.4, "notes": "Apr 13-19 — 1 game only (Apr 18 gap). 7D AVG .333 (1G sample). Capped +0.04." },
+    { "week": "2026-W17", "dlr": 50.0,  "delta": -0.56, "conf": 0.7, "notes": "Apr 20-26 — Cold stretch (.174 7D). Conf 0.7 at G13 (50 AB). Full cap magnitude." },
+    { "week": "2026-W18", "dlr": 50.1,  "delta": +0.56, "conf": 0.7, "notes": "Apr 28-May 3 — HOT. .500 7D, 2 HR, 11 RBI, 8 BB. BAT=HOT, VAL=HOT." },
+    { "week": "2026-W19", "dlr": 50.1,  "delta": +0.15, "conf": 0.7, "notes": "May 5-10 — Power week (G23: TB=9). 7D AVG .250. Modest above baseline." },
+    { "week": "2026-W20", "dlr": 49.8,  "delta": -0.80, "conf": 1.0, "notes": "May 13-14 — Cold 7D (.167). Conf 1.0 at G28 (101 AB). Largest week magnitude." }
+  ],
+  "monthlyHistory": [
+    {
+      "month": "2026-04",
+      "dlr": 50.0,
+      "avgDelta": -0.03,
+      "conf": 0.48,
+      "notes": "April settlement — 18G, 61 AB, .230 AVG (below .239 baseline). K-adjustment month. Power visible (3 HR, ISO .197)."
+    }
+  ],
+  "games": [
+    { "g":  1, "date": "2026-04-03", "opp": "vs VIS", "week": "2026-W14", "ab": 4, "r": 0, "h": 1, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 2, "sb": 0, "cs": 0, "hbp": 1, "sf": 0, "pa": 5,  "tb": 1 },
+    { "g":  2, "date": "2026-04-04", "opp": "vs VIS", "week": "2026-W14", "ab": 5, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 4, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 0 },
+    { "g":  3, "date": "2026-04-05", "opp": "vs VIS", "week": "2026-W14", "ab": 3, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 2, "so": 1, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 0 },
+    { "g":  4, "date": "2026-04-07", "opp": "vs STO", "week": "2026-W15", "ab": 4, "r": 1, "h": 2, "d": 0, "t": 0, "hr": 0, "rbi": 1, "bb": 1, "so": 1, "sb": 1, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 2 },
+    { "g":  5, "date": "2026-04-08", "opp": "vs STO", "week": "2026-W15", "ab": 4, "r": 1, "h": 1, "d": 0, "t": 0, "hr": 0, "rbi": 1, "bb": 1, "so": 0, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 1 },
+    { "g":  6, "date": "2026-04-09", "opp": "vs STO", "week": "2026-W15", "ab": 4, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 2, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 4,  "tb": 0 },
+    { "g":  7, "date": "2026-04-10", "opp": "vs STO", "week": "2026-W15", "ab": 5, "r": 1, "h": 2, "d": 0, "t": 0, "hr": 1, "rbi": 2, "bb": 0, "so": 2, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 5, "_note": "First 2026 HR — power announce" },
+    { "g":  8, "date": "2026-04-11", "opp": "vs STO", "week": "2026-W15", "ab": 2, "r": 1, "h": 1, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 1, "so": 0, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 3,  "tb": 1 },
+    { "g":  9, "date": "2026-04-18", "opp": "vs ONT", "week": "2026-W16", "ab": 3, "r": 2, "h": 1, "d": 0, "t": 0, "hr": 0, "rbi": 1, "bb": 1, "so": 0, "sb": 0, "cs": 0, "hbp": 1, "sf": 1, "pa": 6,  "tb": 1, "_note": "Only game W16 — Apr 12-17 gap" },
+    { "g": 10, "date": "2026-04-21", "opp": "vs RC",  "week": "2026-W17", "ab": 5, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 1, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 0 },
+    { "g": 11, "date": "2026-04-22", "opp": "vs RC",  "week": "2026-W17", "ab": 5, "r": 1, "h": 1, "d": 1, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 2, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 2 },
+    { "g": 12, "date": "2026-04-23", "opp": "vs RC",  "week": "2026-W17", "ab": 2, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 2, "so": 2, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 4,  "tb": 0 },
+    { "g": 13, "date": "2026-04-24", "opp": "vs RC",  "week": "2026-W17", "ab": 4, "r": 2, "h": 1, "d": 0, "t": 0, "hr": 1, "rbi": 3, "bb": 1, "so": 1, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 4, "_note": "Conf 0.7 unlocked (50 AB crossed). HR #2." },
+    { "g": 14, "date": "2026-04-25", "opp": "vs RC",  "week": "2026-W17", "ab": 4, "r": 0, "h": 1, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 1, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 4,  "tb": 1 },
+    { "g": 15, "date": "2026-04-26", "opp": "vs RC",  "week": "2026-W17", "ab": 3, "r": 0, "h": 1, "d": 0, "t": 1, "hr": 0, "rbi": 0, "bb": 0, "so": 1, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 3,  "tb": 3, "_note": "First 2026 triple" },
+    { "g": 16, "date": "2026-04-28", "opp": "vs STO", "week": "2026-W18", "ab": 1, "r": 2, "h": 1, "d": 0, "t": 0, "hr": 0, "rbi": 2, "bb": 5, "so": 0, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 6,  "tb": 1, "_note": "5 BB — elite plate discipline display" },
+    { "g": 17, "date": "2026-04-29", "opp": "vs STO", "week": "2026-W18", "ab": 3, "r": 1, "h": 1, "d": 0, "t": 0, "hr": 1, "rbi": 5, "bb": 1, "so": 0, "sb": 0, "cs": 0, "hbp": 0, "sf": 1, "pa": 5,  "tb": 4, "_note": "HR #3, 5 RBI" },
+    { "g": 18, "date": "2026-04-30", "opp": "vs STO", "week": "2026-W18", "ab": 0, "r": 1, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 0, "sb": 0, "cs": 0, "hbp": 1, "sf": 0, "pa": 1,  "tb": 0, "_note": "HBP only — 1 PA, 0 AB" },
+    { "g": 19, "date": "2026-05-02", "opp": "vs STO", "week": "2026-W18", "ab": 4, "r": 1, "h": 3, "d": 0, "t": 0, "hr": 1, "rbi": 4, "bb": 1, "so": 1, "sb": 0, "cs": 1, "hbp": 0, "sf": 0, "pa": 5,  "tb": 6, "_note": "Breakout game — HR #4, 4 RBI, 3-for-4" },
+    { "g": 20, "date": "2026-05-03", "opp": "vs STO", "week": "2026-W18", "ab": 4, "r": 0, "h": 1, "d": 1, "t": 0, "hr": 0, "rbi": 0, "bb": 1, "so": 2, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 2 },
+    { "g": 21, "date": "2026-05-05", "opp": "vs SJ",  "week": "2026-W19", "ab": 5, "r": 1, "h": 1, "d": 1, "t": 0, "hr": 0, "rbi": 2, "bb": 0, "so": 3, "sb": 0, "cs": 0, "hbp": 1, "sf": 0, "pa": 6,  "tb": 2 },
+    { "g": 22, "date": "2026-05-06", "opp": "vs SJ",  "week": "2026-W19", "ab": 4, "r": 1, "h": 1, "d": 0, "t": 0, "hr": 1, "rbi": 2, "bb": 0, "so": 3, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 4,  "tb": 4, "_note": "HR #5" },
+    { "g": 23, "date": "2026-05-07", "opp": "vs SJ",  "week": "2026-W19", "ab": 5, "r": 3, "h": 3, "d": 1, "t": 1, "hr": 1, "rbi": 1, "bb": 1, "so": 0, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 6,  "tb": 9, "_note": "Cycle approach — 1B+2B+3B+HR, TB=9 (season high). HR #6." },
+    { "g": 24, "date": "2026-05-08", "opp": "vs SJ",  "week": "2026-W19", "ab": 4, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 3, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 4,  "tb": 0 },
+    { "g": 25, "date": "2026-05-09", "opp": "vs SJ",  "week": "2026-W19", "ab": 5, "r": 1, "h": 1, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 0, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 5,  "tb": 1 },
+    { "g": 26, "date": "2026-05-10", "opp": "vs SJ",  "week": "2026-W19", "ab": 1, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 1, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 1,  "tb": 0 },
+    { "g": 27, "date": "2026-05-13", "opp": "vs VIS", "week": "2026-W20", "ab": 4, "r": 0, "h": 0, "d": 0, "t": 0, "hr": 0, "rbi": 0, "bb": 0, "so": 3, "sb": 0, "cs": 0, "hbp": 0, "sf": 0, "pa": 4,  "tb": 0 },
+    { "g": 28, "date": "2026-05-14", "opp": "vs VIS", "week": "2026-W20", "ab": 4, "r": 2, "h": 2, "d": 0, "t": 0, "hr": 1, "rbi": 2, "bb": 0, "so": 1, "sb": 0, "cs": 0, "hbp": 1, "sf": 0, "pa": 5,  "tb": 5, "_note": "HR #7. Conf 1.0 unlocked (101 AB). Full confidence reached." }
+  ],
+  "_totals_verification": {
+    "g": 28, "ab": 101, "h": 26, "d": 4, "t": 2, "hr": 7, "rbi": 26, "bb": 18,
+    "so": 37, "sb": 1, "cs": 1, "hbp": 5, "sf": 2, "pa": 126, "tb": 55,
+    "avg": 0.257, "obp": 0.389, "slg": 0.545, "ops": 0.934,
+    "verified": true, "source": "MLB Stats API 2026-05-15"
+  }
+}

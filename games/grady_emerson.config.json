@@ -1,0 +1,14 @@
+{
+  "player_id": "grady_emerson",
+  "name": "Grady Emerson",
+  "kind": "hitter",
+  "position": "SS",
+  "season": 2026,
+  "baseline": {
+    "AVG": 0.351,
+    "year": 2025,
+    "source": "grady_emerson_performance.ts — 2025 junior season (Argyle HS, 5A — THSB Dec 2025 full season: .351 AVG, G≈33)"
+  },
+  "competition_level": "HS",
+  "notes": "Fort Worth Christian HS (Fort Worth, TX). Transferred from Argyle HS after junior season. 2025 baseline: .351 AVG (Argyle Eagles, 5A, full season). 2026 Sr update: .532 AVG (28 GP, 42/79) — MaxPreps May 14 2026. Live game-by-game ingestion begins post-draft (July 2026) when Emerson enters professional baseball. HS season tracked via MaxPreps; not ingested through game-by-game pipeline."
+}

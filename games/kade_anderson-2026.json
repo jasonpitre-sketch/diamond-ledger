@@ -1,0 +1,223 @@
+{
+  "player_id": "kade_anderson",
+  "season": 2026,
+  "seeded_from": "MiLB Stats API — player 807739, sport_id 12 (AA), season 2026. Fetched 2026-05-15 via Pass 77. All 6 starts verified. Totals: G:6 GS:6 W:3 IP:30.0 H:15 ER:2 BB:5 K:47 HR:1 BF:106 ERA:0.60 WHIP:0.667 K/9:14.1. IP/ER/K/BB season totals API-verified. H/BF estimated from WHIP distribution.",
+  "weeklyHistory": [
+    {
+      "week": "2026-W14",
+      "dlr": 76.4,
+      "delta": 0.16,
+      "conf": 0.2,
+      "notes": "S1 Apr 3 at Midland — 4.0 IP, 0 ER, 6 K. AA debut. Season ERA 0.000. conf 0.2. PARTIALLY_REACTIVE."
+    },
+    {
+      "week": "2026-W15",
+      "dlr": 76.4,
+      "delta": 0.16,
+      "conf": 0.2,
+      "notes": "S2 Apr 10 vs Wichita — 5.0 IP, 0 ER, 11 K. Dominant. Season ERA 0.000. conf 0.2."
+    },
+    {
+      "week": "2026-W16",
+      "dlr": 76.4,
+      "delta": 0.16,
+      "conf": 0.2,
+      "notes": "S3 Apr 17 at Tulsa — 5.0 IP, 1 ER (HR), 5 K. First ER of season. ERA 0.643. FULLY_REACTIVE (3 starts)."
+    },
+    {
+      "week": "2026-W17",
+      "dlr": 76.4,
+      "delta": 0.32,
+      "conf": 0.4,
+      "notes": "S4 Apr 24 vs CC Hooks — 4.2 IP, 0 ER, 8 K, 0 BB. Conf upgrade 0.2→0.4 (15 IP crossed). ERA 0.482."
+    },
+    {
+      "week": "2026-W18",
+      "dlr": 76.4,
+      "delta": 0.32,
+      "conf": 0.4,
+      "notes": "S5 May 1 at Wichita — 5.2 IP, 0 ER, 8 K, 0 BB. Season ERA 0.370. conf 0.4."
+    },
+    {
+      "week": "2026-W19",
+      "dlr": 76.5,
+      "delta": 0.56,
+      "conf": 0.7,
+      "notes": "S6 May 8 vs Tulsa — 5.2 IP, 1 ER, 9 K. Conf upgrade 0.4→0.7 (30 IP reached). Final DLR 76.5 SOLID."
+    }
+  ],
+  "monthlyHistory": [
+    {
+      "month": "2026-04",
+      "dlr": 76.4,
+      "avgDelta": 0.2,
+      "conf": 0.25,
+      "notes": "April settlement — 4 starts, 18.7 IP, 1 ER, 30 K, 4 BB. ERA 0.482. Dominant debut month. Conf 0.2→0.4 (Apr 24). avgDelta +0.20."
+    }
+  ],
+  "games": [
+    {
+      "g": 1,
+      "date": "2026-04-03",
+      "opp": "at Midland",
+      "week": "2026-W14",
+      "bip": 4,
+      "ip_real": 4,
+      "h": 2,
+      "r": 0,
+      "er": 0,
+      "bb": 1,
+      "k": 6,
+      "hr": 0,
+      "bf": 15,
+      "result": "ND",
+      "_note": "AA debut. 4.0 IP, 0 ER, 6 K. Dominant first pro start. Season ERA 0.000."
+    },
+    {
+      "g": 2,
+      "date": "2026-04-10",
+      "opp": "vs Wichita",
+      "week": "2026-W15",
+      "bip": 5,
+      "ip_real": 5,
+      "h": 2,
+      "r": 0,
+      "er": 0,
+      "bb": 2,
+      "k": 11,
+      "hr": 0,
+      "bf": 18,
+      "result": "W",
+      "_note": "11 K in 5.0 IP — elite strikeout stuff. Season ERA 0.000. K/9 17.0 (2-start sample)."
+    },
+    {
+      "g": 3,
+      "date": "2026-04-17",
+      "opp": "at Tulsa",
+      "week": "2026-W16",
+      "bip": 5,
+      "ip_real": 5,
+      "h": 3,
+      "r": 1,
+      "er": 1,
+      "bb": 1,
+      "k": 5,
+      "hr": 1,
+      "bf": 18,
+      "result": "ND",
+      "_note": "First ER of season — HR allowed. Still 5 K. Season ERA climbs to 0.643. Health transitions to FULLY_REACTIVE (3 starts)."
+    },
+    {
+      "g": 4,
+      "date": "2026-04-24",
+      "opp": "vs CC Hooks",
+      "week": "2026-W17",
+      "bip": 4.2,
+      "ip_real": 4.6667,
+      "h": 2,
+      "r": 0,
+      "er": 0,
+      "bb": 0,
+      "k": 8,
+      "hr": 0,
+      "bf": 16,
+      "result": "ND",
+      "_note": "Pristine line — 0 BB, 0 ER, 8 K. Persistence conf upgrades 0.2→0.4 (cumIP crosses 15). Season ERA drops to 0.482."
+    },
+    {
+      "g": 5,
+      "date": "2026-05-01",
+      "opp": "at Wichita",
+      "week": "2026-W18",
+      "bip": 5.2,
+      "ip_real": 5.6667,
+      "h": 3,
+      "r": 0,
+      "er": 0,
+      "bb": 0,
+      "k": 8,
+      "hr": 0,
+      "bf": 20,
+      "result": "W",
+      "_note": "Second consecutive 0-BB outing. Season ERA 0.370 (best of season). conf 0.4 (24.3 cumIP)."
+    },
+    {
+      "g": 6,
+      "date": "2026-05-08",
+      "opp": "vs Tulsa",
+      "week": "2026-W19",
+      "bip": 5.2,
+      "ip_real": 5.6667,
+      "h": 3,
+      "r": 1,
+      "er": 1,
+      "bb": 1,
+      "k": 9,
+      "hr": 0,
+      "bf": 19,
+      "result": "W",
+      "_note": "30.0 IP milestone — conf upgrades 0.4→0.7. DeltaShort +0.56 (largest of season). Final DLR 76.5 SOLID."
+    }
+  ],
+  "_totals_verification": {
+    "g": 6,
+    "gs": 6,
+    "w": 3,
+    "l": 0,
+    "nd": 3,
+    "ip_bip": 30,
+    "ip_real": 30,
+    "h": 15,
+    "r": 2,
+    "er": 2,
+    "bb": 5,
+    "k": 47,
+    "hr": 1,
+    "bf": 106,
+    "era": 0.6,
+    "whip": 0.667,
+    "k9": 14.1,
+    "bb9": 1.5,
+    "verified": true,
+    "source": "MiLB Stats API player 807739 sport_id 12 season 2026, fetched 2026-05-15",
+    "note": "H/BF per-start estimated to match API-verified season totals"
+  },
+  "rolling": {
+    "days7": {
+      "games": 1,
+      "IP": 5.7,
+      "SO": 9,
+      "BB": 1,
+      "H": 3,
+      "ER": 1,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 1.59,
+      "WHIP": 0.706
+    },
+    "days15": {
+      "games": 3,
+      "IP": 16,
+      "SO": 25,
+      "BB": 1,
+      "H": 8,
+      "ER": 1,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 0.56,
+      "WHIP": 0.563
+    },
+    "days30": {
+      "games": 5,
+      "IP": 26,
+      "SO": 41,
+      "BB": 4,
+      "H": 13,
+      "ER": 2,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 0.69,
+      "WHIP": 0.654
+    }
+  }
+}

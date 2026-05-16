@@ -1,0 +1,21 @@
+{
+  "player_id": "kade_anderson",
+  "name": "Kade Anderson",
+  "kind": "pitcher",
+  "position": "SP",
+  "season": 2026,
+  "baseline": {
+    "ERA": 3.18,
+    "WHIP": 1.059,
+    "year": 2025,
+    "source": "data/players/2025/kade_anderson_performance.ts season2025 block (LSU sophomore, CWS champion ace)"
+  },
+  "level": "AA",
+  "competition_level": "MiLB",
+  "dataSource": "milb_stats_api",
+  "sourceURL": "https://www.milb.com/player/kade-anderson",
+  "team": "ARK",
+  "parentClub": "SEA",
+  "dualDomain": false,
+  "_note": "2025 LSU is anchor (sophomore CWS MOP, 119.0 IP, 3.18 ERA). 2026 AA is current in-season (30.0 IP, 0.60 ERA dominant debut). Skipped A-ball. Live ingestion begins with next start after 2026-05-14 screenshot cutoff."
+}

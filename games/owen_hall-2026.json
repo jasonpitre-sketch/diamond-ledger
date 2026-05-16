@@ -1,0 +1,135 @@
+{
+  "player_id": "owen_hall",
+  "season": 2026,
+  "engine_version": "P60",
+  "source": "MLB Stats API",
+  "external_player_id": "815157",
+  "external_sport_id": "16",
+  "external_team_id": "473",
+  "games": [
+    {
+      "g": 1,
+      "sport": 16,
+      "level": "Rookie",
+      "date": "2026-05-02",
+      "opp": "vs FCL Yankees",
+      "team": "FCL Tigers",
+      "week": "2026-W18",
+      "ip": "2.2",
+      "outs": 8,
+      "h": 1,
+      "r": 1,
+      "er": 1,
+      "bb": 2,
+      "k": 4,
+      "hr": 1,
+      "bf": 13
+    },
+    {
+      "g": 2,
+      "sport": 16,
+      "level": "Rookie",
+      "date": "2026-05-09",
+      "opp": "@ FCL Phillies",
+      "team": "FCL Tigers",
+      "week": "2026-W19",
+      "ip": "2.1",
+      "outs": 7,
+      "h": 2,
+      "r": 2,
+      "er": 2,
+      "bb": 3,
+      "k": 5,
+      "hr": 0,
+      "bf": 12
+    }
+  ],
+  "weeklyRows": [
+    {
+      "snapshot_week": "2026-W18",
+      "dlr_score": 44.1,
+      "weekly_delta": 0,
+      "confidence_level": 0.2,
+      "health_class": "ACTIVE",
+      "fallback_used": false,
+      "weekly_history": [],
+      "competition_level": "Rookie"
+    },
+    {
+      "snapshot_week": "2026-W19",
+      "dlr_score": 44.1,
+      "weekly_delta": 0,
+      "confidence_level": 0.2,
+      "health_class": "ACTIVE",
+      "fallback_used": false,
+      "weekly_history": [],
+      "competition_level": "Rookie"
+    }
+  ],
+  "totals": {
+    "g": 2,
+    "outs": 15,
+    "h": 3,
+    "r": 3,
+    "er": 3,
+    "bb": 5,
+    "k": 9,
+    "hr": 1,
+    "bf": 25,
+    "ip": "5.0"
+  },
+  "rates": {
+    "era": 5.4,
+    "whip": 1.6,
+    "k9": 16.2,
+    "bb9": 9
+  },
+  "aprilSettlement": {
+    "snapshot_week": "2026-W18",
+    "dlr_score": 44.1,
+    "weekly_delta": 0,
+    "confidence_level": 0.2,
+    "health_class": "ACTIVE",
+    "fallback_used": false,
+    "weekly_history": [],
+    "competition_level": "Rookie"
+  },
+  "rolling": {
+    "days7": {
+      "games": 1,
+      "IP": 2.3,
+      "SO": 5,
+      "BB": 3,
+      "H": 2,
+      "ER": 2,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 7.71,
+      "WHIP": 2.143
+    },
+    "days15": {
+      "games": 2,
+      "IP": 5,
+      "SO": 9,
+      "BB": 5,
+      "H": 3,
+      "ER": 3,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 5.4,
+      "WHIP": 1.6
+    },
+    "days30": {
+      "games": 2,
+      "IP": 5,
+      "SO": 9,
+      "BB": 5,
+      "H": 3,
+      "ER": 3,
+      "SV": 0,
+      "QS": 0,
+      "ERA": 5.4,
+      "WHIP": 1.6
+    }
+  }
+}

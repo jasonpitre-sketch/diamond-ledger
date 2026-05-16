@@ -34,6 +34,8 @@
  *   eli_willits    — Fredericksburg Nationals (sportId=14, Single-A, WAS affiliate)
  *   ethan_holliday — Fresno Grizzlies         (sportId=14, Single-A, COL affiliate)
  *   kade_anderson  — Arkansas Travelers        (sportId=12, Double-A, SEA affiliate)
+ *   tyler_bremner  — Tri-City Dust Devils      (sportId=13, High-A, LAA affiliate)
+ *   nick_madrigal  — Salt Lake Bees            (sportId=11, Triple-A, LAA affiliate)
  *
  * MiLB-specific quirks vs MLB adapter:
  *   - Stat corrections happen more frequently at lower levels; accept for now
@@ -386,6 +388,14 @@ export async function fetchLastGame(rosterRow, date) {
   // Validate response shape
   const splits = data?.stats?.[0]?.splits
   if (!Array.isArray(splits)) {
+    if (Array.isArray(data?.stats) && data.stats.length === 0) {
+      return {
+        status:        "no_game",
+        message:       "No 2026 game log yet",
+        ingestionArgs: null,
+        rawResponse:   { totalGamesInLog: 0, lastGameDate: null },
+      }
+    }
     return {
       status:        "error",
       message:       `Unexpected API response shape for ${player_id}`,
@@ -471,6 +481,88 @@ const CLI_PLAYER_MAP = {
   eli_willits:    { player_id: "eli_willits",    kind: "hitter",  external_player_id: "816113", external_team_id: "436", external_sport_id: "14" },
   ethan_holliday: { player_id: "ethan_holliday", kind: "hitter",  external_player_id: "815787", external_team_id: "259", external_sport_id: "14" },
   kade_anderson:  { player_id: "kade_anderson",  kind: "pitcher", external_player_id: "807739", external_team_id: "574", external_sport_id: "12" },
+  tyler_bremner:  { player_id: "tyler_bremner",  kind: "pitcher", external_player_id: "803285", external_team_id: "460", external_sport_id: "13" },
+  nick_madrigal:  { player_id: "nick_madrigal",  kind: "hitter",  external_player_id: "663611", external_team_id: "561", external_sport_id: "11" },
+  jordyn_adams:   { player_id: "jordyn_adams",   kind: "hitter",  external_player_id: "677941", external_team_id: "556", external_sport_id: "11" },
+  travis_bazzana: { player_id: "travis_bazzana", kind: "hitter",  external_player_id: "683953", external_team_id: "445", external_sport_id: "11" },
+  charlie_condon: { player_id: "charlie_condon", kind: "hitter",  external_player_id: "809707", external_team_id: "342", external_sport_id: "11" },
+  hagen_smith:    { player_id: "hagen_smith",    kind: "pitcher", external_player_id: "696146", external_team_id: "494", external_sport_id: "11" },
+  christian_moore:{ player_id: "christian_moore",kind: "hitter",  external_player_id: "695681", external_team_id: "561", external_sport_id: "11" },
+  konnor_griffin: { player_id: "konnor_griffin", kind: "hitter",  external_player_id: "804606", external_team_id: "484", external_sport_id: "11" },
+  seaver_king:    { player_id: "seaver_king",    kind: "hitter",  external_player_id: "814409", external_team_id: "547", external_sport_id: "12" },
+  bryce_rainer:   { player_id: "bryce_rainer",   kind: "hitter",  external_player_id: "800614", external_team_id: "582",  external_sport_id: "13" },
+  braden_montgomery: { player_id: "braden_montgomery", kind: "hitter", external_player_id: "695731", external_team_id: "494", external_sport_id: "11" },
+  james_tibbs_iii: { player_id: "james_tibbs_iii", kind: "hitter", external_player_id: "696486", external_team_id: "238", external_sport_id: "11" },
+  jurrangelo_cijntje: { player_id: "jurrangelo_cijntje", kind: "pitcher", external_player_id: "701388", external_team_id: "440", external_sport_id: "12" },
+  pj_morlando:    { player_id: "pj_morlando",    kind: "hitter",  external_player_id: "703563", external_team_id: "479",  external_sport_id: "14" },
+  braylon_payne:  { player_id: "braylon_payne",  kind: "hitter",  external_player_id: "815520", external_team_id: "572",  external_sport_id: "13" },
+  theo_gillen:    { player_id: "theo_gillen",    kind: "hitter",  external_player_id: "815394", external_team_id: "2498", external_sport_id: "13" },
+  kaelen_culpepper: { player_id: "kaelen_culpepper", kind: "hitter", external_player_id: "701785", external_team_id: "1960", external_sport_id: "11" },
+  vance_honeycutt: { player_id: "vance_honeycutt", kind: "hitter", external_player_id: "701689", external_team_id: "493", external_sport_id: "13" },
+  kellon_lindsey: { player_id: "kellon_lindsey", kind: "hitter", external_player_id: "813916", external_team_id: "6482", external_sport_id: "14" },
+  cam_caminiti:  { player_id: "cam_caminiti",  kind: "pitcher", external_player_id: "807284", external_team_id: "432", external_sport_id: "13" },
+  kash_mayfield: { player_id: "kash_mayfield", kind: "pitcher", external_player_id: "824026", external_team_id: "584", external_sport_id: "13" },
+  ben_hess:      { player_id: "ben_hess",      kind: "pitcher", external_player_id: "696292", external_team_id: "1956", external_sport_id: "12" },
+  dante_nori:    { player_id: "dante_nori",    kind: "hitter",  external_player_id: "807276", external_team_id: "522", external_sport_id: "12" },
+  walker_janek:  { player_id: "walker_janek",  kind: "hitter",  external_player_id: "801075", external_team_id: "482", external_sport_id: "12" },
+  slade_caldwell:{ player_id: "slade_caldwell",kind: "hitter",  external_player_id: "815154", external_team_id: "419", external_sport_id: "13" },
+  malcolm_moore: { player_id: "malcolm_moore", kind: "hitter",  external_player_id: "702270", external_team_id: "6324", external_sport_id: "13" },
+  griff_oferrall:{ player_id: "griff_oferrall",kind: "hitter",  external_player_id: "803172", external_team_id: "418", external_sport_id: "12" },
+  kyle_debarge:  { player_id: "kyle_debarge",  kind: "hitter",  external_player_id: "814414", external_team_id: "3898", external_sport_id: "12" },
+  blake_burke:   { player_id: "blake_burke",   kind: "hitter",  external_player_id: "695501", external_team_id: "5015", external_sport_id: "12" },
+  jd_dix:        { player_id: "jd_dix",        kind: "hitter",  external_player_id: "807267", external_team_id: "516", external_sport_id: "14" },
+  braylon_doughty: { player_id: "braylon_doughty", kind: "pitcher", external_player_id: "815785", external_team_id: "437", external_sport_id: "13" },
+  levi_sterling: { player_id: "levi_sterling", kind: "pitcher", external_player_id: "815552", external_team_id: "3390", external_sport_id: "14" },
+  brody_brecht:  { player_id: "brody_brecht",  kind: "pitcher", external_player_id: "701679", external_team_id: "486", external_sport_id: "13" },
+  caleb_lomavita: { player_id: "caleb_lomavita", kind: "hitter", external_player_id: "701616", external_team_id: "547", external_sport_id: "12" },
+  tommy_white:   { player_id: "tommy_white",   kind: "hitter",  external_player_id: "695720", external_team_id: "400", external_sport_id: "11" },
+  david_shields: { player_id: "david_shields", kind: "pitcher", external_player_id: "815789", external_team_id: "565", external_sport_id: "13" },
+  jared_thomas:  { player_id: "jared_thomas",  kind: "hitter",  external_player_id: "703606", external_team_id: "538", external_sport_id: "12" },
+  caleb_bonemer: { player_id: "caleb_bonemer", kind: "hitter",  external_player_id: "815352", external_team_id: "580", external_sport_id: "13" },
+  luke_dickerson:{ player_id: "luke_dickerson",kind: "hitter",  external_player_id: "815380", external_team_id: "436", external_sport_id: "14" },
+  chris_cortez:  { player_id: "chris_cortez",  kind: "pitcher", external_player_id: "700933", external_team_id: "559", external_sport_id: "12" },
+  jonathan_santucci: { player_id: "jonathan_santucci", kind: "pitcher", external_player_id: "695558", external_team_id: "505", external_sport_id: "12" },
+  wyatt_sanford: { player_id: "wyatt_sanford", kind: "hitter",  external_player_id: "815608", external_team_id: "477", external_sport_id: "13" },
+  jacob_cozart:  { player_id: "jacob_cozart",  kind: "hitter",  external_player_id: "695524", external_team_id: "402", external_sport_id: "12" },
+  owen_hall:     { player_id: "owen_hall",     kind: "pitcher", external_player_id: "815157", external_team_id: "473", external_sport_id: "16" },
+  dylan_crews: { player_id: "dylan_crews", kind: "hitter", external_player_id: "686611", external_team_id: "534", external_sport_id: "11" },
+  max_clark: { player_id: "max_clark", kind: "hitter", external_player_id: "703601", external_team_id: "512", external_sport_id: "11" },
+  walker_jenkins: { player_id: "walker_jenkins", kind: "hitter", external_player_id: "805805", external_team_id: "1960", external_sport_id: "11" },
+  blake_mitchell: { player_id: "blake_mitchell", kind: "hitter", external_player_id: "805810", external_team_id: "565", external_sport_id: "13" },
+  noble_meyer: { player_id: "noble_meyer", kind: "pitcher", external_player_id: "800611", external_team_id: "520", external_sport_id: "13" },
+  tommy_troy: { player_id: "tommy_troy", kind: "hitter", external_player_id: "694371", external_team_id: "2310", external_sport_id: "11" },
+  kyle_teel: { player_id: "kyle_teel", kind: "hitter", external_player_id: "691019", external_team_id: "494", external_sport_id: "11" },
+  jacob_gonzalez: { player_id: "jacob_gonzalez", kind: "hitter", external_player_id: "694378", external_team_id: "494", external_sport_id: "11" },
+  enrique_bradfield_jr: { player_id: "enrique_bradfield_jr", kind: "hitter", external_player_id: "690961", external_team_id: "568", external_sport_id: "11" },
+  brock_wilken: { player_id: "brock_wilken", kind: "hitter", external_player_id: "694385", external_team_id: "556", external_sport_id: "11" },
+  brayden_taylor: { player_id: "brayden_taylor", kind: "hitter", external_player_id: "694966", external_team_id: "421", external_sport_id: "12" },
+  arjun_nimmala: { player_id: "arjun_nimmala", kind: "hitter", external_player_id: "805796", external_team_id: "463", external_sport_id: "12" },
+  chase_davis: { player_id: "chase_davis", kind: "hitter", external_player_id: "690971", external_team_id: "440", external_sport_id: "12" },
+  colt_emerson: { player_id: "colt_emerson", kind: "hitter", external_player_id: "806068", external_team_id: "529", external_sport_id: "11" },
+  ralphy_velazquez: { player_id: "ralphy_velazquez", kind: "hitter", external_player_id: "806252", external_team_id: "402", external_sport_id: "12" },
+  dillon_head: { player_id: "dillon_head", kind: "hitter", external_player_id: "702977", external_team_id: "554", external_sport_id: "13" },
+  george_lombard_jr: { player_id: "george_lombard_jr", kind: "hitter", external_player_id: "806146", external_team_id: "531", external_sport_id: "11" },
+  aidan_miller: { player_id: "aidan_miller", kind: "hitter", external_player_id: "805795", external_team_id: "1410", external_sport_id: "11" },
+  jonny_farmelo: { player_id: "jonny_farmelo", kind: "hitter", external_player_id: "806071", external_team_id: "403", external_sport_id: "13" },
+  tai_peete: { player_id: "tai_peete", kind: "hitter", external_player_id: "806191", external_team_id: "443", external_sport_id: "13" },
+  adrian_santana: { player_id: "adrian_santana", kind: "hitter", external_player_id: "803745", external_team_id: "2498", external_sport_id: "13" },
+  colin_houck: { player_id: "colin_houck", kind: "hitter", external_player_id: "806124", external_team_id: "453", external_sport_id: "13" },
+  josh_knoth: { player_id: "josh_knoth", kind: "pitcher", external_player_id: "805807", external_team_id: "406", external_sport_id: "16" },
+  charlee_soto: { player_id: "charlee_soto", kind: "pitcher", external_player_id: "805792", external_team_id: "492", external_sport_id: "11" },
+  thomas_white: { player_id: "thomas_white", kind: "pitcher", external_player_id: "806258", external_team_id: "564", external_sport_id: "11" },
+  kendall_george: { player_id: "kendall_george", kind: "hitter", external_player_id: "806077", external_team_id: "260", external_sport_id: "12" },
+  ty_floyd: { player_id: "ty_floyd", kind: "pitcher", external_player_id: "692226", external_team_id: "450", external_sport_id: "16" },
+  myles_naylor: { player_id: "myles_naylor", kind: "hitter", external_player_id: "802504", external_team_id: "499", external_sport_id: "13" },
+  yohandy_morales: { player_id: "yohandy_morales", kind: "hitter", external_player_id: "691002", external_team_id: "534", external_sport_id: "11" },
+  ryan_lasko: { player_id: "ryan_lasko", kind: "hitter", external_player_id: "805782", external_team_id: "237", external_sport_id: "12" },
+  mitch_jebb: { player_id: "mitch_jebb", kind: "hitter", external_player_id: "694991", external_team_id: "484", external_sport_id: "11" },
+  sammy_stafura: { player_id: "sammy_stafura", kind: "hitter", external_player_id: "806230", external_team_id: "477", external_sport_id: "13" },
+  blake_wolters: { player_id: "blake_wolters", kind: "pitcher", external_player_id: "806265", external_team_id: "565", external_sport_id: "13" },
+  max_anderson: { player_id: "max_anderson", kind: "hitter", external_player_id: "801194", external_team_id: "512", external_sport_id: "11" },
+  sean_sullivan: { player_id: "sean_sullivan", kind: "pitcher", external_player_id: "807743", external_team_id: "342", external_sport_id: "11" },
+  kemp_alderman: { player_id: "kemp_alderman", kind: "hitter", external_player_id: "694580", external_team_id: "564", external_sport_id: "11" },
+  lujames_groover: { player_id: "lujames_groover", kind: "hitter", external_player_id: "694410", external_team_id: "2310", external_sport_id: "11" },
+  nazzan_zanetello: { player_id: "nazzan_zanetello", kind: "hitter", external_player_id: "805801", external_team_id: "428", external_sport_id: "13" },
 }
 
 async function cliMain() {

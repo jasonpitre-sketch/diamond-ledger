@@ -1,0 +1,21 @@
+{
+  "player_id": "casey_mize",
+  "name": "Casey Mize",
+  "kind": "pitcher",
+  "position": "SP",
+  "season": 2026,
+  "baseline": {
+    "ERA": 3.87,
+    "WHIP": 1.268,
+    "year": 2025,
+    "source": "casey_mize_performance.ts — snapshot block (DET, 28 GS, 149.0 IP, 14-6, 3.87 ERA, 1.268 WHIP, 139 K). Baseball Reference verified 2026-05-14. Pass 71."
+  },
+  "level": "MLB",
+  "competition_level": "MLB",
+  "dataSource": "mlb_stats_api",
+  "team": "DET",
+  "parentClub": "DET",
+  "dualDomain": false,
+  "status": "IL_15_DAY",
+  "_note": "On 15-day IL as of 2026-05-14. 2026 pre-IL season: 6 GS, 31.0 IP, 2-2, 2.90 ERA, 1.194 WHIP, 35 K. 2025 (anchor): 14-6, 3.87 ERA, 1.268 WHIP, 149.0 IP. Live ingestion resumes on return from IL. Tracker seeded through 2026-05-04 (Start 6). Baseline is 2025 All-Star season per convention — never set baseline to current-season partial."
+}

@@ -217,6 +217,14 @@ export async function fetchLastGame(rosterRow, date) {
   // Validate response shape
   const splits = data?.stats?.[0]?.splits
   if (!Array.isArray(splits)) {
+    if (Array.isArray(data?.stats) && data.stats.length === 0) {
+      return {
+        status:        "no_game",
+        message:       "No 2026 game log yet",
+        ingestionArgs: null,
+        rawResponse:   { totalGamesInLog: 0, lastGameDate: null },
+      }
+    }
     return {
       status:        "error",
       message:       `Unexpected API response shape for ${player_id}`,
@@ -293,6 +301,30 @@ const CLI_PLAYER_MAP = {
   brice_turang: { player_id: "brice_turang", kind: "hitter",  external_player_id: "668930", external_sport_id: "1" },
   brady_singer: { player_id: "brady_singer", kind: "pitcher", external_player_id: "663903", external_sport_id: "1" },
   casey_mize:   { player_id: "casey_mize",   kind: "pitcher", external_player_id: "663554", external_sport_id: "1" },
+  matthew_liberatore: { player_id: "matthew_liberatore", kind: "pitcher", external_player_id: "669461", external_sport_id: "1" },
+  bo_naylor:    { player_id: "bo_naylor",    kind: "hitter",  external_player_id: "666310", external_sport_id: "1" },
+  jake_mccarthy:{ player_id: "jake_mccarthy",kind: "hitter",  external_player_id: "664983", external_sport_id: "1" },
+  chase_burns:  { player_id: "chase_burns",  kind: "pitcher", external_player_id: "695505", external_sport_id: "1" },
+  nick_kurtz:   { player_id: "nick_kurtz",   kind: "hitter",  external_player_id: "701762", external_sport_id: "1" },
+  jac_caglianone: { player_id: "jac_caglianone", kind: "hitter", external_player_id: "695506", external_sport_id: "1" },
+  jj_wetherholt: { player_id: "jj_wetherholt", kind: "hitter", external_player_id: "802139", external_sport_id: "1" },
+  cam_smith:    { player_id: "cam_smith",    kind: "hitter",  external_player_id: "701358", external_sport_id: "1" },
+  carson_benge: { player_id: "carson_benge", kind: "hitter",  external_player_id: "701807", external_sport_id: "1" },
+  trey_yesavage:{ player_id: "trey_yesavage",kind: "pitcher", external_player_id: "702056", external_sport_id: "1" },
+  ryan_waldschmidt: { player_id: "ryan_waldschmidt", kind: "hitter", external_player_id: "814439", external_sport_id: "1" },
+  payton_tolle: { player_id: "payton_tolle", kind: "pitcher", external_player_id: "801139", external_sport_id: "1" },
+  paul_skenes: { player_id: "paul_skenes", kind: "pitcher", external_player_id: "694973", external_sport_id: "1" },
+  wyatt_langford: { player_id: "wyatt_langford", kind: "hitter", external_player_id: "694671", external_sport_id: "1" },
+  jacob_wilson: { player_id: "jacob_wilson", kind: "hitter", external_player_id: "805779", external_sport_id: "1" },
+  rhett_lowder: { player_id: "rhett_lowder", kind: "pitcher", external_player_id: "695076", external_sport_id: "1" },
+  chase_dollander: { player_id: "chase_dollander", kind: "pitcher", external_player_id: "801403", external_sport_id: "1" },
+  nolan_schanuel: { player_id: "nolan_schanuel", kind: "hitter", external_player_id: "694384", external_sport_id: "1" },
+  matt_shaw: { player_id: "matt_shaw", kind: "hitter", external_player_id: "807713", external_sport_id: "1" },
+  bryce_eldridge: { player_id: "bryce_eldridge", kind: "hitter", external_player_id: "805811", external_sport_id: "1" },
+  hurston_waldrep: { player_id: "hurston_waldrep", kind: "pitcher", external_player_id: "694462", external_sport_id: "1" },
+  brice_matthews: { player_id: "brice_matthews", kind: "hitter", external_player_id: "694728", external_sport_id: "1" },
+  kevin_mcgonigle: { player_id: "kevin_mcgonigle", kind: "hitter", external_player_id: "805808", external_sport_id: "1" },
+  luke_keaschall: { player_id: "luke_keaschall", kind: "hitter", external_player_id: "807712", external_sport_id: "1" },
 }
 
 async function cliMain() {

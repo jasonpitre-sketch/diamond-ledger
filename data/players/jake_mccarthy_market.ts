@@ -1,0 +1,1 @@
+export const jake_mccarthy_market = { marketArchetype: "SPEED_CONTACT_OUTFIELDER", rawAvg: 3, psa9Avg: 9, psa10Avg: 30, liquidity: 0.40, trend: 0.46, volatility: 0.46, scarcity: 0.38, depth: 0.40, stability: 0.48, longTerm: 0.50, confidence: 0.54 }

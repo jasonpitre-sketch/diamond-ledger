@@ -1,0 +1,14 @@
+{
+  "player_id": "eli_willits",
+  "name": "Eli Willits",
+  "kind": "hitter",
+  "position": "SS",
+  "season": 2026,
+  "baseline": {
+    "AVG": 0.300,
+    "year": 2025,
+    "source": "eli_willits_performance.ts — 2025 FBG season"
+  },
+  "competition_level": "A",
+  "notes": "Single-A Fredericksburg Nationals. 2025 baseline AVG .300 (50 AB, 15 H). Organism bootstrapped 2026-04-03."
+}

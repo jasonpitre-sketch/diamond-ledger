@@ -1,0 +1,20 @@
+{
+  "player_id": "brady_singer",
+  "name": "Brady Singer",
+  "kind": "pitcher",
+  "position": "SP",
+  "season": 2026,
+  "baseline": {
+    "ERA": 4.03,
+    "WHIP": 1.24,
+    "year": 2025,
+    "source": "brady_singer_performance.ts — season2025 block (CIN, 32 GS, 170.0 IP, 4.03 ERA, 1.24 WHIP). Pass 70."
+  },
+  "level": "MLB",
+  "competition_level": "MLB",
+  "dataSource": "mlb_stats_api",
+  "team": "CIN",
+  "parentClub": "CIN",
+  "dualDomain": false,
+  "_note": "2025 CIN is anchor (14-12, 4.03 ERA, 1.24 WHIP). 2026 is current struggling season (5.79 ERA, 1.667 WHIP through 9 GS / 5/6/2026). Live ingestion begins with next start after 2026-05-14 screenshot cutoff."
+}

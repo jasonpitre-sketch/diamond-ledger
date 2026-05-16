@@ -1,0 +1,35 @@
+{
+  "player_id": "hurston_waldrep",
+  "season": 2026,
+  "engine_version": "P60",
+  "source": "MLB Stats API",
+  "external_player_id": "694462",
+  "external_sport_id": "1",
+  "external_team_id": "144",
+  "games": [],
+  "weeklyRows": [],
+  "totals": {
+    "g": 0,
+    "outs": 0,
+    "h": 0,
+    "r": 0,
+    "er": 0,
+    "bb": 0,
+    "k": 0,
+    "hr": 0,
+    "bf": 0,
+    "ip": "0.0"
+  },
+  "rates": {
+    "era": 0,
+    "whip": 0,
+    "k9": 0,
+    "bb9": 0
+  },
+  "aprilSettlement": null,
+  "rolling": {
+    "days7": null,
+    "days15": null,
+    "days30": null
+  }
+}

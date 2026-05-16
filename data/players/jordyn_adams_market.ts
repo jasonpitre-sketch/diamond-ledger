@@ -1,0 +1,1 @@
+export const jordyn_adams_market = { marketArchetype: "FORMER_FIRST_ROUND_SPEED_OUTFIELDER", rawAvg: 2, psa9Avg: 6, psa10Avg: 18, liquidity: 0.30, trend: 0.32, volatility: 0.58, scarcity: 0.38, depth: 0.30, stability: 0.34, longTerm: 0.36, confidence: 0.46 }

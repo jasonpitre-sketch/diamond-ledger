@@ -1,0 +1,40 @@
+{
+  "player_id": "jared_thomas",
+  "season": 2026,
+  "engine_version": "P60",
+  "source": "MLB Stats API",
+  "external_player_id": "703606",
+  "external_sport_id": "12",
+  "external_team_id": "538",
+  "games": [],
+  "weeklyRows": [],
+  "totals": {
+    "ab": 0,
+    "r": 0,
+    "h": 0,
+    "d": 0,
+    "t": 0,
+    "hr": 0,
+    "rbi": 0,
+    "bb": 0,
+    "so": 0,
+    "sb": 0,
+    "cs": 0,
+    "hbp": 0,
+    "sf": 0,
+    "tb": 0,
+    "pa": 0
+  },
+  "rates": {
+    "avg": 0,
+    "obp": 0,
+    "slg": 0,
+    "ops": 0
+  },
+  "aprilSettlement": null,
+  "rolling": {
+    "days7": null,
+    "days15": null,
+    "days30": null
+  }
+}

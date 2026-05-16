@@ -1,0 +1,138 @@
+{
+  "player_id": "casey_mize",
+  "season": 2026,
+  "seeded_from": "MLB Stats API — /api/v1/people/663554/stats?stats=gameLog&season=2026&sportId=1&group=pitching&gameType=R. Fetched 2026-05-15. All 6 starts verified. Totals: 6 GS, 31.0 IP, 26H, 10ER, 11BB, 35K, ERA 2.90, WHIP 1.194.",
+  "status": "IL_15_DAY",
+  "il_note": "Placed on 15-day IL 2026-05-14. Live ingestion PAUSED (roster active=false). Last start: 2026-04-28 vs ATL (2.1 IP, short outing). Resume ingestion at Start 7 on IL return.",
+  "weeklyHistory": [],
+  "_totals_verification": {
+    "gs": 6,
+    "ip": 31,
+    "h": 26,
+    "er": 10,
+    "bb": 11,
+    "k": 35,
+    "era": 2.9,
+    "whip": 1.194,
+    "verified": true,
+    "source": "MLB Stats API 2026-05-15"
+  },
+  "games": [
+    {
+      "g": 1,
+      "date": "2026-03-31",
+      "opp": "vs ARI",
+      "IP": 6,
+      "H": 4,
+      "ER": 1,
+      "BB": 2,
+      "K": 9,
+      "result": "ND",
+      "_note": "Season opener — dominant start. ERA after: 1.50"
+    },
+    {
+      "g": 2,
+      "date": "2026-04-06",
+      "opp": "vs MIN",
+      "IP": 4.1,
+      "H": 7,
+      "ER": 5,
+      "BB": 3,
+      "K": 4,
+      "result": "L",
+      "_note": "Rough outing — 5 ER in 4.1 IP. ERA spikes to 5.23"
+    },
+    {
+      "g": 3,
+      "date": "2026-04-11",
+      "opp": "vs MIA",
+      "IP": 5.2,
+      "H": 6,
+      "ER": 1,
+      "BB": 1,
+      "K": 5,
+      "result": "W",
+      "_note": "Bounce-back. ERA drops to 3.94"
+    },
+    {
+      "g": 4,
+      "date": "2026-04-17",
+      "opp": "vs BOS",
+      "IP": 6.2,
+      "H": 3,
+      "ER": 0,
+      "BB": 1,
+      "K": 7,
+      "result": "W",
+      "_note": "Gem — 6.2 IP shutout. ERA falls to 2.78"
+    },
+    {
+      "g": 5,
+      "date": "2026-04-22",
+      "opp": "vs MIL",
+      "IP": 6,
+      "H": 3,
+      "ER": 1,
+      "BB": 3,
+      "K": 7,
+      "result": "ND",
+      "_note": "Solid. ERA settles at 2.51"
+    },
+    {
+      "g": 6,
+      "date": "2026-04-28",
+      "opp": "vs ATL",
+      "IP": 2.1,
+      "H": 3,
+      "ER": 2,
+      "BB": 1,
+      "K": 3,
+      "result": "ND",
+      "_note": "Short outing — likely IL precursor. ERA ticks to 2.90. FINAL START BEFORE IL."
+    }
+  ],
+  "rolling": {
+    "days7": {
+      "games": 2,
+      "AB": 0,
+      "H": 0,
+      "BB": 0,
+      "SO": 0,
+      "HR": 0,
+      "RBI": 0,
+      "SB": 0,
+      "AVG": null,
+      "OBP": null,
+      "SLG": null,
+      "OPS": null
+    },
+    "days15": {
+      "games": 3,
+      "AB": 0,
+      "H": 0,
+      "BB": 0,
+      "SO": 0,
+      "HR": 0,
+      "RBI": 0,
+      "SB": 0,
+      "AVG": null,
+      "OBP": null,
+      "SLG": null,
+      "OPS": null
+    },
+    "days30": {
+      "games": 6,
+      "AB": 0,
+      "H": 0,
+      "BB": 0,
+      "SO": 0,
+      "HR": 0,
+      "RBI": 0,
+      "SB": 0,
+      "AVG": null,
+      "OBP": null,
+      "SLG": null,
+      "OPS": null
+    }
+  }
+}

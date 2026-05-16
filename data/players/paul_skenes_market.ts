@@ -1,0 +1,14 @@
+export const paul_skenes_market = {
+  "marketArchetype": "2023_TOP_TEN_PROSPECT",
+  "rawAvg": null,
+  "psa9Avg": null,
+  "psa10Avg": null,
+  "liquidity": 0.48,
+  "trend": 0.52,
+  "volatility": 0.52,
+  "scarcity": 0.5,
+  "depth": 0.48,
+  "stability": 0.48,
+  "longTerm": 0.88,
+  "confidence": 0.5
+}

@@ -1,0 +1,18 @@
+{
+  "player_id": "brice_turang",
+  "name": "Brice Turang",
+  "kind": "hitter",
+  "position": "2B/SS",
+  "season": 2026,
+  "baseline": {
+    "AVG": 0.288,
+    "year": 2025,
+    "source": "MLB Stats API — 2025 full season (MIL, 156 G, 584 AB, 168 H, .288 AVG). Pass 72 scaffold. Full domain onboarding deferred to Pass 73+."
+  },
+  "level": "MLB",
+  "competition_level": "MLB",
+  "dataSource": "mlb_stats_api",
+  "team": "MIL",
+  "parentClub": "MIL",
+  "_note": "Scaffolded in Pass 72 to enable automation. Full player onboarding (domain files, knowledge, performance, media, market) deferred. 2026 tracking begins immediately via daily-scheduler.mjs. MLB Stats API external_player_id: 668930."
+}

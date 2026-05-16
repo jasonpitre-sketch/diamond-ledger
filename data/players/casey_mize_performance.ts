@@ -2,14 +2,21 @@ export const casey_mize_performance = {
   kind: "pitcher",
 
   snapshot: {
+    year: "2025",
     g: 28,
     ip: 149.0,
     wL: "14-6",
+    w: 14,
+    l: 6,
     so: 139,
+    h: 153,
+    bb: 36,
+    hr: 21,
     soBb: 3.86,
     whip: 1.27,
-    era: 3.87,
-    hrAllowed: 18
+    era: 3.87,    // lowercase — preserved for IntelStack display (snap?.era)
+    ERA: 3.87,    // uppercase — required by calculateDLR: readNumber(snapshot, "ERA")
+    hrAllowed: 21
   },
 
   scout: {

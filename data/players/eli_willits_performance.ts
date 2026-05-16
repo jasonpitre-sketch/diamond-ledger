@@ -2,25 +2,26 @@ export const eli_willits_performance = {
   kind: "hitter",
 
   snapshot: {
-    year: "2025 HS",
-    team: "Fort Cobb-Broxton",
-    pa: 128,
+    year: "2025",
+    team: "WSH",
+    pa: 57,
     g: null,
-    ab: 91,
-    h: 43,
-    doubles: 14,
-    triples: 1,
-    avg: 0.473,
-    obp: 0.602,
-    hr: 8,
-    rbi: 34,
-    runs: 56,
-    bb: 27,
-    k: 4,
-    slg: 0.912,
-    ops: 1.514,
-    sb: 47,
-    sbAttempts: 47
+    ab: 50,
+    h: 15,
+    doubles: 0,
+    triples: 0,
+    avg: 0.300,   // lowercase — preserved for IntelStack display (snap?.avg)
+    AVG: 0.300,   // uppercase — required by calculateDLR: readNumber(snapshot, "AVG")
+    obp: 0.386,
+    hr: 0,
+    rbi: 5,
+    runs: 0,
+    bb: 7,
+    k: 12,
+    slg: 0.300,
+    ops: 0.757,
+    sb: 2,
+    sbAttempts: 2
   },
 
   scout: {

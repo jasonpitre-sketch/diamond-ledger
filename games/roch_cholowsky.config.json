@@ -1,0 +1,14 @@
+{
+  "player_id": "roch_cholowsky",
+  "name": "Roch Cholowsky",
+  "kind": "hitter",
+  "position": "SS",
+  "season": 2026,
+  "baseline": {
+    "AVG": 0.353,
+    "year": 2025,
+    "source": "roch_cholowsky_performance.ts — 2025 full sophomore season (UCLA, 66 GP, 252 AB, .353 AVG)"
+  },
+  "competition_level": "NCAA",
+  "notes": "UCLA Bruins SS. Projected #1 overall pick, 2026 Draft (Chicago White Sox). Live ingestion begins post-draft (July 2026) when Cholowsky enters professional baseball. NCAA season tracked via UCLA Athletics stats page; not ingested through game-by-game pipeline. 2026 Sr stats: .338 AVG (51 GP, 198 AB) — Pass 64 2026-05-14."
+}

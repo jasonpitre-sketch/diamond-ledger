@@ -1,0 +1,14 @@
+{
+  "player_id": "alec_bohm",
+  "name": "Alec Bohm",
+  "kind": "hitter",
+  "position": "3B",
+  "season": 2026,
+  "baseline": {
+    "AVG": 0.287,
+    "year": 2025,
+    "source": "alec_bohm_performance.ts — 2025 full season (PHI, 120 GP, 464 AB, .287 AVG). Pass 65 corrected from stale 152 GP/580 AB entry."
+  },
+  "competition_level": "MLB",
+  "notes": "Philadelphia Phillies 3B. 2018 draft, #3 overall pick. Live MLB ingestion via ingest-game.mjs. Rolling windows active — tracker.rolling populated. Pass 65: 2026 slump (.186 AVG through 39 GP) is real; 7G recovery (.304) beginning. DLR honest at ~40. Sanity AVG band: .220–.340."
+}

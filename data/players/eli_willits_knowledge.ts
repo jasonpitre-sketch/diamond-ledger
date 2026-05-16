@@ -13,7 +13,12 @@ export const eli_willits_knowledge = {
       weight:"180",
       bats:"S",
       throws:"R",
-      school:"Fort Cobb-Broxton HS"
+      school:"Fort Cobb-Broxton HS",
+      // ─── DLR SCORING: categorical strings read by calculateDLR.scoreKnowledge (bioScout path) ───
+      archetype:          "balanced",      // contact/speed mix → balanced
+      developmentPath:    "accelerating",  // HS advanced track → accelerating
+      physicalProjection: "solid",         // projectable lean frame → solid
+      riskProfile:        "moderate"       // raw HS prospect → moderate risk
     },
 
     /* NEW: engine layer */
@@ -50,7 +55,12 @@ export const eli_willits_knowledge = {
       devCurve:.78,
       orgValue:.85,
       assetRisk:.42,
-      longValue:.81
+      longValue:.81,
+      // ─── DLR SCORING: categorical strings read by calculateDLR.scoreKnowledge (bioAnalyst path) ───
+      value:       "strong",        // asset value .82 → strong
+      orgRole:     "priority",      // org priority .85 → priority
+      development: "accelerating",  // dev curve .72 → accelerating
+      risk:        "moderate"       // asset risk .42 → moderate
     }
   },
 

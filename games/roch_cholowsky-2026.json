@@ -1,0 +1,12 @@
+{
+  "player_id": "roch_cholowsky",
+  "season": 2026,
+  "seeded_from": "scaffold only — Pass 64 (2026-05-14). Live ingestion begins post-draft (July 2026) when Cholowsky enters professional baseball. NCAA season tracked via UCLA Athletics stats page; not ingested through game-by-game pipeline.",
+  "weeklyHistory": [],
+  "games": [],
+  "rolling": {
+    "days7": null,
+    "days15": null,
+    "days30": null
+  }
+}

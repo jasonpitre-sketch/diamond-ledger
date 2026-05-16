@@ -1,0 +1,20 @@
+{
+  "player_id": "ethan_holliday",
+  "name": "Ethan Holliday",
+  "kind": "hitter",
+  "position": "SS",
+  "season": 2026,
+  "baseline": {
+    "AVG": 0.239,
+    "OPS": 0.737,
+    "year": 2025,
+    "source": "data/players/ethan_holliday_performance.ts season2025 block"
+  },
+  "level": "A",
+  "competition_level": "MiLB",
+  "dataSource": "milb_manual",
+  "sourceURL": "https://www.milb.com/player/ethan-holliday",
+  "team": "FRE",
+  "parentClub": "COL",
+  "_note": "2025 season is anchor baseline (debut, partial, 18G). 2026 is current in-season. Live ingestion begins with first game after 2026-05-14 screenshot cutoff. Next game: 5/14 vs VIS."
+}
