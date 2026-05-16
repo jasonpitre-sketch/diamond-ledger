@@ -61,6 +61,7 @@ type Props = {
   mode?: "knowledge" | "performance" | "media" | "market"
   infoMode?: "bio" | "scout" | "career"
   dlrTier?: string
+  performanceContext?: "bats" | "arms"
 }
 
 type PanelRow = {
