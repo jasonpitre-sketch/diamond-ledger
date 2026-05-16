@@ -5,22 +5,32 @@ import styles from "./PlayerList.module.css"
 import { playersDraft2026 } from "@/data/playersDraft2026"
 import { playersDraft2025 } from "@/data/playersDraft2025"
 import { playersDraft2018 } from "@/data/playersDraft2018"
+import { getDLRPhase, DLR_PHASE_BADGE } from "@/data/dlr/dlrPhase"
 import {
-calculatePlayerSignals,
-directionScore,
-toneScore,
+resolveSignals,
+signalStateScore,
+signalDirectionScore,
+type SignalState,
 type SignalDirection,
-type SignalTone,
-type StatRecord
-} from "@/data/dlr/signals/playerSignals"
+} from "@/lib/signals/signalEngine"
 
 
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
+
+// Pass 43B — StatRecord defined locally. Previously referenced without import
+// (pre-existing TS error: Cannot find name 'StatRecord'). The type originated
+// in data/dlr/signals/playerSignals.ts which is now deprecated. Defined here
+// as the canonical local alias. For future consolidation: move to data/types/player.ts.
+type StatRecord = Record<string, number | string | null | undefined>
 
 type Props = {
 selected: string | null
 onSelect: (id:string)=>void
-mode?: "draft" | "players" | "tracked"
+mode?: "hs" | "ncaa" | "draft" | "minors" | "majors" | "players" | "tracked"
+/** Active performance intelligence context — lifted to page.tsx so IntelStack switches in sync. */
+performanceContext?: "bats" | "arms"
+/** Called when the user clicks BATS or ARMS — updates lifted state in page.tsx. */
+onPerformanceContextChange?: (ctx: "bats" | "arms") => void
 }
 
 type SortDir = "asc" | "desc"
@@ -31,15 +41,15 @@ type SortKey =
 | "age"
 | "position"
 | "draftYear"
-| "draftRank"
+| "draftPick"
 | "tier"
-| "avg"
+| "ab"
 | "h"
 | "hr"
 | "rbi"
 | "bb"
 | "k"
-| "ops"
+| "sb"
 | "era"
 | "pitchH"
 | "w"
@@ -59,19 +69,50 @@ team?: string
 age?: number
 position?: string
 draftYear?: number
-draftRank?: number
+draftPick?: number
 tier?: string
 hitting?: StatRecord | null
 pitching?: StatRecord | null
+tracker?: {
+// hitter fields
+AB?: number | null
+SB?: number | null
+AVG?: number | null
+OPS?: number | null
+// pitcher fields
+IP?: number | null
+W?: number | null
+L?: number | null
+ERA?: number | null
+WHIP?: number | null
+SO?: number | null
+lastGame?: {
+// hitter
+AB?: number | null
+H?: number | null
+HR?: number | null
+RBI?: number | null
+BB?: number | null
+K?: number | null
+SB?: number | null
+// pitcher
+IP?: number | null
+ER?: number | null
+} | null
+}
 performance?: {
 kind?: "hitter" | "pitcher" | string
+competitionLevel?: "HS" | "NCAA" | "MiLB" | "MLB" | string
 snapshot?: StatRecord
 scout?: StatRecord
 analyst?: StatRecord
 }
+// Pass 43B — media snapshot/analyst narrowed to number-only records.
+// Media fields are pre-normalized 0–1 floats — never strings.
+// Narrowing fixes SignalPlayerInput compatibility for resolveSignals() calls.
 media?: {
-snapshot?: StatRecord
-analyst?: StatRecord
+snapshot?: Record<string, number | null | undefined>
+analyst?: Record<string, number | null | undefined>
 }
 signals?: {
 tracked?: boolean
@@ -80,23 +121,62 @@ price?: string | null
 }
 }
 
+/* Canonical developmental progression — drives filter dropdown ordering.
+   Ecosystem tabs (DRAFT, TRACKED) are routing contexts, NOT development stages.
+   Development stages:
+   🟢 Amateur:  HS → NCAA
+   🟠 Minors:   ROK → A → A+ → AA → AAA
+   🟢 MLB:      MLB */
 const tierOrder = [
-"DRAFT",
-"ROK",
-"A",
-"A+",
-"AA",
-"AAA",
-"RY",
-"MLB",
-"AS",
-"MVP"
+  "HS",
+  "NCAA",
+  "ROK",
+  "A",
+  "A+",
+  "AA",
+  "AAA",
+  "MLB",
+  "Rookie",
+  "Starter",
+  "All-Star",
+  "MVP"
 ]
+
+/**
+ * Resolves the display tier label for a player row.
+ * Players with tier "Draft" / "DRAFT" are pre-draft amateurs —
+ * their developmental stage is derived from performance.competitionLevel.
+ * This keeps ecosystem tab context (DRAFT board) separate from
+ * developmental stage label (HS / NCAA).
+ */
+function resolveTierLabel(p: PlayerRow): string {
+  const raw = (p.tier ?? "").trim()
+  const upper = raw.toUpperCase()
+  if (upper === "DRAFT") {
+    const comp = (p.performance?.competitionLevel ?? "").trim().toUpperCase()
+    if (comp === "HS")   return "HS"
+    if (comp === "NCAA") return "NCAA"
+    // Fallback: unknown amateur — return empty so "—" renders
+    return ""
+  }
+  return raw
+}
+
+// Inline lifecycle hex — avoids importing a separate module for a simple lookup
+function lifecycleHex(competitionLevel?: string | null): string | null {
+  const t = (competitionLevel ?? "").trim().toUpperCase()
+  if (t === "HS")   return "#c8a564"
+  if (t === "NCAA") return "#3eb489"
+  if (t === "MILB" || t === "A" || t === "A+" || t === "AA" || t === "AAA" || t === "ROK" || competitionLevel === "MiLB") return "#2d72d4"
+  if (t === "MLB")  return "#b8e8ff"
+  return null
+}
 
 export default function PlayerList({
 selected,
 onSelect,
-mode="draft"
+mode="draft",
+onPerformanceContextChange
 }:Props){
 
 const [teamFilter,setTeamFilter] = useState("ALL")
@@ -106,7 +186,23 @@ const [tierFilter,setTierFilter] = useState("ALL")
 
 const [viewMode,setViewMode] = useState<"all"|"hit"|"pitch">("all")
 
-const [sortKey,setSortKey] = useState<SortKey>("draftRank")
+// Auto-switch to pitcher view when a pitcher (RHP/LHP/SP/RP/P) is selected,
+// and back to hitter view when a hitter is selected.
+useEffect(()=>{
+  if(!selected) return
+  const allPlayers=[...playersDraft2026,...playersDraft2025,...playersDraft2018] as PlayerRow[]
+  const player=allPlayers.find(p=>p.id===selected)
+  if(!player) return
+  if(isPitcherPosition(player.position)){
+    setViewMode("pitch")
+    onPerformanceContextChange?.("arms")
+  } else {
+    setViewMode(v=> v==="pitch" ? "all" : v)
+    onPerformanceContextChange?.("bats")
+  }
+},[selected]) // eslint-disable-line react-hooks/exhaustive-deps
+
+const [sortKey,setSortKey] = useState<SortKey>("draftPick")
 const [sortDir,setSortDir] = useState<SortDir>("asc")
 
 
@@ -124,12 +220,34 @@ const allPlayers: PlayerRow[] = [
 
 ] as PlayerRow[]
 
+// HS ecosystem — prep/high-school lifecycle stage
+if(mode==="hs"){
+return allPlayers.filter(p=>
+  (p.performance?.competitionLevel ?? "").toUpperCase() === "HS"
+)
+}
+
+// NCAA ecosystem — college lifecycle stage
+if(mode==="ncaa"){
+return allPlayers.filter(p=>
+  (p.performance?.competitionLevel ?? "").toUpperCase() === "NCAA"
+)
+}
+
 if(mode==="draft"){
 return allPlayers.filter(p=>p.draftYear===2026)
 }
 
 if(mode==="tracked"){
 return allPlayers.filter(p=>p.signals?.tracked)
+}
+
+if(mode==="minors"){
+return allPlayers.filter(p=>p.draftYear===2025)
+}
+
+if(mode==="majors"){
+return allPlayers.filter(p=>p.draftYear===2018)
 }
 
 if(mode==="players"){
@@ -192,10 +310,12 @@ dataset
 
 const tierOptions = useMemo(()=>{
 
+// Use resolved developmental tier labels, not raw tier strings.
+// This ensures "Draft" players appear under HS/NCAA in the filter dropdown.
 const found = Array.from(
 new Set(
 dataset
-.map(p=>p?.tier)
+.map(p=>resolveTierLabel(p))
 .filter(Boolean)
 )
 )
@@ -215,31 +335,22 @@ return [
 ICONS
 ========================= */
 
-function formIcon(val:SignalTone){
-
-if(val==="hot") return "🔥"
-if(val==="cold") return "❄"
-
+function formIcon(val: SignalState){
+if(val==="hot"  || val==="warm") return "🔥"
+if(val==="cool" || val==="dark") return "❄"
 return "•"
-
 }
 
-function surgeIcon(val:SignalTone){
-
-if(val==="hot") return "⚡"
-if(val==="cold") return "↓"
-
+function surgeIcon(val: SignalState){
+if(val==="hot"  || val==="warm") return "⚡"
+if(val==="cool" || val==="dark") return "↓"
 return "•"
-
 }
 
-function valueIcon(val:SignalDirection){
-
-if(val==="up") return "◇"
+function valueIcon(val: SignalDirection){
+if(val==="up")   return "◇"
 if(val==="down") return "▼"
-
 return "→"
-
 }
 
 function isPitcherPosition(position?:string){
@@ -264,7 +375,7 @@ if(posFilter !== "ALL" && p.position !== posFilter) return false
 
 if(draftYearFilter !== "ALL" && String(p.draftYear) !== draftYearFilter) return false
 
-if(tierFilter !== "ALL" && p.tier !== tierFilter) return false
+if(tierFilter !== "ALL" && resolveTierLabel(p) !== tierFilter) return false
 
 const isPitcher = isPitcherPosition(p.position)
 
@@ -292,16 +403,16 @@ case "team": return p.team ?? ""
 case "age": return p.age ?? -999
 case "position": return p.position ?? ""
 case "draftYear": return p.draftYear ?? -999
-case "draftRank": return p.draftRank ?? 9999
+case "draftPick": return p.draftPick ?? 9999
 case "tier": return p.tier ?? ""
 
-case "avg": return p.hitting?.AVG ?? -999
+case "ab": return p.tracker?.AB ?? -999
 case "h": return p.hitting?.H ?? -999
 case "hr": return p.hitting?.HR ?? -999
 case "rbi": return p.hitting?.RBI ?? -999
 case "bb": return p.hitting?.BB ?? -999
 case "k": return viewMode==="pitch" ? p.pitching?.K ?? -999 : p.hitting?.K ?? -999
-case "ops": return p.hitting?.OPS ?? -999
+case "sb": return p.tracker?.SB ?? -999
 
 case "era": return p.pitching?.ERA ?? 999
 case "pitchH": return p.pitching?.H ?? -999
@@ -312,19 +423,23 @@ case "ip": return p.pitching?.IP ?? -999
 case "tracked": return p.signals?.tracked ? 1 : 0
 
 case "heat":
-case "form":
+case "form": {
+  const mode = viewMode==="pitch" ? "pitch" : "hit"
+  const sig = resolveSignals(p, mode)
+  return signalStateScore(mode==="pitch" ? sig.cmd.state : sig.bat.state)
+}
 
-return toneScore(calculatePlayerSignals(p,viewMode==="pitch" ? "pitch" : "hit").form)
-
-case "surge":
-
-return toneScore(calculatePlayerSignals(p,viewMode==="pitch" ? "pitch" : "hit").surge)
+case "surge": {
+  const mode = viewMode==="pitch" ? "pitch" : "hit"
+  const sig = resolveSignals(p, mode)
+  return signalStateScore(mode==="pitch" ? sig.run.state : sig.pwr.state)
+}
 
 case "value":
-
-case "price":
-
-return directionScore(calculatePlayerSignals(p,viewMode==="pitch" ? "pitch" : "hit").value)
+case "price": {
+  const sig = resolveSignals(p, viewMode==="pitch" ? "pitch" : "hit")
+  return signalDirectionScore(sig.val.direction)
+}
 
 default:
 
@@ -426,7 +541,7 @@ ALL
 <button
 type="button"
 className={`${styles.viewButton} ${viewMode==="hit" ? styles.activeView : ""}`}
-onClick={()=>setViewMode("hit")}
+onClick={()=>{ setViewMode("hit"); onPerformanceContextChange?.("bats") }}
 >
 BATS
 </button>
@@ -434,7 +549,7 @@ BATS
 <button
 type="button"
 className={`${styles.viewButton} ${viewMode==="pitch" ? styles.activeView : ""}`}
-onClick={()=>setViewMode("pitch")}
+onClick={()=>{ setViewMode("pitch"); onPerformanceContextChange?.("arms") }}
 >
 ARMS
 </button>
@@ -465,13 +580,13 @@ ARMS
 
 <>
 
-<div>{sortLabel("AVG","avg")}</div>
+<div>{sortLabel("AB","ab")}</div>
 <div>{sortLabel("H","h")}</div>
 <div>{sortLabel("HR","hr")}</div>
 <div>{sortLabel("RBI","rbi")}</div>
 <div>{sortLabel("BB","bb")}</div>
 <div>{sortLabel("K","k")}</div>
-<div>{sortLabel("OPS","ops")}</div>
+<div>{sortLabel("SB","sb")}</div>
 
 </>
 
@@ -482,13 +597,13 @@ ARMS
 
 <>
 
-<div>{sortLabel("ERA","era")}</div>
-<div>{sortLabel("H","pitchH")}</div>
-<div>{sortLabel("W","w")}</div>
-<div>{sortLabel("K","k")}</div>
-<div>{sortLabel("WHIP","whip")}</div>
 <div>{sortLabel("IP","ip")}</div>
-<div>—</div>
+<div>{sortLabel("H","pitchH")}</div>
+<div>BB</div>
+<div>{sortLabel("K","k")}</div>
+<div>ER</div>
+<div>{sortLabel("W","w")}</div>
+<div>{sortLabel("WHIP","whip")}</div>
 
 </>
 
@@ -516,7 +631,7 @@ onChange={e=>setDraftYearFilter(e.target.value)}
 </div>
 
 
-<div>{sortLabel("DR","draftRank")}</div>
+<div>{sortLabel("DP","draftPick")}</div>
 
 
 <div>
@@ -596,13 +711,37 @@ onChange={e=>setPosFilter(e.target.value)}
 
 const isActive = selected===p.id
 const signalMode = viewMode==="pitch" ? "pitch" : "hit"
-const calculatedSignals = calculatePlayerSignals(p,signalMode)
+
+// Signal engine — rolling-window-aware behavioral signals (Pass 33).
+// Priority: 7D rolling → 15D → 30D → season totals → dark.
+const signals = resolveSignals(p, signalMode)
+const batTone  = signals.bat.state
+const pwrTone  = signals.pwr.state
+const cmdTone  = signals.cmd.state
+const runTone  = signals.run.state
+const valDir: SignalDirection = signals.val.direction
+
+// Lifecycle accent — resolved for ALL rows so CSS hover can consume --row-lifecycle-color.
+// Active selected state also applies box-shadow + background override inline.
+const rowLifecycleColor = lifecycleHex(p.performance?.competitionLevel)
+const activeRowStyle: React.CSSProperties = {
+  // CSS variable available to :hover pseudo-class (CSS custom props inherit to pseudo-classes).
+  // Falls back to static blue in CSS when no lifecycle is known.
+  ...(rowLifecycleColor ? { '--row-lifecycle-color': rowLifecycleColor } as React.CSSProperties : {}),
+  ...(isActive && rowLifecycleColor
+    ? {
+        boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${rowLifecycleColor} 45%, rgba(120,170,255,.35))`,
+        background: `linear-gradient(90deg, color-mix(in srgb, ${rowLifecycleColor} 9%, rgba(60,120,255,.14)), rgba(0,0,0,0))`
+      }
+    : {})
+}
 
 return(
 
 <div
 key={p.id}
 className={`${styles.row} ${p.signals?.tracked ? styles.trackedRow : ""} ${isActive ? styles.active : ""}`}
+style={activeRowStyle}
 onClick={()=>onSelect(p.id)}
 >
 
@@ -610,18 +749,19 @@ onClick={()=>onSelect(p.id)}
 {p.name}
 </div>
 
-<div className={`${styles.signal} ${calculatedSignals.form==="hot" ? styles.signalHot : ""} ${calculatedSignals.form==="cold" ? styles.signalCold : ""}`}>
-{formIcon(calculatedSignals.form)}
+{/* Signal 1 — BAT (hitter) / CMD (pitcher) */}
+<div className={`${styles.signal} ${(signalMode==="pitch" ? cmdTone : batTone)==="hot" || (signalMode==="pitch" ? cmdTone : batTone)==="warm" ? styles.signalHot : ""} ${(signalMode==="pitch" ? cmdTone : batTone)==="cool" || (signalMode==="pitch" ? cmdTone : batTone)==="dark" ? styles.signalCold : ""}`}>
+{formIcon(signalMode==="pitch" ? cmdTone : batTone)}
 </div>
 
-
-<div className={`${styles.signal} ${calculatedSignals.surge==="hot" ? styles.signalSurge : ""} ${calculatedSignals.surge==="cold" ? styles.signalDown : ""}`}>
-{surgeIcon(calculatedSignals.surge)}
+{/* Signal 2 — PWR (hitter) / RUN (pitcher) */}
+<div className={`${styles.signal} ${(signalMode==="pitch" ? runTone : pwrTone)==="hot" || (signalMode==="pitch" ? runTone : pwrTone)==="warm" ? styles.signalSurge : ""} ${(signalMode==="pitch" ? runTone : pwrTone)==="cool" || (signalMode==="pitch" ? runTone : pwrTone)==="dark" ? styles.signalDown : ""}`}>
+{surgeIcon(signalMode==="pitch" ? runTone : pwrTone)}
 </div>
 
-
-<div className={`${styles.signal} ${calculatedSignals.value==="up" ? styles.signalValue : ""} ${calculatedSignals.value==="down" ? styles.signalDown : ""}`}>
-{valueIcon(calculatedSignals.value)}
+{/* Signal 3 — VAL (universal) */}
+<div className={`${styles.signal} ${valDir==="up" ? styles.signalValue : ""} ${valDir==="down" ? styles.signalDown : ""}`}>
+{valueIcon(valDir)}
 </div>
 
 
@@ -629,19 +769,19 @@ onClick={()=>onSelect(p.id)}
 
 <>
 
-<div>{typeof p.hitting?.AVG === "number" ? p.hitting.AVG.toFixed(3) : "—"}</div>
+<div>{typeof p.tracker?.lastGame?.AB === "number" ? p.tracker.lastGame.AB : "—"}</div>
 
-<div>{p.hitting?.H ?? "—"}</div>
+<div>{typeof p.tracker?.lastGame?.H === "number" ? p.tracker.lastGame.H : "—"}</div>
 
-<div>{p.hitting?.HR ?? "—"}</div>
+<div>{p.tracker?.lastGame?.HR ? p.tracker.lastGame.HR : "—"}</div>
 
-<div>{p.hitting?.RBI ?? "—"}</div>
+<div>{p.tracker?.lastGame?.RBI ? p.tracker.lastGame.RBI : "—"}</div>
 
-<div>{p.hitting?.BB ?? "—"}</div>
+<div>{typeof p.tracker?.lastGame?.BB === "number" ? p.tracker.lastGame.BB : "—"}</div>
 
-<div>{p.hitting?.K ?? "—"}</div>
+<div>{typeof p.tracker?.lastGame?.K === "number" ? p.tracker.lastGame.K : "—"}</div>
 
-<div>{typeof p.hitting?.OPS === "number" ? p.hitting.OPS.toFixed(3) : "—"}</div>
+<div>{typeof p.tracker?.lastGame?.SB === "number" ? p.tracker.lastGame.SB : "—"}</div>
 
 </>
 
@@ -652,19 +792,19 @@ onClick={()=>onSelect(p.id)}
 
 <>
 
-<div>{typeof p.pitching?.ERA === "number" ? p.pitching.ERA.toFixed(2) : "—"}</div>
+<div>{typeof p.tracker?.lastGame?.IP === "number" ? p.tracker.lastGame.IP.toFixed(1) : "—"}</div>
 
-<div>{p.pitching?.H ?? "—"}</div>
+<div>{typeof p.tracker?.lastGame?.H === "number" ? p.tracker.lastGame.H : "—"}</div>
 
-<div>{p.pitching?.W ?? "—"}</div>
+<div>{typeof p.tracker?.lastGame?.BB === "number" ? p.tracker.lastGame.BB : "—"}</div>
 
-<div>{p.pitching?.K ?? "—"}</div>
+<div>{typeof p.tracker?.lastGame?.K === "number" ? p.tracker.lastGame.K : "—"}</div>
 
-<div>{typeof p.pitching?.WHIP === "number" ? p.pitching.WHIP.toFixed(2) : "—"}</div>
+<div>{typeof p.tracker?.lastGame?.ER === "number" ? p.tracker.lastGame.ER : "—"}</div>
 
-<div>{p.pitching?.IP ?? "—"}</div>
+<div>{typeof p.tracker?.W === "number" ? p.tracker.W : "—"}</div>
 
-<div>—</div>
+<div>{typeof p.tracker?.WHIP === "number" ? p.tracker.WHIP.toFixed(2) : "—"}</div>
 
 </>
 
@@ -673,10 +813,13 @@ onClick={()=>onSelect(p.id)}
 
 <div>{p.draftYear ?? "—"}</div>
 
-<div>{p.draftRank ?? "—"}</div>
+<div>{p.draftPick ?? "—"}</div>
 
-<div className={styles.tier}>
-{p.tier ?? "—"}
+<div
+className={styles.tier}
+style={{ color: lifecycleHex(resolveTierLabel(p)) ?? DLR_PHASE_BADGE[getDLRPhase(resolveTierLabel(p) || p.tier, undefined)] }}
+>
+{resolveTierLabel(p) || "—"}
 </div>
 
 <div>{p.team ?? "—"}</div>
