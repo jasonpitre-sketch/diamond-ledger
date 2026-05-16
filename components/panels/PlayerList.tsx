@@ -4,6 +4,8 @@ import styles from "./PlayerList.module.css"
 
 import { playersDraft2026 } from "@/data/playersDraft2026"
 import { playersDraft2025 } from "@/data/playersDraft2025"
+import { playersDraft2024 } from "@/data/playersDraft2024"
+import { playersDraft2023 } from "@/data/playersDraft2023"
 import { playersDraft2018 } from "@/data/playersDraft2018"
 import { getDLRPhase, DLR_PHASE_BADGE } from "@/data/dlr/dlrPhase"
 import {
@@ -190,7 +192,7 @@ const [viewMode,setViewMode] = useState<"all"|"hit"|"pitch">("all")
 // and back to hitter view when a hitter is selected.
 useEffect(()=>{
   if(!selected) return
-  const allPlayers=[...playersDraft2026,...playersDraft2025,...playersDraft2018] as PlayerRow[]
+  const allPlayers=[...playersDraft2026,...playersDraft2025,...playersDraft2024,...playersDraft2023,...playersDraft2018] as PlayerRow[]
   const player=allPlayers.find(p=>p.id===selected)
   if(!player) return
   if(isPitcherPosition(player.position)){
@@ -216,6 +218,8 @@ const allPlayers: PlayerRow[] = [
 
 ...playersDraft2026,
 ...playersDraft2025,
+...playersDraft2024,
+...playersDraft2023,
 ...playersDraft2018
 
 ] as PlayerRow[]
@@ -243,11 +247,17 @@ return allPlayers.filter(p=>p.signals?.tracked)
 }
 
 if(mode==="minors"){
-return allPlayers.filter(p=>p.draftYear===2025)
+return allPlayers.filter(p=>{
+  const level = (p.performance?.competitionLevel ?? p.tier ?? "").toUpperCase()
+  return ["ROK", "A", "A+", "AA", "AAA", "MILB"].includes(level)
+})
 }
 
 if(mode==="majors"){
-return allPlayers.filter(p=>p.draftYear===2018)
+return allPlayers.filter(p=>{
+  const level = (p.performance?.competitionLevel ?? p.tier ?? "").toUpperCase()
+  return level === "MLB"
+})
 }
 
 if(mode==="players"){

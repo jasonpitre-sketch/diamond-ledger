@@ -1,0 +1,3527 @@
+{
+  "generatedAt": "2026-05-16T00:54:42.495Z",
+  "scope": "2023 and 2024 draft cohort files",
+  "method": "local files only; no external scrape; roster_auto migrations used for source/ID audit",
+  "totals": {
+    "players": 100,
+    "schedulerEligible": 100,
+    "withGames": 95,
+    "zeroGameLogs": 5,
+    "parseErrors": 0,
+    "withCompleteDomainFiles": 100
+  },
+  "byStatus": {
+    "full_replay_like": 95,
+    "auto_zero_games_org_check": 5
+  },
+  "bySource": {
+    "mlb_stats_api": 21,
+    "milb_stats_api": 79
+  },
+  "byYear": {
+    "2023": 50,
+    "2024": 50
+  },
+  "players": [
+    {
+      "id": "paul_skenes",
+      "draftYear": 2023,
+      "draftPick": 1,
+      "name": "Paul Skenes",
+      "kind": "pitcher",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "694973",
+      "externalTeamId": "134",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 9,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "dylan_crews",
+      "draftYear": 2023,
+      "draftPick": 2,
+      "name": "Dylan Crews",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "686611",
+      "externalTeamId": "534",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 39,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "max_clark",
+      "draftYear": 2023,
+      "draftPick": 3,
+      "name": "Max Clark",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "703601",
+      "externalTeamId": "512",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 37,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "wyatt_langford",
+      "draftYear": 2023,
+      "draftPick": 4,
+      "name": "Wyatt Langford",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "694671",
+      "externalTeamId": "140",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 20,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 5,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "walker_jenkins",
+      "draftYear": 2023,
+      "draftPick": 5,
+      "name": "Walker Jenkins",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805805",
+      "externalTeamId": "1960",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 25,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jacob_wilson",
+      "draftYear": 2023,
+      "draftPick": 6,
+      "name": "Jacob Wilson",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "805779",
+      "externalTeamId": "133",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 39,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "rhett_lowder",
+      "draftYear": 2023,
+      "draftPick": 7,
+      "name": "Rhett Lowder",
+      "kind": "pitcher",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "695076",
+      "externalTeamId": "113",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 8,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "blake_mitchell",
+      "draftYear": 2023,
+      "draftPick": 8,
+      "name": "Blake Mitchell",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805810",
+      "externalTeamId": "565",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 31,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "chase_dollander",
+      "draftYear": 2023,
+      "draftPick": 9,
+      "name": "Chase Dollander",
+      "kind": "pitcher",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "801403",
+      "externalTeamId": "115",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 10,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "noble_meyer",
+      "draftYear": 2023,
+      "draftPick": 10,
+      "name": "Noble Meyer",
+      "kind": "pitcher",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "800611",
+      "externalTeamId": "520",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 0,
+        "rolling": {
+          "hasDays7": false,
+          "hasDays15": false,
+          "hasDays30": false
+        },
+        "weeklyRows": 0,
+        "weeklyHistory": 0
+      },
+      "status": "auto_zero_games_org_check",
+      "reason": "Auto source and IDs exist, but local replay found zero 2026 games; verify injury, assignment, release, or org status before treating as broken.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "nolan_schanuel",
+      "draftYear": 2023,
+      "draftPick": 11,
+      "name": "Nolan Schanuel",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "694384",
+      "externalTeamId": "108",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 40,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "tommy_troy",
+      "draftYear": 2023,
+      "draftPick": 12,
+      "name": "Tommy Troy",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "694371",
+      "externalTeamId": "2310",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 39,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "matt_shaw",
+      "draftYear": 2023,
+      "draftPick": 13,
+      "name": "Matt Shaw",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "807713",
+      "externalTeamId": "112",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 37,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kyle_teel",
+      "draftYear": 2023,
+      "draftPick": 14,
+      "name": "Kyle Teel",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "691019",
+      "externalTeamId": "494",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 3,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 1,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jacob_gonzalez",
+      "draftYear": 2023,
+      "draftPick": 15,
+      "name": "Jacob Gonzalez",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "694378",
+      "externalTeamId": "494",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 39,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "bryce_eldridge",
+      "draftYear": 2023,
+      "draftPick": 16,
+      "name": "Bryce Eldridge",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "805811",
+      "externalTeamId": "137",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 37,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "enrique_bradfield_jr",
+      "draftYear": 2023,
+      "draftPick": 17,
+      "name": "Enrique Bradfield Jr.",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "690961",
+      "externalTeamId": "568",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 13,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 5,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "brock_wilken",
+      "draftYear": 2023,
+      "draftPick": 18,
+      "name": "Brock Wilken",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "694385",
+      "externalTeamId": "556",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 40,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "brayden_taylor",
+      "draftYear": 2023,
+      "draftPick": 19,
+      "name": "Brayden Taylor",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "694966",
+      "externalTeamId": "421",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 28,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "arjun_nimmala",
+      "draftYear": 2023,
+      "draftPick": 20,
+      "name": "Arjun Nimmala",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805796",
+      "externalTeamId": "463",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 31,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "chase_davis",
+      "draftYear": 2023,
+      "draftPick": 21,
+      "name": "Chase Davis",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "690971",
+      "externalTeamId": "440",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 30,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "colt_emerson",
+      "draftYear": 2023,
+      "draftPick": 22,
+      "name": "Colt Emerson",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806068",
+      "externalTeamId": "529",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 36,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "ralphy_velazquez",
+      "draftYear": 2023,
+      "draftPick": 23,
+      "name": "Ralphy Velazquez",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806252",
+      "externalTeamId": "402",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 33,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "hurston_waldrep",
+      "draftYear": 2023,
+      "draftPick": 24,
+      "name": "Hurston Waldrep",
+      "kind": "pitcher",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "694462",
+      "externalTeamId": "144",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 0,
+        "rolling": {
+          "hasDays7": false,
+          "hasDays15": false,
+          "hasDays30": false
+        },
+        "weeklyRows": 0,
+        "weeklyHistory": 0
+      },
+      "status": "auto_zero_games_org_check",
+      "reason": "Auto source and IDs exist, but local replay found zero 2026 games; verify injury, assignment, release, or org status before treating as broken.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "dillon_head",
+      "draftYear": 2023,
+      "draftPick": 25,
+      "name": "Dillon Head",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "702977",
+      "externalTeamId": "554",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 12,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 4,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "george_lombard_jr",
+      "draftYear": 2023,
+      "draftPick": 26,
+      "name": "George Lombard Jr.",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806146",
+      "externalTeamId": "531",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 33,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "aidan_miller",
+      "draftYear": 2023,
+      "draftPick": 27,
+      "name": "Aidan Miller",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805795",
+      "externalTeamId": "1410",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 0,
+        "rolling": {
+          "hasDays7": false,
+          "hasDays15": false,
+          "hasDays30": false
+        },
+        "weeklyRows": 0,
+        "weeklyHistory": 0
+      },
+      "status": "auto_zero_games_org_check",
+      "reason": "Auto source and IDs exist, but local replay found zero 2026 games; verify injury, assignment, release, or org status before treating as broken.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "brice_matthews",
+      "draftYear": 2023,
+      "draftPick": 28,
+      "name": "Brice Matthews",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "694728",
+      "externalTeamId": "117",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 36,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jonny_farmelo",
+      "draftYear": 2023,
+      "draftPick": 29,
+      "name": "Jonny Farmelo",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806071",
+      "externalTeamId": "403",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 33,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "tai_peete",
+      "draftYear": 2023,
+      "draftPick": 30,
+      "name": "Tai Peete",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806191",
+      "externalTeamId": "443",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 28,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "adrian_santana",
+      "draftYear": 2023,
+      "draftPick": 31,
+      "name": "Adrian Santana",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "803745",
+      "externalTeamId": "2498",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 29,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "colin_houck",
+      "draftYear": 2023,
+      "draftPick": 32,
+      "name": "Colin Houck",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806124",
+      "externalTeamId": "453",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 31,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "josh_knoth",
+      "draftYear": 2023,
+      "draftPick": 33,
+      "name": "Josh Knoth",
+      "kind": "pitcher",
+      "level": "Rookie",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805807",
+      "externalTeamId": "406",
+      "externalSportId": "16",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 3,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 3,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "charlee_soto",
+      "draftYear": 2023,
+      "draftPick": 34,
+      "name": "Charlee Soto",
+      "kind": "pitcher",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805792",
+      "externalTeamId": "492",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 0,
+        "rolling": {
+          "hasDays7": false,
+          "hasDays15": false,
+          "hasDays30": false
+        },
+        "weeklyRows": 0,
+        "weeklyHistory": 0
+      },
+      "status": "auto_zero_games_org_check",
+      "reason": "Auto source and IDs exist, but local replay found zero 2026 games; verify injury, assignment, release, or org status before treating as broken.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "thomas_white",
+      "draftYear": 2023,
+      "draftPick": 35,
+      "name": "Thomas White",
+      "kind": "pitcher",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806258",
+      "externalTeamId": "564",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kendall_george",
+      "draftYear": 2023,
+      "draftPick": 36,
+      "name": "Kendall George",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806077",
+      "externalTeamId": "260",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 33,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kevin_mcgonigle",
+      "draftYear": 2023,
+      "draftPick": 37,
+      "name": "Kevin McGonigle",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "805808",
+      "externalTeamId": "116",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 43,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "ty_floyd",
+      "draftYear": 2023,
+      "draftPick": 38,
+      "name": "Ty Floyd",
+      "kind": "pitcher",
+      "level": "Rookie",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "692226",
+      "externalTeamId": "450",
+      "externalSportId": "16",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 1,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 1,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "myles_naylor",
+      "draftYear": 2023,
+      "draftPick": 39,
+      "name": "Myles Naylor",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "802504",
+      "externalTeamId": "499",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 25,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "yohandy_morales",
+      "draftYear": 2023,
+      "draftPick": 40,
+      "name": "Yohandy Morales",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "691002",
+      "externalTeamId": "534",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 40,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "ryan_lasko",
+      "draftYear": 2023,
+      "draftPick": 41,
+      "name": "Ryan Lasko",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805782",
+      "externalTeamId": "237",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 34,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "mitch_jebb",
+      "draftYear": 2023,
+      "draftPick": 42,
+      "name": "Mitch Jebb",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "694991",
+      "externalTeamId": "484",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 20,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 4,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "sammy_stafura",
+      "draftYear": 2023,
+      "draftPick": 43,
+      "name": "Sammy Stafura",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806230",
+      "externalTeamId": "477",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 18,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 5,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "blake_wolters",
+      "draftYear": 2023,
+      "draftPick": 44,
+      "name": "Blake Wolters",
+      "kind": "pitcher",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "806265",
+      "externalTeamId": "565",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "max_anderson",
+      "draftYear": 2023,
+      "draftPick": 45,
+      "name": "Max Anderson",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "801194",
+      "externalTeamId": "512",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 13,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 5,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "sean_sullivan",
+      "draftYear": 2023,
+      "draftPick": 46,
+      "name": "Sean Sullivan",
+      "kind": "pitcher",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "807743",
+      "externalTeamId": "342",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 8,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kemp_alderman",
+      "draftYear": 2023,
+      "draftPick": 47,
+      "name": "Kemp Alderman",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "694580",
+      "externalTeamId": "564",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 38,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "lujames_groover",
+      "draftYear": 2023,
+      "draftPick": 48,
+      "name": "LuJames Groover",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "694410",
+      "externalTeamId": "2310",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 41,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "luke_keaschall",
+      "draftYear": 2023,
+      "draftPick": 49,
+      "name": "Luke Keaschall",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "807712",
+      "externalTeamId": "142",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 44,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "nazzan_zanetello",
+      "draftYear": 2023,
+      "draftPick": 50,
+      "name": "Nazzan Zanetello",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "805801",
+      "externalTeamId": "428",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 3,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "travis_bazzana",
+      "draftYear": 2024,
+      "draftPick": 1,
+      "name": "Travis Bazzana",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "683953",
+      "externalTeamId": "445",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 38,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "chase_burns",
+      "draftYear": 2024,
+      "draftPick": 2,
+      "name": "Chase Burns",
+      "kind": "pitcher",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "695505",
+      "externalTeamId": "113",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 9,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "charlie_condon",
+      "draftYear": 2024,
+      "draftPick": 3,
+      "name": "Charlie Condon",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "809707",
+      "externalTeamId": "342",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 34,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "nick_kurtz",
+      "draftYear": 2024,
+      "draftPick": 4,
+      "name": "Nick Kurtz",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "701762",
+      "externalTeamId": "133",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 42,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "hagen_smith",
+      "draftYear": 2024,
+      "draftPick": 5,
+      "name": "Hagen Smith",
+      "kind": "pitcher",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "696146",
+      "externalTeamId": "494",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 8,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jac_caglianone",
+      "draftYear": 2024,
+      "draftPick": 6,
+      "name": "Jac Caglianone",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "695506",
+      "externalTeamId": "118",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 40,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jj_wetherholt",
+      "draftYear": 2024,
+      "draftPick": 7,
+      "name": "JJ Wetherholt",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "802139",
+      "externalTeamId": "138",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 43,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "christian_moore",
+      "draftYear": 2024,
+      "draftPick": 8,
+      "name": "Christian Moore",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "695681",
+      "externalTeamId": "561",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 23,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "konnor_griffin",
+      "draftYear": 2024,
+      "draftPick": 9,
+      "name": "Konnor Griffin",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "804606",
+      "externalTeamId": "484",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 43,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "seaver_king",
+      "draftYear": 2024,
+      "draftPick": 10,
+      "name": "Seaver King",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "814409",
+      "externalTeamId": "547",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 32,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "bryce_rainer",
+      "draftYear": 2024,
+      "draftPick": 11,
+      "name": "Bryce Rainer",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "800614",
+      "externalTeamId": "582",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 29,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "braden_montgomery",
+      "draftYear": 2024,
+      "draftPick": 12,
+      "name": "Braden Montgomery",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "695731",
+      "externalTeamId": "494",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 36,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "james_tibbs_iii",
+      "draftYear": 2024,
+      "draftPick": 13,
+      "name": "James Tibbs III",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "696486",
+      "externalTeamId": "238",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 40,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "cam_smith",
+      "draftYear": 2024,
+      "draftPick": 14,
+      "name": "Cam Smith",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "701358",
+      "externalTeamId": "117",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 44,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jurrangelo_cijntje",
+      "draftYear": 2024,
+      "draftPick": 15,
+      "name": "Jurrangelo Cijntje",
+      "kind": "pitcher",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "701388",
+      "externalTeamId": "440",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "pj_morlando",
+      "draftYear": 2024,
+      "draftPick": 16,
+      "name": "PJ Morlando",
+      "kind": "hitter",
+      "level": "A",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "703563",
+      "externalTeamId": "479",
+      "externalSportId": "14",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 32,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "braylon_payne",
+      "draftYear": 2024,
+      "draftPick": 17,
+      "name": "Braylon Payne",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815520",
+      "externalTeamId": "572",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 27,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "theo_gillen",
+      "draftYear": 2024,
+      "draftPick": 18,
+      "name": "Theo Gillen",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815394",
+      "externalTeamId": "2498",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 27,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "carson_benge",
+      "draftYear": 2024,
+      "draftPick": 19,
+      "name": "Carson Benge",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "701807",
+      "externalTeamId": "121",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 40,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "trey_yesavage",
+      "draftYear": 2024,
+      "draftPick": 20,
+      "name": "Trey Yesavage",
+      "kind": "pitcher",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "702056",
+      "externalTeamId": "141",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kaelen_culpepper",
+      "draftYear": 2024,
+      "draftPick": 21,
+      "name": "Kaelen Culpepper",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "701785",
+      "externalTeamId": "1960",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 36,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "vance_honeycutt",
+      "draftYear": 2024,
+      "draftPick": 22,
+      "name": "Vance Honeycutt",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "701689",
+      "externalTeamId": "493",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 22,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kellon_lindsey",
+      "draftYear": 2024,
+      "draftPick": 23,
+      "name": "Kellon Lindsey",
+      "kind": "hitter",
+      "level": "A",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "813916",
+      "externalTeamId": "6482",
+      "externalSportId": "14",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 1,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 1,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "cam_caminiti",
+      "draftYear": 2024,
+      "draftPick": 24,
+      "name": "Cam Caminiti",
+      "kind": "pitcher",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "807284",
+      "externalTeamId": "432",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kash_mayfield",
+      "draftYear": 2024,
+      "draftPick": 25,
+      "name": "Kash Mayfield",
+      "kind": "pitcher",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "824026",
+      "externalTeamId": "584",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 6,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "ben_hess",
+      "draftYear": 2024,
+      "draftPick": 26,
+      "name": "Ben Hess",
+      "kind": "pitcher",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "696292",
+      "externalTeamId": "1956",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 3,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 3,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "dante_nori",
+      "draftYear": 2024,
+      "draftPick": 27,
+      "name": "Dante Nori",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "807276",
+      "externalTeamId": "522",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 31,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "walker_janek",
+      "draftYear": 2024,
+      "draftPick": 28,
+      "name": "Walker Janek",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "801075",
+      "externalTeamId": "482",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 19,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 5,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "slade_caldwell",
+      "draftYear": 2024,
+      "draftPick": 29,
+      "name": "Slade Caldwell",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815154",
+      "externalTeamId": "419",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 33,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "malcolm_moore",
+      "draftYear": 2024,
+      "draftPick": 30,
+      "name": "Malcolm Moore",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "702270",
+      "externalTeamId": "6324",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 25,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "ryan_waldschmidt",
+      "draftYear": 2024,
+      "draftPick": 31,
+      "name": "Ryan Waldschmidt",
+      "kind": "hitter",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "814439",
+      "externalTeamId": "109",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 40,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 8,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "griff_oferrall",
+      "draftYear": 2024,
+      "draftPick": 32,
+      "name": "Griff O'Ferrall",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "803172",
+      "externalTeamId": "418",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 29,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "kyle_debarge",
+      "draftYear": 2024,
+      "draftPick": 33,
+      "name": "Kyle DeBarge",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "814414",
+      "externalTeamId": "3898",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 32,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "blake_burke",
+      "draftYear": 2024,
+      "draftPick": 34,
+      "name": "Blake Burke",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "695501",
+      "externalTeamId": "5015",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 35,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jd_dix",
+      "draftYear": 2024,
+      "draftPick": 35,
+      "name": "JD Dix",
+      "kind": "hitter",
+      "level": "A",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "807267",
+      "externalTeamId": "516",
+      "externalSportId": "14",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 28,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "braylon_doughty",
+      "draftYear": 2024,
+      "draftPick": 36,
+      "name": "Braylon Doughty",
+      "kind": "pitcher",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815785",
+      "externalTeamId": "437",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "levi_sterling",
+      "draftYear": 2024,
+      "draftPick": 37,
+      "name": "Levi Sterling",
+      "kind": "pitcher",
+      "level": "A",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815552",
+      "externalTeamId": "3390",
+      "externalSportId": "14",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 6,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "brody_brecht",
+      "draftYear": 2024,
+      "draftPick": 38,
+      "name": "Brody Brecht",
+      "kind": "pitcher",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "701679",
+      "externalTeamId": "486",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 6,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 5,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "caleb_lomavita",
+      "draftYear": 2024,
+      "draftPick": 39,
+      "name": "Caleb Lomavita",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "701616",
+      "externalTeamId": "547",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 24,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "tommy_white",
+      "draftYear": 2024,
+      "draftPick": 40,
+      "name": "Tommy White",
+      "kind": "hitter",
+      "level": "AAA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "695720",
+      "externalTeamId": "400",
+      "externalSportId": "11",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 33,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "david_shields",
+      "draftYear": 2024,
+      "draftPick": 41,
+      "name": "David Shields",
+      "kind": "pitcher",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815789",
+      "externalTeamId": "565",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jared_thomas",
+      "draftYear": 2024,
+      "draftPick": 42,
+      "name": "Jared Thomas",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "703606",
+      "externalTeamId": "538",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 0,
+        "rolling": {
+          "hasDays7": false,
+          "hasDays15": false,
+          "hasDays30": false
+        },
+        "weeklyRows": 0,
+        "weeklyHistory": 0
+      },
+      "status": "auto_zero_games_org_check",
+      "reason": "Auto source and IDs exist, but local replay found zero 2026 games; verify injury, assignment, release, or org status before treating as broken.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "caleb_bonemer",
+      "draftYear": 2024,
+      "draftPick": 43,
+      "name": "Caleb Bonemer",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815352",
+      "externalTeamId": "580",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 35,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "luke_dickerson",
+      "draftYear": 2024,
+      "draftPick": 44,
+      "name": "Luke Dickerson",
+      "kind": "hitter",
+      "level": "A",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815380",
+      "externalTeamId": "436",
+      "externalSportId": "14",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 33,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "chris_cortez",
+      "draftYear": 2024,
+      "draftPick": 45,
+      "name": "Chris Cortez",
+      "kind": "pitcher",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "700933",
+      "externalTeamId": "559",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 9,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jonathan_santucci",
+      "draftYear": 2024,
+      "draftPick": 46,
+      "name": "Jonathan Santucci",
+      "kind": "pitcher",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "695558",
+      "externalTeamId": "505",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "wyatt_sanford",
+      "draftYear": 2024,
+      "draftPick": 47,
+      "name": "Wyatt Sanford",
+      "kind": "hitter",
+      "level": "A+",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815608",
+      "externalTeamId": "477",
+      "externalSportId": "13",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 32,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "jacob_cozart",
+      "draftYear": 2024,
+      "draftPick": 48,
+      "name": "Jacob Cozart",
+      "kind": "hitter",
+      "level": "AA",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "695524",
+      "externalTeamId": "402",
+      "externalSportId": "12",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 28,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 7,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "owen_hall",
+      "draftYear": 2024,
+      "draftPick": 49,
+      "name": "Owen Hall",
+      "kind": "pitcher",
+      "level": "Rookie",
+      "dataSource": "milb_stats_api",
+      "externalPlayerId": "815157",
+      "externalTeamId": "473",
+      "externalSportId": "16",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 2,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 2,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    },
+    {
+      "id": "payton_tolle",
+      "draftYear": 2024,
+      "draftPick": 50,
+      "name": "Payton Tolle",
+      "kind": "pitcher",
+      "level": "MLB",
+      "dataSource": "mlb_stats_api",
+      "externalPlayerId": "801139",
+      "externalTeamId": "111",
+      "externalSportId": "1",
+      "files": {
+        "composite": true,
+        "knowledge": true,
+        "performance": true,
+        "media": true,
+        "market": true,
+        "games": true
+      },
+      "gameLog": {
+        "parseOk": true,
+        "parseError": null,
+        "games": 7,
+        "rolling": {
+          "hasDays7": true,
+          "hasDays15": true,
+          "hasDays30": true
+        },
+        "weeklyRows": 6,
+        "weeklyHistory": 0
+      },
+      "status": "full_replay_like",
+      "reason": "Has games, rolling windows, and weekly replay history.",
+      "schedulerEligible": true
+    }
+  ]
+}

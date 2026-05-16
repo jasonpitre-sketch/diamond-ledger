@@ -14,6 +14,8 @@ import { useState,useEffect,useMemo } from "react"
 
 import { playersDraft2026 } from "@/data/playersDraft2026"
 import { playersDraft2025 } from "@/data/playersDraft2025"
+import { playersDraft2024 } from "@/data/playersDraft2024"
+import { playersDraft2023 } from "@/data/playersDraft2023"
 import { playersDraft2018 } from "@/data/playersDraft2018"
 
 import { calculateDLR } from "@/data/dlr/calculateDLR"
@@ -38,7 +40,7 @@ type KnowledgeMode =
 | "scout"
 | "career"
 
-type PlayerRecord = (typeof playersDraft2026 | typeof playersDraft2025 | typeof playersDraft2018)[number]
+type PlayerRecord = (typeof playersDraft2026 | typeof playersDraft2025 | typeof playersDraft2024 | typeof playersDraft2023 | typeof playersDraft2018)[number]
 
 type PlayerRecordWithLifecycle = PlayerRecord & {
   performance?: { competitionLevel?: string | null }
@@ -99,20 +101,22 @@ const allPlayers = [
 
 ...playersDraft2026,
 ...playersDraft2025,
+...playersDraft2024,
+...playersDraft2023,
 ...playersDraft2018
 
 ]
 
 // HS ecosystem — prep/high-school players classified by competitionLevel
 if(playerUniverse==="hs"){
-return playersDraft2026.filter(p=>
+return allPlayers.filter(p=>
   (getCompetitionLevel(p) ?? "").toUpperCase() === "HS"
 ) as PlayerRecord[]
 }
 
 // NCAA ecosystem — college players classified by competitionLevel
 if(playerUniverse==="ncaa"){
-return playersDraft2026.filter(p=>
+return allPlayers.filter(p=>
   (getCompetitionLevel(p) ?? "").toUpperCase() === "NCAA"
 ) as PlayerRecord[]
 }
@@ -123,11 +127,17 @@ return playersDraft2026
 }
 
 if(playerUniverse==="minors"){
-return playersDraft2025
+return allPlayers.filter(p=>{
+  const level = ((getCompetitionLevel(p) ?? getTierOrLevel(p) ?? "") as string).toUpperCase()
+  return ["ROK", "A", "A+", "AA", "AAA", "MILB"].includes(level)
+}) as PlayerRecord[]
 }
 
 if(playerUniverse==="majors"){
-return playersDraft2018
+return allPlayers.filter(p=>{
+  const level = ((getCompetitionLevel(p) ?? getTierOrLevel(p) ?? "") as string).toUpperCase()
+  return level === "MLB"
+}) as PlayerRecord[]
 }
 
 if(playerUniverse==="tracked"){
