@@ -40,6 +40,7 @@ export type StatTable = {
 
 export function statNumber(source: StatRecord | null | undefined,key:string){
   const value = source?.[key]
+  if (typeof value === "string" && value.trim() && !Number.isNaN(Number(value))) return Number(value)
   return typeof value === "number" && Number.isFinite(value) ? value : null
 }
 
@@ -90,6 +91,11 @@ function average(value:number | null){
 
 function integer(value:number | null){
   return value === null ? "-" : String(Math.round(value))
+}
+
+function formatWinLoss(w:number | null,l:number | null){
+  if(w === null && l === null) return "-"
+  return `${Math.round(w ?? 0)}-${Math.round(l ?? 0)}`
 }
 
 function isPitcher(p:SignalPlayer,viewMode:"hit"|"pitch"){
@@ -201,14 +207,32 @@ export function getPerformanceStatTable(p:SignalPlayer | null | undefined): Stat
   const year = statString(snapshot,"year") ?? "2025"
 
   if(pitcher){
+    const careerLine = (player.performance as { careerLine?: StatRecord } | undefined)?.careerLine
+    const g = statNumber(snapshot,"g") ?? statNumber(player.pitching,"G")
+    const ip = statNumber(snapshot,"ip") ?? statNumber(player.pitching,"IP")
+    const w = statNumber(snapshot,"w") ?? statNumber(player.pitching,"W")
+    const l = statNumber(snapshot,"l") ?? statNumber(player.pitching,"L")
+    const so = statNumber(snapshot,"so") ?? statNumber(snapshot,"k") ?? statNumber(player.pitching,"SO") ?? statNumber(player.pitching,"K")
+    const soBb = statNumber(snapshot,"soBb") ?? statNumber(snapshot,"kbb") ?? statNumber(player.pitching,"SOBB") ?? statNumber(player.pitching,"KBB")
+    const whip = statNumber(snapshot,"whip") ?? statNumber(player.pitching,"WHIP")
+    const era = statNumber(snapshot,"era") ?? statNumber(player.pitching,"ERA")
+    const careerValues = careerLine ? [
+      integer(statNumber(careerLine,"g")),
+      fixed(statNumber(careerLine,"ip"),1),
+      formatWinLoss(statNumber(careerLine,"w"), statNumber(careerLine,"l")),
+      integer(statNumber(careerLine,"so") ?? statNumber(careerLine,"k")),
+      fixed(statNumber(careerLine,"soBb") ?? statNumber(careerLine,"kbb"),2),
+      fixed(statNumber(careerLine,"whip"),2),
+      fixed(statNumber(careerLine,"era"),2)
+    ] : null
     const values = [
-      integer(statNumber(snapshot,"g")),
-      fixed(statNumber(snapshot,"ip"),1),
-      statString(snapshot,"wL") ?? "-",
-      integer(statNumber(snapshot,"so")),
-      fixed(statNumber(snapshot,"soBb"),2),
-      fixed(statNumber(snapshot,"whip") ?? statNumber(player.pitching,"WHIP"),2),
-      fixed(statNumber(snapshot,"era") ?? statNumber(player.pitching,"ERA"),2)
+      integer(g),
+      fixed(ip,1),
+      statString(snapshot,"wL") ?? formatWinLoss(w,l),
+      integer(so),
+      fixed(soBb,2),
+      fixed(whip,2),
+      fixed(era,2)
     ]
 
     return {
@@ -216,7 +240,7 @@ export function getPerformanceStatTable(p:SignalPlayer | null | undefined): Stat
       headers:["YR","G","IP","W-L","SO","SO/BB","WHIP","ERA"],
       rows:[
         { label:year, values },
-        { label:"TOTAL", values }
+        { label:"TOTAL", values: careerValues ?? values }
       ]
     }
   }

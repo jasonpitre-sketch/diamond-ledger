@@ -99,7 +99,13 @@ K?: number | null
 SB?: number | null
 // pitcher
 IP?: number | null
+ip?: number | string | null
 ER?: number | null
+er?: number | null
+h?: number | null
+bb?: number | null
+k?: number | null
+SO?: number | null
 } | null
 }
 performance?: {
@@ -121,6 +127,12 @@ tracked?: boolean
 heat?: string | null
 price?: string | null
 }
+}
+
+function num(value: unknown) {
+  if (typeof value === "number" && Number.isFinite(value)) return value
+  if (typeof value === "string" && value.trim() && !Number.isNaN(Number(value))) return Number(value)
+  return null
 }
 
 /* Canonical developmental progression — drives filter dropdown ordering.
@@ -844,15 +856,15 @@ onClick={()=>onSelect(p.id)}
 
 <>
 
-<div>{typeof p.tracker?.lastGame?.IP === "number" ? p.tracker.lastGame.IP.toFixed(1) : "—"}</div>
+<div>{num(p.tracker?.lastGame?.IP ?? p.tracker?.lastGame?.ip)?.toFixed(1) ?? "—"}</div>
 
-<div>{typeof p.tracker?.lastGame?.H === "number" ? p.tracker.lastGame.H : "—"}</div>
+<div>{num(p.tracker?.lastGame?.H ?? p.tracker?.lastGame?.h) ?? "—"}</div>
 
-<div>{typeof p.tracker?.lastGame?.BB === "number" ? p.tracker.lastGame.BB : "—"}</div>
+<div>{num(p.tracker?.lastGame?.BB ?? p.tracker?.lastGame?.bb) ?? "—"}</div>
 
-<div>{typeof p.tracker?.lastGame?.K === "number" ? p.tracker.lastGame.K : "—"}</div>
+<div>{num(p.tracker?.lastGame?.K ?? p.tracker?.lastGame?.k ?? p.tracker?.lastGame?.SO) ?? "—"}</div>
 
-<div>{typeof p.tracker?.lastGame?.ER === "number" ? p.tracker.lastGame.ER : "—"}</div>
+<div>{num(p.tracker?.lastGame?.ER ?? p.tracker?.lastGame?.er) ?? "—"}</div>
 
 <div>{typeof p.tracker?.W === "number" ? p.tracker.W : "—"}</div>
 

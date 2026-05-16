@@ -8,12 +8,14 @@ export const paul_skenes_performance = {
     "gs": 9,
     "w": 6,
     "l": 2,
+    "wL": "6-2",
     "ip": "50.0",
     "h": 25,
     "r": 13,
     "er": 11,
     "bb": 7,
     "k": 56,
+    "so": 56,
     "hr": 4,
     "bf": 185,
     "pitches": 743,
@@ -26,7 +28,8 @@ export const paul_skenes_performance = {
     "bb9": 1.26,
     "h9": 4.5,
     "hr9": 0.72,
-    "kbb": 8
+    "kbb": 8,
+    "soBb": 8
   },
   "season2026": {
     "year": "2026",
@@ -35,12 +38,14 @@ export const paul_skenes_performance = {
     "gs": 9,
     "w": 6,
     "l": 2,
+    "wL": "6-2",
     "ip": "50.0",
     "h": 25,
     "r": 13,
     "er": 11,
     "bb": 7,
     "k": 56,
+    "so": 56,
     "hr": 4,
     "bf": 185,
     "pitches": 743,
@@ -53,7 +58,8 @@ export const paul_skenes_performance = {
     "bb9": 1.26,
     "h9": 4.5,
     "hr9": 0.72,
-    "kbb": 8
+    "kbb": 8,
+    "soBb": 8
   },
   "careerLine": {
     "g": 64,
