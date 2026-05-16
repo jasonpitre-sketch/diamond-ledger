@@ -207,41 +207,41 @@ export function getPerformanceStatTable(p:SignalPlayer | null | undefined): Stat
   const year = statString(snapshot,"year") ?? "2025"
 
   if(pitcher){
-    const careerLine = (player.performance as { careerLine?: StatRecord } | undefined)?.careerLine
-    const g = statNumber(snapshot,"g") ?? statNumber(player.pitching,"G")
-    const ip = statNumber(snapshot,"ip") ?? statNumber(player.pitching,"IP")
-    const w = statNumber(snapshot,"w") ?? statNumber(player.pitching,"W")
-    const l = statNumber(snapshot,"l") ?? statNumber(player.pitching,"L")
-    const so = statNumber(snapshot,"so") ?? statNumber(snapshot,"k") ?? statNumber(player.pitching,"SO") ?? statNumber(player.pitching,"K")
-    const soBb = statNumber(snapshot,"soBb") ?? statNumber(snapshot,"kbb") ?? statNumber(player.pitching,"SOBB") ?? statNumber(player.pitching,"KBB")
-    const whip = statNumber(snapshot,"whip") ?? statNumber(player.pitching,"WHIP")
-    const era = statNumber(snapshot,"era") ?? statNumber(player.pitching,"ERA")
-    const careerValues = careerLine ? [
-      integer(statNumber(careerLine,"g")),
-      fixed(statNumber(careerLine,"ip"),1),
-      formatWinLoss(statNumber(careerLine,"w"), statNumber(careerLine,"l")),
-      integer(statNumber(careerLine,"so") ?? statNumber(careerLine,"k")),
-      fixed(statNumber(careerLine,"soBb") ?? statNumber(careerLine,"kbb"),2),
-      fixed(statNumber(careerLine,"whip"),2),
-      fixed(statNumber(careerLine,"era"),2)
-    ] : null
-    const values = [
-      integer(g),
-      fixed(ip,1),
-      statString(snapshot,"wL") ?? formatWinLoss(w,l),
-      integer(so),
-      fixed(soBb,2),
-      fixed(whip,2),
-      fixed(era,2)
+    const performance = player.performance as
+      | {
+        careerLine?: StatRecord
+        season2026?: StatRecord
+        season2025?: StatRecord
+        season2024?: StatRecord
+      }
+      | undefined
+    const tracker = (player as { tracker?: { rolling?: Record<string, StatRecord | null | undefined> } }).tracker
+    const season = performance?.season2026 ?? snapshot
+    const careerLine = performance?.careerLine
+    const pitcherRow = (source: StatRecord | null | undefined) => [
+      integer(statNumber(source,"g") ?? statNumber(source,"G") ?? statNumber(source,"games")),
+      fixed(statNumber(source,"ip") ?? statNumber(source,"IP"),1),
+      integer(statNumber(source,"w") ?? statNumber(source,"W")),
+      integer(statNumber(source,"l") ?? statNumber(source,"L")),
+      integer(statNumber(source,"h") ?? statNumber(source,"H")),
+      integer(statNumber(source,"so") ?? statNumber(source,"SO") ?? statNumber(source,"k") ?? statNumber(source,"K")),
+      fixed(statNumber(source,"era") ?? statNumber(source,"ERA"),2),
+      fixed(statNumber(source,"whip") ?? statNumber(source,"WHIP"),2)
     ]
+    const rows = [
+      { label:"7D", values: pitcherRow(tracker?.rolling?.days7) },
+      { label:"15D", values: pitcherRow(tracker?.rolling?.days15) },
+      { label:"30D", values: pitcherRow(tracker?.rolling?.days30) },
+      { label:year, values: pitcherRow(season) }
+    ]
+
+    if (performance?.season2025) rows.push({ label:"2025", values: pitcherRow(performance.season2025) })
+    if (careerLine) rows.push({ label:"TOTAL", values: pitcherRow(careerLine) })
 
     return {
       kind:"pitcher",
-      headers:["YR","G","IP","W-L","SO","SO/BB","WHIP","ERA"],
-      rows:[
-        { label:year, values },
-        { label:"TOTAL", values: careerValues ?? values }
-      ]
+      headers:["","G","IP","W","L","H","SO","ERA","WHIP"],
+      rows
     }
   }
 
