@@ -145,48 +145,45 @@ const tierOrder = [
 ]
 
 const teamNameMap: Record<string, string> = {
-  ARI: "Arizona Diamondbacks",
-  ATL: "Atlanta Braves",
-  BAL: "Baltimore Orioles",
-  BOS: "Boston Red Sox",
-  CHC: "Chicago Cubs",
-  CIN: "Cincinnati Reds",
-  CLE: "Cleveland Guardians",
-  COL: "Colorado Rockies",
-  CWS: "Chicago White Sox",
-  DET: "Detroit Tigers",
-  HOU: "Houston Astros",
-  KC: "Kansas City Royals",
-  KCR: "Kansas City Royals",
-  LAA: "Los Angeles Angels",
-  LAD: "Los Angeles Dodgers",
-  MIA: "Miami Marlins",
-  MIL: "Milwaukee Brewers",
-  MIN: "Minnesota Twins",
-  NYM: "New York Mets",
-  NYY: "New York Yankees",
-  OAK: "Athletics",
-  ATH: "Athletics",
-  PHI: "Philadelphia Phillies",
-  PIT: "Pittsburgh Pirates",
-  SD: "San Diego Padres",
-  SDP: "San Diego Padres",
-  SEA: "Seattle Mariners",
-  SF: "San Francisco Giants",
-  SFG: "San Francisco Giants",
-  STL: "St. Louis Cardinals",
-  TB: "Tampa Bay Rays",
-  TBR: "Tampa Bay Rays",
-  TEX: "Texas Rangers",
-  TOR: "Toronto Blue Jays",
-  WSH: "Washington Nationals",
-  WSN: "Washington Nationals",
+  "Arizona Diamondbacks": "ARI",
+  "Atlanta Braves": "ATL",
+  "Baltimore Orioles": "BAL",
+  "Boston Red Sox": "BOS",
+  "Chicago Cubs": "CHC",
+  "Chicago White Sox": "CWS",
+  "Cincinnati Reds": "CIN",
+  "Cleveland Guardians": "CLE",
+  "Colorado Rockies": "COL",
+  "Detroit Tigers": "DET",
+  "Houston Astros": "HOU",
+  "Kansas City Royals": "KC",
+  "Los Angeles Angels": "LAA",
+  "Los Angeles Dodgers": "LAD",
+  "Miami Marlins": "MIA",
+  "Milwaukee Brewers": "MIL",
+  "Minnesota Twins": "MIN",
+  "New York Mets": "NYM",
+  "New York Yankees": "NYY",
+  "Athletics": "ATH",
+  "Oakland Athletics": "ATH",
+  "Philadelphia Phillies": "PHI",
+  "Pittsburgh Pirates": "PIT",
+  "San Diego Padres": "SD",
+  "San Francisco Giants": "SF",
+  "Seattle Mariners": "SEA",
+  "St. Louis Cardinals": "STL",
+  "Tampa Bay Rays": "TB",
+  "Texas Rangers": "TEX",
+  "Toronto Blue Jays": "TOR",
+  "Washington Nationals": "WSH",
 }
 
 function displayTeam(team?: string | null) {
   const raw = String(team ?? "").trim()
   if (!raw) return ""
-  return teamNameMap[raw.toUpperCase()] ?? raw
+  const upper = raw.toUpperCase()
+  if (upper.length <= 4) return upper
+  return teamNameMap[raw] ?? raw
 }
 
 /**
