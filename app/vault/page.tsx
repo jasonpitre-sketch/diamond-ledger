@@ -57,6 +57,9 @@ function getTierOrLevel(player: PlayerRecord | null | undefined){
   return record?.tier ?? record?.level
 }
 
+const stagedDraft2023Players: PlayerRecord[] = []
+const stagedDraft2024Players: PlayerRecord[] = []
+
 
 export default function Page(){
 
@@ -101,8 +104,8 @@ const allPlayers = [
 
 ...playersDraft2026,
 ...playersDraft2025,
-...playersDraft2024,
-...playersDraft2023,
+...stagedDraft2024Players,
+...stagedDraft2023Players,
 ...playersDraft2018
 
 ]

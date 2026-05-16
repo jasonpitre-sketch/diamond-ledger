@@ -1,0 +1,826 @@
+{
+  "generatedAt": "2026-05-16T01:50:39.044Z",
+  "action": "2023/2024 cohorts staged off live vault until completion audit passes",
+  "cohorts": {
+    "draft2023": {
+      "counts": {
+        "complete": 1,
+        "partial": 49,
+        "shell": 0,
+        "missing": 0
+      },
+      "players": [
+        {
+          "id": "paul_skenes",
+          "status": "complete",
+          "hasTracker": true,
+          "hasRolling": true,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "dylan_crews",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "max_clark",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "wyatt_langford",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "walker_jenkins",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jacob_wilson",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "rhett_lowder",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "blake_mitchell",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "chase_dollander",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "noble_meyer",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "nolan_schanuel",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "tommy_troy",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "matt_shaw",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kyle_teel",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jacob_gonzalez",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "bryce_eldridge",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "enrique_bradfield_jr",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "brock_wilken",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "brayden_taylor",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "arjun_nimmala",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "chase_davis",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "colt_emerson",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "ralphy_velazquez",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "hurston_waldrep",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "dillon_head",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "george_lombard_jr",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "aidan_miller",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "brice_matthews",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jonny_farmelo",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "tai_peete",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "adrian_santana",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "colin_houck",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "josh_knoth",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "charlee_soto",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "thomas_white",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kendall_george",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kevin_mcgonigle",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "ty_floyd",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "myles_naylor",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "yohandy_morales",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "ryan_lasko",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "mitch_jebb",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "sammy_stafura",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "blake_wolters",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "max_anderson",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "sean_sullivan",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kemp_alderman",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "lujames_groover",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "luke_keaschall",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "nazzan_zanetello",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        }
+      ]
+    },
+    "draft2024": {
+      "counts": {
+        "complete": 0,
+        "partial": 50,
+        "shell": 0,
+        "missing": 0
+      },
+      "players": [
+        {
+          "id": "travis_bazzana",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "chase_burns",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "charlie_condon",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "nick_kurtz",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "hagen_smith",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jac_caglianone",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jj_wetherholt",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "christian_moore",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "konnor_griffin",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "seaver_king",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "bryce_rainer",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "braden_montgomery",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "james_tibbs_iii",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "cam_smith",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jurrangelo_cijntje",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "pj_morlando",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "braylon_payne",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "theo_gillen",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "carson_benge",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "trey_yesavage",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kaelen_culpepper",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "vance_honeycutt",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kellon_lindsey",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "cam_caminiti",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kash_mayfield",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "ben_hess",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "dante_nori",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "walker_janek",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "slade_caldwell",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "malcolm_moore",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "ryan_waldschmidt",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "griff_oferrall",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "kyle_debarge",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "blake_burke",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jd_dix",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "braylon_doughty",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "levi_sterling",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "brody_brecht",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "caleb_lomavita",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "tommy_white",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "david_shields",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jared_thomas",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "caleb_bonemer",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "luke_dickerson",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "chris_cortez",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jonathan_santucci",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "wyatt_sanford",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "jacob_cozart",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "owen_hall",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        },
+        {
+          "id": "payton_tolle",
+          "status": "partial",
+          "hasTracker": true,
+          "hasRolling": false,
+          "hasGame": true,
+          "hasRealStats": true
+        }
+      ]
+    }
+  }
+}
