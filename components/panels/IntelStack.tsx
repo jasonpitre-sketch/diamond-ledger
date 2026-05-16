@@ -62,6 +62,7 @@ type Props = {
   infoMode?: "bio" | "scout" | "career"
   dlrTier?: string
   performanceContext?: "bats" | "arms"
+  precomputedDlr?: unknown
 }
 
 type PanelRow = {
